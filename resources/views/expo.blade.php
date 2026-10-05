@@ -104,7 +104,6 @@ main{flex:1;min-height:0;display:flex}
 .shdr{align-items:center;padding:0;z-index:1}
 .shdr span{background:#eef2f7;border-radius:999px;padding:1px 12px;font-size:11.5px;font-weight:800;color:var(--ink2);letter-spacing:.03em;transition:.15s}
 .shdr:hover span{background:var(--brand2);color:#fff}
-.shdr small{display:none}
 .cell{justify-content:center;padding:0;border-radius:5px;font-size:10.5px;color:rgba(0,0,0,.55);
   background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
 .cell.dark{color:rgba(255,255,255,.9)}
@@ -128,12 +127,12 @@ main{flex:1;min-height:0;display:flex}
 .dir.on .cnt{background:rgba(255,255,255,.18);color:#fff}
 .dir.on i{box-shadow:0 0 0 2px rgba(255,255,255,.35)}
 .chip b{color:var(--brand)}
-/* ---------- xarita ko'rinishlari (sinov): v1 — zal rejasi, v2 — zal rejasi, stendlar gorizontal ---------- */
+/* ---------- xarita ko'rinishlari: v1 — asosiy (zal rejasi), v0 — oddiy rangli xarita ---------- */
 .viewCtl{position:absolute;left:12px;top:12px;z-index:8;display:flex;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,.14)}
 .viewCtl button{border:0;background:#fff;color:var(--ink2);font-size:12px;font-weight:600;padding:7px 11px;cursor:pointer}
 .viewCtl button+button{border-left:1px solid var(--line)}
 .viewCtl button.on{background:var(--ink);color:#fff}
-/* zal rejasi (v1 va v2 uchun umumiy): devor, pol, xonalar, stend bloklari */
+/* zal rejasi: devor, pol, xonalar, stend bloklari */
 .map.plan{padding:22px;background:linear-gradient(180deg,#ecf2fb,#dfe8f5);border:6px solid #111827;border-radius:6px;box-shadow:0 12px 32px rgba(15,23,42,.2)}
 .map.plan .zone{background:#fff;border:2px solid #111827;border-radius:3px;color:#111827;font-weight:800;font-size:11.5px;letter-spacing:.03em}
 .map.plan .zone.hall{background:#fff radial-gradient(#a3afc0 1.5px,transparent 1.7px) 3px 3px/9px 9px}
@@ -158,65 +157,9 @@ main{flex:1;min-height:0;display:flex}
 /* v1: stendlar tik — o'rtada to'q rangli yorliq, ikki yonida kataklar */
 .map.v1 .slabel{margin:0 -1px -1px 0;border-radius:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
 .map.v1 .cell.wide{font-size:11px}
-/* v2: "tungi zal" — Excel'dagi yo'nalish (ALFA HALL tepada), qorong'i pol ustida hajmli (ko'tarilgan) rangli stend bloklari.
-   Blok: tepada kod va bandlik, o'rtada bo'lim nomi (tik yozuv), ikki yonida joy kataklari. */
-.mapWrap.night .mapCard{background:#0a1020 radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.2px) 0 0/18px 18px}
-.mapWrap.night::after{background:linear-gradient(90deg,rgba(10,16,32,0),rgba(10,16,32,.92))}
-.map.v2{padding:30px 30px 40px;border:2px solid #33415f;border-radius:18px;
-  background:
-    radial-gradient(900px 420px at 50% -8%,rgba(96,165,250,.22),transparent 70%),
-    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/100% 46px,
-    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/46px 100%,
-    linear-gradient(180deg,#16213d,#0c1428);
-  box-shadow:0 0 0 6px #0f1a33,0 24px 60px rgba(0,0,0,.55)}
-/* zonalar — shisha panellar */
-.map.v2 .zone{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.22);border-radius:12px;color:#e2e8f0;font-size:12px;font-weight:700;letter-spacing:.06em;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
-.map.v2 .zone.hall{background:rgba(255,255,255,.05) radial-gradient(rgba(255,255,255,.2) 1.4px,transparent 1.6px) 4px 4px/10px 10px}
-.map.v2 .zone b,.map.v2 .zone.vert span{background:rgba(12,20,40,.82);border-radius:999px;padding:4px 12px;font-weight:700}
-.map.v2 .zone.vert span{padding:12px 4px}
-.map.v2 .zone b::before,.map.v2 .zone span::before{margin-right:6px}
-.map.v2 .zpress b::before{content:"🎤"}
-.map.v2 .zalfa b::before,.map.v2 .zbeta b::before{content:"🎬"}
-.map.v2 .zevent b::before{content:"🎪"}
-.map.v2 .zbaby b::before{content:"🧸"}
-.map.v2 .zb2b b::before{content:"🤝"}
-.map.v2 .zarvr b::before{content:"🥽"}
-.map.v2 .zsci span::before{content:"🔬"}
-.map.v2 .zmil span::before{content:"🛡️"}
-.map.v2 .zb2b{background:rgba(59,130,246,.16);border-color:rgba(96,165,250,.7);box-shadow:0 0 22px rgba(59,130,246,.25)}
-.map.v2 .zarvr{background:rgba(139,92,246,.16);border-color:rgba(167,139,250,.7);box-shadow:0 0 22px rgba(139,92,246,.25)}
-.map.v2 .zsci,.map.v2 .zmil{background:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 9px,rgba(255,255,255,.02) 9px 18px)}
-/* yo'laklar — harakatlanuvchi uzuq chiziq */
+/* yo'laklardagi harakatlanuvchi uzuq chiziq */
 @keyframes flowY{to{background-position:center 24px}}
 @keyframes flowX{to{background-position:24px center}}
-.map.v2 .corr{letter-spacing:.55em;font-size:11px;font-weight:700;color:#93a4c3;
-  background:repeating-linear-gradient(90deg,rgba(147,197,253,.55) 0 12px,transparent 12px 24px) 0 center/100% 2px repeat-x;animation:flowX 1.4s linear infinite}
-.map.v2 .corr span{background:#111b34;padding:0 16px;border-radius:999px}
-.map.v2 .aisle{border-radius:0;background:repeating-linear-gradient(180deg,rgba(147,197,253,.4) 0 12px,transparent 12px 24px) center 0/2px 100% repeat-y;animation:flowY 1.4s linear infinite}
-/* stend — ko'tarilgan blok: pastida to'q qirra, atrofida o'z rangida yog'du */
-.map.v2 .sbg{margin:0 -1px -1px 0;border-radius:10px;background:var(--c);
-  box-shadow:0 9px 0 color-mix(in srgb,var(--c) 48%,#000),0 20px 26px rgba(0,0,0,.55),0 0 34px color-mix(in srgb,var(--c) 38%,transparent)}
-.map.v2 .shdr{margin:0 -1px 0 0}
-.map.v2 .shdr span{display:flex;align-items:baseline;justify-content:center;gap:7px;padding-top:7px;font-size:15px;border-radius:10px 10px 0 0;color:#fff;
-  background:linear-gradient(160deg,rgba(255,255,255,.3),rgba(0,0,0,.18)),var(--c);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset -1px 0 0 rgba(0,0,0,.2)}
-.map.v2 .shdr.lt span{color:#1e293b}
-.map.v2 .shdr small{display:block;font-size:9.5px;font-weight:700;letter-spacing:.02em;opacity:.9}
-.map.v2 .cell{font-size:10.5px;font-weight:700;color:rgba(15,23,42,.62);
-  background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 60%),var(--c);border:1px solid rgba(255,255,255,.3);transition:transform .12s,filter .12s}
-.map.v2 .cell.dark{color:rgba(255,255,255,.9)}
-.map.v2 .cell.wide{font-size:11.5px;font-weight:800}
-.map.v2 .cell:hover{transform:translateY(-3px);filter:brightness(1.12);box-shadow:0 6px 12px rgba(0,0,0,.4);z-index:5}
-/* bo'sh joy — qorong'i, o'z rangida uzuq hoshiya */
-.map.v2 .cell.empty{background:rgba(8,13,28,.78);border:1px dashed color-mix(in srgb,var(--c) 75%,#fff);color:color-mix(in srgb,var(--c) 70%,#fff)}
-.map.v2 .cell.sel{box-shadow:0 0 0 3px var(--sel),0 0 0 5px #fff,0 0 22px var(--sel)}
-.map.v2 .cell.hit{box-shadow:0 0 0 3px var(--hit),0 0 18px var(--hit)}
-.map.v2 .slabel{margin:0;padding:6px 0;background:none;border-radius:0;z-index:3;box-shadow:none}
-.map.v2 .slabel span{font-size:13.5px;font-weight:800;line-height:1.15;letter-spacing:.03em;
-  color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.55),0 0 10px rgba(0,0,0,.35)}
-.map.v2 .slabel.lighttxt span{color:#1e293b;text-shadow:0 0 6px rgba(255,255,255,.8)}
-.map.v2 .slabel.narrow span{font-size:11.5px}
-@media (prefers-reduced-motion:reduce){.map.v2 .corr,.map.v2 .aisle{animation:none}}
 /* v1: kataklar — oq kartochka ustidagi alohida plitkalar: yumaloq burchak, yengil gradient, pastida rangli qirra */
 .map.v1 .sbg{background:#fff}
 .map.v1 .cell,.map.v1 .cell.cl,.map.v1 .cell.cr{margin:1.5px;border-radius:6px}
@@ -258,7 +201,7 @@ main{flex:1;min-height:0;display:flex}
 /* yon eshiklar faqat chiqish: belgi va tashqariga qaragan strelka */
 .door.out{display:flex!important;align-items:center;gap:2px}
 .map:not(.v1) .door.out{display:none!important}
-/* xaritani kattalashtirish tugmalari *//* xaritani kattalashtirish tugmalari */
+/* xaritani kattalashtirish tugmalari */
 .mapWrap{flex:1;min-height:0;position:relative;display:flex}
 .zoomCtl{position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,.18);border:1px solid var(--line);z-index:8}
 .zoomCtl button{width:40px;height:40px;border:0;background:#fff;color:var(--ink2);font-size:20px;font-weight:600;cursor:pointer;display:grid;place-items:center}
@@ -575,7 +518,7 @@ main{flex:1;min-height:0;display:flex}
         <div class="mapScale" id="mapScale"><div class="map" id="map"></div></div>
       </div>
       <div class="viewCtl" id="viewCtl">
-        <button data-v="v0">Hozirgi</button><button data-v="v1">1-variant</button><button data-v="v2">2-variant</button>
+        <button data-v="v1">Asosiy</button><button data-v="v0">1-variant</button>
       </div>
       <div class="zoomCtl">
         <button id="zIn" aria-label="Kattalashtirish" title="Kattalashtirish">+</button>
@@ -687,9 +630,10 @@ const tagOf = (id, n) => groupOf(id, n).length > 1 ? `${id} · ${rangeOf(id, n)}
 const sectionOf = (id, n) => (byStand[id] || []).find(x => x.section && labOf(id, x.place) === labOf(id, n))?.section || '';
 const map = $('#map');
 
-// Ko'rinish (sinov): v0 — hozirgi, v1 — zal rejasi, v2 — zal rejasi, yonboshlatilgan (ustun va qatorlar almashadi)
-let view = 'v0';
-try { view = ['v0', 'v1', 'v2'].includes(localStorage.expoView) ? localStorage.expoView : 'v0'; } catch (e) {}
+// Ko'rinishlar: v1 — asosiy (zal rejasi), v0 — oddiy rangli xarita ("1-variant")
+// Asosiy ko'rinish — v1 (zal rejasi). Kalit nomi yangilangan: avval tanlangan eski ko'rinish saqlanib qolmasin.
+let view = 'v1';
+try { view = ['v0', 'v1'].includes(localStorage.expoView2) ? localStorage.expoView2 : 'v1'; } catch (e) {}
 function el(cls, style, html) {
   const d = document.createElement('div');
   d.className = cls; d.style.cssText = style; if (html != null) d.innerHTML = html;
@@ -701,16 +645,8 @@ function buildMap() {
   map.innerHTML = '';
   const rB = 3, rCorr = rB + HALF + 1, rA = rCorr + 1, rEnd = rA + HALF + 1;
   map.className = 'map ' + view + (view === 'v0' ? '' : ' plan');
-  document.querySelector('.mapWrap').classList.toggle('night', view === 'v2');
   $$('#viewCtl button').forEach(b => b.classList.toggle('on', b.dataset.v === view));
-  if (view === 'v2') {
-    // tungi zal: stend sarlavhasi balandroq, yo'lak kengroq (blokning hajmli qirrasi sig'ishi uchun)
-    map.style.gridTemplateColumns = '';
-    map.style.gridTemplateRows = `42px 16px 32px repeat(${HALF},28px) 58px 32px repeat(${HALF},28px)`;
-  } else {
-    map.style.gridTemplateColumns = '';
-    map.style.gridTemplateRows = `36px 10px 24px repeat(${HALF},27px) 40px 24px repeat(${HALF},27px)`;
-  }
+  map.style.gridTemplateRows = `36px 10px 24px repeat(${HALF},27px) 40px 24px repeat(${HALF},27px)`;
   el('zone soft hz zpress', 'grid-column:3/9;grid-row:1', '<b>PRESS ZONE</b>');
   el('zone soft hz hall zalfa', 'grid-column:10/29;grid-row:1', '<b>ALFA HALL</b>');
   el('zone soft hall zbeta', `grid-column:1;grid-row:${rCorr - 3}/${rA + 4}`, '<b>BETA<br> HALL</b>');
@@ -753,7 +689,7 @@ function buildMap() {
     el('sbg', `grid-column:${s.col}/${s.col + 4};grid-row:${r0}/${r0 + HALF + 1};--c:${standLab(s.id).c}`);
     const sl = standLab(s.id);
     const h = el('shdr' + (sl.light ? ' lt' : ''), `grid-column:${s.col}/${s.col + 4};grid-row:${r0};--c:${sl.c}`,
-      `<span>${s.id}<small>${(byStand[s.id] || []).filter(p => p.org).length}/${PER}</small></span>`);
+      `<span>${s.id}</span>`);
     h.onclick = () => openStand(s.id);
     // 1..HALF pastdan tepaga, HALF+1..PER tepadan pastga — yo'lak tomonda 1 va PER turadi
     const rowOf = n => r0 + 1 + (n <= HALF ? HALF - n : n - HALF - 1);
@@ -815,7 +751,7 @@ function setZoom(z) {
 }
 $('#viewCtl').onclick = e => {
   const b = e.target.closest('button'); if (!b) return;
-  view = b.dataset.v; try { localStorage.expoView = view; } catch (err) {}
+  view = b.dataset.v; try { localStorage.expoView2 = view; } catch (err) {}
   zoom = 1; buildMap(); highlight(); fitMap();
 };
 $('#zIn').onclick = () => setZoom(zoom * 1.4);
