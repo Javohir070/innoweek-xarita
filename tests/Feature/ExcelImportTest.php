@@ -15,12 +15,12 @@ class ExcelImportTest extends TestCase
 {
     use RefreshDatabase;
 
-    private function addImages(Worksheet $ws, array $cells): void
+    private function addImages(Worksheet $ws, array $cells, int $offsetY = 0): void
     {
         $img = tempnam(sys_get_temp_dir(), 'img').'.png';
         imagepng(imagecreatetruecolor(40, 30), $img);
         foreach ($cells as $cell) {
-            (new Drawing)->setPath($img)->setCoordinates($cell)->setDescription('Internetdan olingan izoh')->setWorksheet($ws);
+            (new Drawing)->setPath($img)->setCoordinates($cell)->setDescription('Internetdan olingan izoh')->setOffsetY($offsetY)->setWorksheet($ws);
         }
     }
 
@@ -58,6 +58,9 @@ class ExcelImportTest extends TestCase
         $ws->fromArray([10, 'Hudud', 'А1', 'kirish', 'Tushunarsiz'], null, 'A13');
 
         $this->addImages($ws, ['I4', 'K4', 'H6', 'H7', 'I7', 'J7']);
+        // 5-qator katagining eng pastidan boshlangan rasm aslida 6-qatorda turibdi
+        $ws->getRowDimension(5)->setRowHeight(30);
+        $this->addImages($ws, ['I5'], 38);
 
         return $this->save($book);
     }
@@ -103,12 +106,14 @@ class ExcelImportTest extends TestCase
         $this->assertSame(['Andijon', 1, ''], [$a2->org, $a2->cont, (string) $a2->info]);
         $this->assertCount(0, $a2->products);
 
-        $this->assertSame('', Place::where(['stand' => 'A1', 'place' => 3])->value('org'));
+        $a3 = Place::where(['stand' => 'A1', 'place' => 3])->with('products')->first();
+        $this->assertSame('', $a3->org);
+        $this->assertCount(0, $a3->products); // pastga osilib turgan rasm keyingi qatorga tegishli
 
         $a4 = Place::where(['stand' => 'A1', 'place' => 4])->with('products')->first();
         $this->assertSame(['Educoin', '', ''], [$a4->org, (string) $a4->info, (string) $a4->contact]);
         $this->assertSame('', $a4->products[0]->name); // rasm izohi nom sifatida olinmaydi
-        $this->assertCount(1, $a4->products[0]->images);
+        $this->assertCount(2, $a4->products[0]->images); // o'z rasmi + yuqori qatordan osilib tushgani
 
         $b4 = Place::where('stand', 'B4')->with('products')->orderBy('place')->get();
         $this->assertCount(10, $b4);

@@ -20,15 +20,17 @@ body{background:var(--bg);color:var(--ink);font:14px/1.5 Inter,system-ui,-apple-
 button{font:inherit}
 [hidden]{display:none!important}
 
-/* ---------- header ---------- */
-header{background:linear-gradient(180deg,#0b3d91,#0a347c);color:#fff;padding:12px 20px 0;display:flex;align-items:flex-end;gap:14px}
-.logo{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.14);display:grid;place-items:center;flex:none;margin-bottom:12px}
-.brand{padding-bottom:12px;min-width:0}
-.brand h1{margin:0;font-size:18px;font-weight:800;letter-spacing:-.01em}
-.brand p{margin:0;font-size:12px;opacity:.75}
-.tabs{display:flex;gap:2px;margin-left:auto}
-.tabs button{border:0;background:transparent;color:rgba(255,255,255,.75);padding:10px 16px;border-radius:10px 10px 0 0;cursor:pointer;font-weight:600}
-.tabs button.on{background:var(--bg);color:var(--ink)}
+/* ---------- nom va bo'limlar (yon panel boshida) ---------- */
+.sideTop{display:flex;flex-direction:column;gap:12px}
+.brandRow{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:40px;height:40px;border-radius:11px;background:linear-gradient(140deg,var(--brand2),var(--brand));display:grid;place-items:center;flex:none;box-shadow:0 4px 12px rgba(11,61,145,.3)}
+.brand{min-width:0}
+.brand h1{margin:0;font-size:16px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.brand p{margin:1px 0 0;font-size:11.5px;color:var(--muted)}
+.tabs{display:flex;gap:3px;background:#e2e8f0;border-radius:12px;padding:3px}
+.tabs button{flex:1;border:0;background:transparent;color:var(--ink2);padding:8px 14px;border-radius:9px;cursor:pointer;font-weight:600;transition:.15s}
+.tabs button:hover{color:var(--ink)}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.15)}
 .search{position:relative;display:block;flex:none}
 .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.6}
 #q{width:100%;padding:11px 12px 11px 38px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff;color:var(--ink);box-shadow:var(--shadow)}
@@ -81,6 +83,8 @@ main{flex:1;min-height:0;display:flex}
 .cell.dark{color:rgba(255,255,255,.7)}
 .cell.empty{background:repeating-linear-gradient(135deg,var(--c) 0 4px,rgba(255,255,255,.75) 4px 8px);opacity:.75}
 .cell:hover{transform:scale(1.12);box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:5}
+.cell.wide{font-size:10.5px}
+.cell.wide:hover{transform:scale(1.05)}
 .cell.sel{box-shadow:0 0 0 3px var(--sel),0 0 0 5px var(--ink);z-index:6}
 .cell.hit{box-shadow:0 0 0 3px var(--hit);z-index:4;animation:pulse 1.4s infinite}
 .cell.dim{opacity:.18}
@@ -90,6 +94,29 @@ main{flex:1;min-height:0;display:flex}
 .slabel.narrow span{font-size:11px}
 .slabel.lighttxt span{color:#1e293b;text-shadow:none}
 .slabel.dim{opacity:.18}
+/* ---------- ko'rinish: xarita va yon panel bezagi ---------- */
+.mapCard{background:var(--surface) radial-gradient(#e4e9f0 1px,transparent 1.2px) 0 0/18px 18px}
+/* har bir stend — alohida oq kartochka */
+.sbg{margin:-2px -5px -6px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 2px 10px rgba(15,23,42,.06)}
+.shdr{align-items:center;padding:0;z-index:1}
+.shdr span{background:#eef2f7;border-radius:999px;padding:1px 12px;font-size:11.5px;font-weight:800;color:var(--ink2);letter-spacing:.03em;transition:.15s}
+.shdr:hover span{background:var(--brand2);color:#fff}
+.cell{justify-content:center;padding:0;border-radius:5px;font-size:10.5px;color:rgba(0,0,0,.55);
+  background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
+.cell.dark{color:rgba(255,255,255,.9)}
+.cell.wide{font-size:12px;font-weight:800}
+/* bo'sh joy: och rang va hoshiya */
+.cell.empty{opacity:1;background:color-mix(in srgb,var(--c) 9%,#fff);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--c) 42%,#fff);color:color-mix(in srgb,var(--c) 70%,#334155)}
+.slabel{z-index:1;border-radius:7px;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(0,0,0,.07)),var(--c)}
+.zone{border-color:#d5dde8;color:#64748b;font-size:11px}
+.zone.soft{background:rgba(241,245,249,.9)}
+.corr{background:rgba(241,245,249,.92)}
+/* yon panel */
+.dirs-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:0 2px 2px}
+.dir .cnt{margin-left:auto;font-size:11px;font-weight:700;color:var(--muted);background:#f1f5f9;border-radius:999px;padding:1px 8px;transition:.15s}
+.dir.on .cnt{background:rgba(255,255,255,.18);color:#fff}
+.dir.on i{box-shadow:0 0 0 2px rgba(255,255,255,.35)}
+.chip b{color:var(--brand)}
 /* xaritani kattalashtirish tugmalari */
 .mapWrap{flex:1;min-height:0;position:relative;display:flex}
 .zoomCtl{position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,.18);border:1px solid var(--line);z-index:8}
@@ -285,7 +312,14 @@ td.pre{white-space:pre-line}
 @media (max-width:900px){
   main{flex-direction:column}
   #side{width:auto;padding:10px 12px 0;gap:8px}
-  .chips{display:none}
+  .sideTop{flex-direction:row;align-items:center;gap:10px}
+  .brandRow{flex:1}
+  .brand p{display:none}
+  .brand h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tabs{flex:none}
+  .tabs button{padding:7px 12px}
+  .chips,.dirs-h{display:none}
+  .dir .cnt{margin-left:2px}
   .dirs{flex-wrap:nowrap;overflow-x:auto;margin:0 -12px;padding:0 12px 2px;scrollbar-width:none}
   .dirs::-webkit-scrollbar{display:none}
   .dir{flex:none}
@@ -295,18 +329,14 @@ td.pre{white-space:pre-line}
 /* sensorli ekranda sichqoncha effektlari yopishib qolmasin */
 @media (hover:none){
   #tip{display:none}
-  .cell:hover{transform:none;box-shadow:none}
+  .cell:hover,.cell.wide:hover{transform:none;box-shadow:none}
   .cell.sel:hover{box-shadow:0 0 0 3px var(--sel),0 0 0 5px var(--ink)}
   .cell.hit:hover{box-shadow:0 0 0 3px var(--hit)}
 }
 @media (max-width:700px){
   .form .fgrid{grid-template-columns:1fr}
-  header{padding:10px 12px 0;gap:10px}
-  .logo{width:34px;height:34px;margin-bottom:10px}
-  .brand{padding-bottom:10px}
-  .brand h1{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .brand p{display:none}
-  .tabs button{padding:8px 12px}
+  .logo{width:34px;height:34px;border-radius:9px}
+  .brand h1{font-size:15px}
   #mapView{gap:8px}
   .mapCard{padding:8px}
   .maphint{gap:4px 14px;font-size:11.5px}
@@ -353,20 +383,21 @@ td.pre{white-space:pre-line}
 @endverbatim
 </head>
 <body>
-<header>
-  <div class="logo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
-  <div class="brand">
-    <h1>Innovatsion ko'rgazma 2026</h1>
-    <p>Ishtirokchilar joylashuvi xaritasi</p>
-  </div>
-  <div class="tabs">
-    <button id="tMap" class="on">Xarita</button>
-    <button id="tList">Ro'yxat</button>
-  </div>
-</header>
-
 <main>
   <aside id="side">
+    <div class="sideTop">
+      <div class="brandRow">
+        <div class="logo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+        <div class="brand">
+          <h1>Innovatsion ko'rgazma 2026</h1>
+          <p>Ishtirokchilar joylashuvi xaritasi</p>
+        </div>
+      </div>
+      <div class="tabs">
+        <button id="tMap" class="on">Xarita</button>
+        <button id="tList">Ro'yxat</button>
+      </div>
+    </div>
     <label class="search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="search" placeholder="Tashkilot yoki mahsulot…" autocomplete="off">
@@ -388,7 +419,7 @@ td.pre{white-space:pre-line}
     </div>
     <div class="maphint">
       <span>👆 Katakchani bosing — shu joydagi ishtirokchi haqida ma'lumot chiqadi</span>
-      <span><i style="background:repeating-linear-gradient(135deg,#94a3b8 0 4px,#fff 4px 8px)"></i>Ma'lumot kiritilmagan</span>
+      <span><i style="background:#f1f5f9;box-shadow:inset 0 0 0 1.5px #94a3b8"></i>Bo'sh joy</span>
     </div>
   </section>
   <section id="listView">
@@ -515,15 +546,28 @@ function buildMap() {
 
   STANDS.forEach(s => {
     const r0 = s.top ? rB : rA;
-    const h = el('shdr', `grid-column:${s.col}/${s.col + 4};grid-row:${r0}`, s.id);
+    el('sbg', `grid-column:${s.col}/${s.col + 4};grid-row:${r0}/${r0 + HALF + 1}`);
+    const h = el('shdr', `grid-column:${s.col}/${s.col + 4};grid-row:${r0}`, `<span>${s.id}</span>`);
     h.onclick = () => openStand(s.id);
+    // 1..HALF pastdan tepaga, HALF+1..PER tepadan pastga — yo'lak tomonda 1 va PER turadi
+    const rowOf = n => r0 + 1 + (n <= HALF ? HALF - n : n - HALF - 1);
     for (let n = 1; n <= PER; n++) {
-      const p = place(s.id, n), lab = labOf(s.id, n), low = n <= HALF;
-      // 1..HALF pastdan tepaga, HALF+1..PER tepadan pastga — yo'lak tomonda 1 va PER turadi
-      const c = el('cell' + (p && p.org ? '' : ' empty') + (lab.light ? '' : ' dark'),
-        `grid-column:${low === s.flip ? s.col : s.col + 3};grid-row:${r0 + 1 + (low ? HALF - n : n - HALF - 1)};--c:${lab.c}`, n);
-      c.dataset.stand = s.id; c.dataset.place = n;
-      c.onclick = () => openPlace(s.id, n);
+      const p = place(s.id, n);
+      if (p && p.cont && place(s.id, p.cont)) continue;   // asosiy joy bilan birga chiziladi
+      // bir tashkilotning ketma-ket joylari bitta katak ("11–14"); ustun almashsa yoki oraliq uzilsa — alohida bo'lak
+      const runs = [];
+      groupOf(s.id, n).sort((a, b) => a - b).forEach(k => {
+        const last = runs[runs.length - 1];
+        last && k === last[last.length - 1] + 1 && (k <= HALF) === (last[0] <= HALF) ? last.push(k) : runs.push([k]);
+      });
+      runs.forEach(run => {
+        const a = run[0], b = run[run.length - 1], lab = labOf(s.id, a);
+        const top = Math.min(rowOf(a), rowOf(b));
+        const c = el('cell' + (a < b ? ' wide' : '') + (p && p.org ? '' : ' empty') + (lab.light ? '' : ' dark'),
+          `grid-column:${(a <= HALF) === s.flip ? s.col : s.col + 3};grid-row:${top}/${top + run.length};--c:${lab.c}`, a < b ? `${a}–${b}` : a);
+        c.dataset.stand = s.id; c.dataset.place = n;
+        c.onclick = () => openPlace(s.id, n);
+      });
     }
     // yorliq: bo'lim o'z joylari ustuni yonida turadi
     const parts = SECTIONS.filter(x => x.s === s.id);
@@ -588,7 +632,11 @@ map.addEventListener('mouseleave', () => tip.style.opacity = 0);
 /* ---------- legenda ---------- */
 let activeDir = null;
 function buildDirs() {
-  $('#dirs').innerHTML = '<button class="dir all on" data-all>Barchasi</button>' + DIRS.map((d, i) => `<button class="dir" data-i="${i}" style="--c:${d.c}"><i></i>${esc(d.n)}</button>`).join('');
+  // har bir yo'nalishdagi ishtirokchilar soni
+  const cnt = d => DATA.filter(p => p.org && !p.cont && d.s.includes(p.stand)).length;
+  $('#dirs').innerHTML = '<div class="dirs-h">Yo\'nalishlar</div><button class="dir all" data-all>Barchasi</button>'
+    + DIRS.map((d, i) => `<button class="dir" data-i="${i}" style="--c:${d.c}"><i></i>${esc(d.n)}<span class="cnt">${cnt(d)}</span></button>`).join('');
+  highlight();
   $('#dirs').onclick = e => {
     const b = e.target.closest('.dir'); if (!b) return;
     activeDir = b.dataset.all != null || activeDir === +b.dataset.i ? null : +b.dataset.i;
@@ -724,9 +772,9 @@ function openPlace(id, n) {
       <button class="nav" data-go="1" ${next ? '' : 'disabled'}>${id}-${next ? +n + 1 : ''} ›</button>
     </div>`;
   $$('.cell.sel').forEach(x => x.classList.remove('sel'));
-  [...group, +n].forEach(g => document.querySelector(`.cell[data-stand="${id}"][data-place="${g}"]`)?.classList.add('sel'));
+  $$(`.cell[data-stand="${id}"][data-place="${mainNo}"]`).forEach(c => c.classList.add('sel'));
   openModal(`${id}-${n}`);
-  revealCell(id, n);
+  revealCell(id, mainNo);
 }
 
 function openStand(id) {
@@ -929,7 +977,7 @@ $('#addBtn').onclick = () => openForm(null, null);
 
 async function reload() {
   setData(await api('GET', EXPO.routes.data));
-  buildMap(); renderList($('#q').value.trim().toLowerCase()); renderChips(); fitMap();
+  buildMap(); buildDirs(); renderList($('#q').value.trim().toLowerCase()); renderChips(); fitMap();
 }
 
 function prodRow(x = {name: '', img: []}) {

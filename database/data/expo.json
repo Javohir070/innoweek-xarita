@@ -1923,12 +1923,6 @@
                 "img": [
                     "s162.jpg"
                 ]
-            },
-            {
-                "name": "",
-                "img": [
-                    "s163.jpg"
-                ]
             }
         ]
     },
@@ -1945,60 +1939,62 @@
             {
                 "name": "1. Val va shesternya (tishli gildirak) bir butun yaxlit qism sifatida tayyorlangan mashinasozlik detali.",
                 "img": [
-                    "s164.jpg"
+                    "s163.jpg"
                 ]
             },
             {
                 "name": "2. Dvigateldan kelayotgan aylanishlar sonini (tezlikni) kamaytirib, chiquvchi valda buralish momentini oshirib beradigan mexanik uzatmalardir",
                 "img": [
-                    "s165.jpg"
+                    "s164.jpg"
                 ]
             },
             {
                 "name": "3. Aylanma harakatni va aylantiruvchi momentni bir valdan boshqasiga uzatish uchun mo‘ljallangan mashina va mexanizmlarning asosiy detallaridir.",
                 "img": [
-                    "s166.jpg"
+                    "s165.jpg"
                 ]
             },
             {
                 "name": "4. Burg‘ulash tizimida aylanish va kuchni uzatish, quvurlarni bir-biriga mustahkam va jipslashtirib ulash uchun xizmat qiladi.",
                 "img": [
-                    "s167.jpg"
+                    "s166.jpg"
                 ]
             },
             {
                 "name": "5. Traktorlar, qishloq xoʻjaligi va qurilish texnikalarining gidravlik tizimlarida ishchi suyuqlikni uzatish uchun moʻljallangan tishli (shesteryonchatiy) gidronasosdir",
                 "img": [
-                    "s168.jpg"
+                    "s167.jpg"
                 ]
             },
             {
                 "name": "6. Ichki yonuv dvigatelining asosiy korrus qismi (asosi) bo‘lib, dvigatelning barcha asosiy detallari va tizimlarini birlashtiradi",
                 "img": [
-                    "s169.jpg"
+                    "s168.jpg"
                 ]
             },
             {
                 "name": "7. Konchilik sanoatida shaxta kleti yoki skipini ko‘tarish arqoni uzilib ketgan taqdirda halokatning oldini olish, ularni yo‘naltiruvchi ustunlarda (napravlyayushiye/provodniki) ushlab qolish va xavfsiz to‘xtatish uchun mo‘ljallangan favqulodda xavfsizlik qurilmasi.",
                 "img": [
-                    "s170.jpg"
+                    "s169.jpg"
                 ]
             },
             {
                 "name": "8. bu porshenli kompressorlar va dvigatellarda kreytsofni (surilma) porshen bilan bog'lab, ilgarilama-qaytma harakatni va kuchni uzatuvchi metall sterjen (val) hisoblanadi.",
                 "img": [
-                    "s171.jpg"
+                    "s170.jpg"
                 ]
             },
             {
                 "name": "9. Suyuqliklarni markazdan qochma kuch hisobiga haydab beruvchi gidravlik qurilma.",
                 "img": [
-                    "s172.jpg"
+                    "s171.jpg"
                 ]
             },
             {
                 "name": "10. Burg‘ulash qurilmasining tal tizimi (osma qismi) bilan aylanadigan burg‘ulash ustunini bog‘lab turuvchi va burg‘ulash suyuqligini (loyni) quduqqa haydash uchun xizmat qiladigan muhim mexanik qurilma",
-                "img": []
+                "img": [
+                    "s172.jpg"
+                ]
             }
         ]
     },

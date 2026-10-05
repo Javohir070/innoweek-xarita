@@ -292,6 +292,12 @@ class ExcelExpoReader
             if ($d instanceof Drawing) {
                 $media = str_contains($d->getPath(), '#') ? substr($d->getPath(), strpos($d->getPath(), '#') + 1) : $d->getPath();
                 [$col, $row] = Coordinate::indexesFromString($d->getCoordinates());
+                // rasm katakning eng pastidan boshlanib, asosan keyingi qatorda tursa — o'sha qatorniki
+                $rowPx = $this->ws->getRowDimension($row)->getRowHeight() * 96 / 72;
+                $inRow = $rowPx - $d->getOffsetY();
+                if ($rowPx > 0 && $d->getHeight() > 2 * max(0, $inRow)) {
+                    $row++;
+                }
                 $pictures[] = [ltrim($media, '/'), $col, $row];
             }
         }
