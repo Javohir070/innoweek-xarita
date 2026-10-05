@@ -60,20 +60,33 @@ class ExpoTest extends TestCase
         Storage::disk('public')->put('expo/uploads/a.jpg', 'x');
         $admin = $this->admin();
 
-        $this->actingAs($admin)->putJson('/expo/places/B7/3', [
+        $this->actingAs($admin)->putJson('/expo/places/B4/3', [
             'org' => 'Yangi MChJ',
             'section' => '7TECH',
             'info' => "1. Birinchi\n2. Ikkinchi",
             'contact' => 'Ali (90) 123-45-67',
-            'products' => [['name' => 'Sensor', 'img' => ['expo/uploads/a.jpg']], ['name' => '', 'img' => []]],
-        ])->assertOk()->assertJsonPath('org', 'Yangi MChJ')->assertJsonCount(1, 'products');
+            'products' => [['name' => 'Sensor', 'img' => ['expo/uploads/a.jpg']], ['name' => '', 'img' => []], ['name' => str_repeat('Uzun tavsif. ', 80), 'img' => []]],
+        ])->assertOk()->assertJsonPath('org', 'Yangi MChJ')->assertJsonCount(2, 'products');
 
-        $place = Place::where(['stand' => 'B7', 'place' => 3])->firstOrFail();
+        $place = Place::where(['stand' => 'B4', 'place' => 3])->firstOrFail();
         $this->assertSame(['expo/uploads/a.jpg'], $place->products->first()->images);
 
         // qayta saqlash — almashtiradi, ikki nusxa yaratmaydi
-        $this->actingAs($admin)->putJson('/expo/places/B7/3', ['org' => 'Boshqa'])->assertOk()->assertJsonCount(0, 'products');
-        $this->assertSame(1, Place::where('stand', 'B7')->count());
+        $this->actingAs($admin)->putJson('/expo/places/B4/3', ['org' => 'Boshqa'])->assertOk()->assertJsonCount(0, 'products');
+        $this->assertSame(1, Place::where('stand', 'B4')->count());
+    }
+
+    public function test_saving_main_place_renames_its_continuations(): void
+    {
+        $this->seedPlace(['place' => 3, 'org' => 'Eski nom']);
+        $this->seedPlace(['place' => 4, 'cont' => 3, 'org' => 'Eski nom']);
+        $this->seedPlace(['place' => 5, 'org' => 'Boshqa']);
+
+        $this->actingAs($this->admin())->putJson('/expo/places/A1/3', ['org' => 'Yangi nom'])->assertOk();
+
+        $this->assertSame('Yangi nom', Place::where('place', 4)->value('org'));
+        $this->assertSame(3, Place::where('place', 4)->value('cont'));
+        $this->assertSame('Boshqa', Place::where('place', 5)->value('org'));
     }
 
     public function test_validation_and_path_safety(): void
@@ -87,7 +100,7 @@ class ExpoTest extends TestCase
                 ->assertUnprocessable();
         }
         $this->actingAs($admin)->putJson('/expo/places/Z9/1', ['org' => 'A'])->assertNotFound();
-        $this->actingAs($admin)->putJson('/expo/places/A1/11', ['org' => 'A'])->assertNotFound();
+        $this->actingAs($admin)->putJson('/expo/places/A1/21', ['org' => 'A'])->assertNotFound();
     }
 
     public function test_delete_clears_place_and_its_continuations(): void

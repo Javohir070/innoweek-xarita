@@ -24,7 +24,7 @@ class SavePlaceRequest extends FormRequest
             'contact' => ['nullable', 'string', 'max:1000'],
             'dept' => ['nullable', 'string', 'max:1000'],
             'products' => ['nullable', 'array', 'max:30'],
-            'products.*.name' => ['nullable', 'string', 'max:500'],
+            'products.*.name' => ['nullable', 'string', 'max:2000'],
             'products.*.img' => ['nullable', 'array', 'max:10'],
             // faqat o'zimizning rasm papkamizdagi mavjud fayllar
             'products.*.img.*' => [

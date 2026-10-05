@@ -14,7 +14,7 @@ git clone … vystavka && cd vystavka          # yoki papkani serverga ko'chirin
 composer install --no-dev --optimize-autoloader
 cp .env.example .env                        # DB_* va APP_URL ni to'ldiring
 php artisan key:generate
-php artisan migrate --seed                  # jadvallar + 240 joy va 326 rasm (yoki: expo:import-excel fayl.xlsx)
+php artisan migrate --seed                  # jadvallar + 240 joy va 395 rasm (yoki: expo:import-excel fayl.xlsx)
 php artisan storage:link
 php artisan expo:admin admin@misol.uz --name="Admin"   # parolni so'raydi
 php artisan config:cache && php artisan route:cache && php artisan view:cache
@@ -63,20 +63,38 @@ Zaxira nusxa: baza (`mysqldump`) + `storage/app/public/expo/` papkasi.
 
 ## Excel'dan yuklash
 
-Excel faylini ("Рўйхат" varag'i — ro'yxat, birlashtirilgan kataklar va mahsulot rasmlari) to'g'ridan-to'g'ri bazaga:
+Excel faylini ("Рўйхат" varag'i — ro'yxat va mahsulot rasmlari) to'g'ridan-to'g'ri bazaga:
 
 ```bash
-php artisan expo:import-excel "Выставка_заключительная_рассадка_29_09.xlsx"
+php artisan expo:import-excel "03.10.2026 РАССАДКА ЭКСПО.xlsx"
 php artisan expo:import-excel yangi.xlsx --force     # bazada ma'lumot bo'lsa
 ```
+
+"Рўйхат" varag'i ustunlari (sarlavha 3-qatorda, ma'lumot 4-qatordan):
+
+| Ustun | Nima |
+|---|---|
+| B | Yo'nalish |
+| C | Павильон — stend (`A1`…`A6`, `B1`…`B6`; kirillcha А/В ham bo'ladi) |
+| D | Жой — bitta joy (`9`) yoki oraliq (`1-2`, `18-20`). Oraliqning birinchi joyi asosiy, qolganlari uning davomi |
+| E, F, G | Tashkilot, ishlanma haqida, mas'ul shaxs |
+| H, J, L, … | 1–10-mahsulot nomi; rasmi shu katakda yoki o'ngidagi katakda |
+
+- "Жой" katagi bir nechta qatorga birlashtirilgan bo'lsa (bitta blokda bir necha tashkilot), joylar ular o'rtasida
+  tartib bilan teng bo'linadi: `1-6` va uch tashkilot → 1–2, 3–4, 5–6.
+- Tashkilot yozilmagan, lekin F ustunida matn bo'lsa — o'sha matn nom sifatida olinadi.
+- Mahsulot nomlari yozilmagan qatorda barcha rasmlar bitta ishlanmaga yig'iladi. Rasm izohi (alt text) nom sifatida olinmaydi.
+- Takrorlangan, mavjud bo'lmagan yoki tushunarsiz joyli qatorlar o'tkazib yuboriladi va buyruq ularni sanab chiqadi.
+- Eski ko'rinishdagi fayl (H — mas'ul boshqarma, mahsulotlar I dan, har bir joy alohida qatorda) ham o'qiladi.
 
 **Diqqat:** `--force` bazadagi barcha joylarni almashtiradi — sayt orqali kiritilgan o'zgarishlar yo'qoladi.
 Eski usul (Python `update.py` yaratgan `data.json`): `php artisan expo:import data.json --images=img --force`.
 
 ## Stendlar
 
-Stendlar ro'yxati `config/expo.php` da, xaritadagi joylashuvi va ranglari
-`resources/views/expo.blade.php` dagi `STANDS` / `LABELS` / `DIRS` massivlarida.
+12 ta stend (A1–A6, B1–B6), har birida 20 ta joy: xaritada stend ikki ustun (1–10 va 11–20), o'rtasida yorlig'i.
+Stendlar ro'yxati va joylar soni `config/expo.php` da; xaritadagi joylashuvi, bo'limlari va ranglari
+`resources/views/expo.blade.php` dagi `STANDS` / `SECTIONS` / `DIRS` massivlarida (Excel'ning "2026" varag'i asosida).
 
 ## Testlar
 

@@ -53,13 +53,13 @@ main{flex:1;min-height:0;display:flex;flex-direction:column}
 .mapScale{position:relative;flex:none}
 .map{transform-origin:0 0}
 .map{display:grid;position:relative;width:max-content;
-  grid-template-columns:54px 30px 50px 50px 30px 50px 50px 30px 50px 50px 60px 50px 50px 30px 50px 50px 30px 50px 50px 30px 130px;
-  grid-template-rows:24px repeat(10,27px) 40px 24px repeat(10,27px);}
+  /* chap zallar | 3 stend | yo'lak | 3 stend | o'ng zonalar; har bir stend: joylar, yorliq (2 ustun), joylar */
+  grid-template-columns:86px 10px 50px 12px 44px 30px 30px 44px 12px 44px 30px 30px 44px 12px 44px 30px 30px 44px 56px 44px 30px 30px 44px 12px 44px 30px 30px 44px 12px 44px 30px 30px 44px 12px 104px 10px 86px;}
 .zone{border:1.5px solid #cbd5e1;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:12px;letter-spacing:.06em;color:#475569;background:#f8fafc;padding:4px}
 .zone.soft{background:#f1f5f9;border-style:dashed}
 .zone.vert span{writing-mode:vertical-rl;transform:rotate(180deg)}
 .aisle{background:repeating-linear-gradient(0deg,#f1f5f9 0 10px,#e8edf3 10px 20px);border-radius:8px}
-.corr{grid-column:2/20;background:#f1f5f9;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;letter-spacing:.3em;font-weight:600}
+.corr{grid-column:5/34;background:#f1f5f9;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;letter-spacing:.3em;font-weight:600}
 .shdr{font-size:11px;font-weight:700;color:var(--muted);display:flex;align-items:flex-end;justify-content:center;cursor:pointer;padding-bottom:3px}
 .shdr:hover{color:var(--brand2)}
 .cell{position:relative;margin:1px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:flex-start;padding:0 4px;font-size:10px;font-weight:700;color:rgba(0,0,0,.45);background:var(--c);z-index:1;transition:transform .12s,box-shadow .12s,opacity .15s}
@@ -70,9 +70,11 @@ main{flex:1;min-height:0;display:flex;flex-direction:column}
 .cell.hit{box-shadow:0 0 0 3px var(--hit);z-index:4;animation:pulse 1.4s infinite}
 .cell.dim{opacity:.18}
 @keyframes pulse{50%{box-shadow:0 0 0 5px rgba(239,68,68,.35)}}
-.slabel{pointer-events:none;z-index:2;display:flex;align-items:center;justify-content:center;padding:4px 0}
-.slabel span{writing-mode:vertical-rl;transform:rotate(180deg);font-weight:800;font-size:12.5px;letter-spacing:.02em;text-align:center;line-height:1.15;max-height:100%;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.55)}
-.slabel.lighttxt span{color:#1e293b;text-shadow:0 0 3px rgba(255,255,255,.9)}
+.slabel{margin:1px;border-radius:5px;background:var(--c);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:4px 0;overflow:hidden;transition:opacity .15s}
+.slabel span{writing-mode:vertical-rl;transform:rotate(180deg);font-weight:800;font-size:12.5px;letter-spacing:.02em;text-align:center;line-height:1.15;max-height:100%;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.35)}
+.slabel.narrow span{font-size:11px}
+.slabel.lighttxt span{color:#1e293b;text-shadow:none}
+.slabel.dim{opacity:.18}
 .maphint{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:12px;align-items:center}
 .maphint i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-3px;margin-right:6px}
 
@@ -300,6 +302,8 @@ td.pre{white-space:pre-line}
 window.EXPO = {
   places: @json($places),
   isAdmin: @json($isAdmin),
+  stands: @json(config('expo.stands')),
+  perStand: @json(config('expo.places_per_stand')),
   storage: @json(asset('storage')) + '/',
   routes: {
     data: @json(route('expo.data')),
@@ -322,62 +326,51 @@ function setData(arr) {
 const imgSrc = f => EXPO.storage + f;
 
 /* ---------- xarita ("2026" varag'i asosida) ---------- */
-/* col = grid ustun raqami */
-const STANDS = [
-  {id:'B1', col:3, top:true}, {id:'B2', col:4, top:true},
-  {id:'B3', col:6, top:true}, {id:'B4', col:7, top:true},
-  {id:'B5', col:9, top:true}, {id:'B6', col:10, top:true},
-  {id:'B7', col:12, top:true}, {id:'B8', col:13, top:true},
-  {id:'B9', col:15, top:true}, {id:'B10', col:16, top:true},
-  {id:'B11', col:18, top:true}, {id:'B12', col:19, top:true},
-  {id:'A1', col:3}, {id:'A2', col:4},
-  {id:'A3', col:6}, {id:'A4', col:7},
-  {id:'A5', col:9}, {id:'A6', col:10},
-  {id:'A7', col:12}, {id:'A8', col:13},
-  {id:'A9', col:15}, {id:'A10', col:16},
-  {id:'A11', col:18}, {id:'A12', col:19},
-];
-/* Stend yorliqlari va ranglari */
-const LABELS = [
-  {s:['B1','B2'], t:"QISHLOQ, SUV XO'JALIGI VA ATROF MUHIT", c:'#5fa83a'},
-  {s:['B3','B4'], t:"XALQARO HAMKORLIK VA GLOBAL INNOVATSIYALAR", c:'#0ea5e9'},
-  {s:['B5','B6'], t:"XALQARO HAMKORLIK VA GLOBAL INNOVATSIYALAR", c:'#0ea5e9'},
-  {s:['B7'], t:'7TECH', c:'#c0162c'},
-  {s:['B8'], t:'Universities of technology', c:'#c0162c'},
-  {s:['B9'], t:'MUDOFA SANOATI', c:'#ea7a2e'},
-  {s:['B10'], t:'SANOAT', c:'#ea7a2e'},
-  {s:['B11','B12'], t:'SANOAT', c:'#ea7a2e'},
-  {s:['A1','A2'], t:'HUDUDIY INNOVATSIYALAR', c:'#6b7280'},
-  {s:['A3'], t:'Ratsionalizatorlar va ixtirochilar', c:'#7e3bb5'},
-  {s:['A4'], t:'MUNIS', c:'#7e3bb5'},
-  {s:['A5'], t:'XOTIN-QIZLAR', c:'#7e3bb5'},
-  {s:['A6'], t:'FANLAR AKADEMIYASI', c:'#7e3bb5'},
-  {s:['A7','A8'], t:'INNOVATSIYALAR OFISI', c:'#2b4f9c'},
-  {s:['A9'], t:'SPIN OFF', c:'#fde047', light:true},
-  {s:['A10'], t:'Texnologik startaplar', c:'#fde047', light:true},
-  {s:['A11'], t:'START UP', c:'#fde047', light:true},
-  {s:['A12'], t:'YASHNOBOD TEXNOPARKI', c:'#fde047', light:true},
+const PER = EXPO.perStand, HALF = PER / 2;   // har bir stend ikki ustun: 1..HALF va HALF+1..PER
+/* B qatori tepada, A pastda. col = stendning birinchi grid ustuni; flip = o'ng yarimdagi stendlar (1..HALF chap tomonda) */
+const STANDS = ['B', 'A'].flatMap(h => [1, 2, 3, 4, 5, 6].map(i => ({id: h + i, col: 5 * i, top: h === 'B', flip: i > 3})));
+/* Stend bo'limlari: yorliq va rang. a..b — joylar oralig'i (yozilmasa butun stend) */
+const SECTIONS = [
+  {s:'B1', t:"QISHLOQ, SUV XO'JALIGI VA ATROF MUHIT", c:'#5fa83a'},
+  {s:'B2', t:"XALQARO HAMKORLIK VA GLOBAL INNOVATSIYALAR", c:'#0ea5e9'},
+  {s:'B3', t:"XALQARO HAMKORLIK VA GLOBAL INNOVATSIYALAR", c:'#0ea5e9'},
+  {s:'B4', a:1, b:10, t:'7TECH', c:'#c0162c'},
+  {s:'B4', a:11, b:20, t:'Universities of technology', c:'#c0162c'},
+  {s:'B5', a:1, b:10, t:'MUDOFA SANOATI', c:'#ea7a2e'},
+  {s:'B5', a:11, b:20, t:'SANOAT', c:'#ea7a2e'},
+  {s:'B6', t:'SANOAT', c:'#ea7a2e'},
+  {s:'A1', t:'HUDUDIY INNOVATSIYALAR', c:'#6b7280'},
+  {s:'A2', a:1, b:10, t:'MUNIS', c:'#7e3bb5'},
+  {s:'A2', a:11, b:20, t:'Ratsionalizatorlar va ixtirochilar', c:'#7e3bb5'},
+  {s:'A3', a:1, b:10, t:'FANLAR AKADEMIYASI', c:'#7e3bb5'},
+  {s:'A3', a:11, b:20, t:'XOTIN-QIZLAR', c:'#7e3bb5'},
+  {s:'A4', t:'INNOVATSIYALAR OFISI', c:'#2b4f9c'},
+  {s:'A5', a:1, b:10, t:'SPIN OFF', c:'#fde047', light:true},
+  {s:'A5', a:11, b:20, t:'Texnologik startaplar', c:'#fde047', light:true},
+  {s:'A6', a:1, b:10, t:'START UP', c:'#fde047', light:true},
+  {s:'A6', a:11, b:20, t:'YASHNOBOD TEXNOPARKI', c:'#fde047', light:true},
 ];
 /* Yo'nalishlar (legenda) */
 const DIRS = [
-  {n:"Qishloq xo'jaligi", c:'#5fa83a', s:['B1','B2']},
-  {n:'Xalqaro hamkorlik', c:'#0ea5e9', s:['B3','B4','B5','B6']},
-  {n:'Texnologiyalar universitetlari', c:'#c0162c', s:['B7','B8']},
-  {n:'Mudofaa va sanoat', c:'#ea7a2e', s:['B9','B10','B11','B12']},
-  {n:'Hududiy innovatsiyalar', c:'#6b7280', s:['A1','A2']},
-  {n:'Ixtirochilar, MUNIS, xotin-qizlar, FA', c:'#7e3bb5', s:['A3','A4','A5','A6']},
-  {n:'Innovatsiyalar ofisi', c:'#2b4f9c', s:['A7','A8']},
-  {n:'Startaplar va texnopark', c:'#fde047', s:['A9','A10','A11','A12']},
+  {n:"Qishloq xo'jaligi", c:'#5fa83a', s:['B1']},
+  {n:'Xalqaro hamkorlik', c:'#0ea5e9', s:['B2','B3']},
+  {n:'7TECH va universitetlar', c:'#c0162c', s:['B4']},
+  {n:'Mudofaa va sanoat', c:'#ea7a2e', s:['B5','B6']},
+  {n:'Hududiy innovatsiyalar', c:'#6b7280', s:['A1']},
+  {n:'MUNIS, ixtirochilar, FA, xotin-qizlar', c:'#7e3bb5', s:['A2','A3']},
+  {n:'Innovatsiyalar ofisi', c:'#2b4f9c', s:['A4']},
+  {n:'Startaplar va texnopark', c:'#fde047', s:['A5','A6']},
 ];
-const labelOf = {};
-LABELS.forEach(l => l.s.forEach(s => labelOf[s] = l));
-const colOf = Object.fromEntries(STANDS.map(s => [s.id, s]));
-
+// joyning bo'limi; butun stend uchun — bo'limlar nomi birga
+const labOf = (id, n) => SECTIONS.find(x => x.s === id && (!x.a || (+n >= x.a && +n <= x.b)));
+const standLab = id => { const l = SECTIONS.filter(x => x.s === id); return {...l[0], t: [...new Set(l.map(x => x.t))].join(' · ')}; };
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const first = s => String(s || '').split('\n')[0].replace(/^\d+\.\s*/, '');
 const place = (id, n) => (byStand[id] || []).find(x => +x.place === +n);
+// Excel'dagi yo'nalish nomi — shu bo'limdagi boshqa joylardan
+const sectionOf = (id, n) => (byStand[id] || []).find(x => x.section && labOf(id, x.place) === labOf(id, n))?.section || '';
 const map = $('#map');
 
 function el(cls, style, html) {
@@ -386,36 +379,47 @@ function el(cls, style, html) {
   map.appendChild(d); return d;
 }
 
-// Qatorlar: 1 = B sarlavha, 2..11 = B joylar (10 tepada), 12 = yo'lak, 13 = A sarlavha, 14..23 = A joylar
+// Qatorlar: 1 = ALFA HALL, 3 = B sarlavha, keyin HALF ta B qator, yo'lak, A sarlavha, HALF ta A qator
 function buildMap() {
   map.innerHTML = '';
-  el('zone soft vert', 'grid-column:1;grid-row:2/12', '<span>ILMIY TEXNIKA</span>');
-  el('zone soft vert', 'grid-column:1;grid-row:14/24', '<span>XARBIY TEXNIKA</span>');
-  el('aisle', 'grid-column:11;grid-row:1/24');
-  el('corr', 'grid-row:12', "YO'LAK");
-  el('zone soft', 'grid-column:21;grid-row:2/12', 'B2B<br>ZONE');
-  el('zone soft', 'grid-column:21;grid-row:14/24', 'AR/VR<br>ZONE');
+  const rB = 3, rCorr = rB + HALF + 1, rA = rCorr + 1, rEnd = rA + HALF + 1;
+  map.style.gridTemplateRows = `36px 10px 24px repeat(${HALF},27px) 40px 24px repeat(${HALF},27px)`;
+  el('zone soft', 'grid-column:3/9;grid-row:1', 'PRESS ZONE');
+  el('zone soft', 'grid-column:10/29;grid-row:1', 'ALFA HALL');
+  el('zone soft', `grid-column:1;grid-row:${rCorr - 3}/${rA + 4}`, 'BETA<br>HALL');
+  el('zone soft vert', `grid-column:3;grid-row:${rB + 1}/${rCorr}`, '<span>ILMIY TEXNIKA</span>');
+  el('zone soft vert', `grid-column:3;grid-row:${rA + 1}/${rEnd}`, '<span>XARBIY TEXNIKA</span>');
+  el('aisle', `grid-column:19;grid-row:${rB}/${rEnd}`);
+  el('corr', `grid-row:${rCorr}`, "YO'LAK");
+  el('zone soft', `grid-column:35;grid-row:${rB + 1}/${rCorr}`, 'B2B<br>ZONE');
+  el('zone soft', `grid-column:35;grid-row:${rA + 1}/${rEnd}`, 'AR/VR<br>ZONE');
+  el('zone soft', `grid-column:37;grid-row:${rCorr - 3}/${rA + 4}`, 'EVENT<br>ZONE');
+  el('zone soft', `grid-column:37;grid-row:${rEnd - 4}/${rEnd}`, 'BABY<br>HALL');
 
   STANDS.forEach(s => {
-    const r0 = s.top ? 1 : 13;
-    const h = el('shdr', `grid-column:${s.col};grid-row:${r0}`, s.id);
+    const r0 = s.top ? rB : rA;
+    const h = el('shdr', `grid-column:${s.col}/${s.col + 4};grid-row:${r0}`, s.id);
     h.onclick = () => openStand(s.id);
-    const lab = labelOf[s.id];
-    for (let n = 10; n >= 1; n--) {
-      const p = place(s.id, n);
+    for (let n = 1; n <= PER; n++) {
+      const p = place(s.id, n), lab = labOf(s.id, n), low = n <= HALF;
+      // 1..HALF pastdan tepaga, HALF+1..PER tepadan pastga — yo'lak tomonda 1 va PER turadi
       const c = el('cell' + (p && p.org ? '' : ' empty') + (lab.light ? '' : ' dark'),
-        `grid-column:${s.col};grid-row:${r0 + 11 - n};--c:${lab.c}`, n);
+        `grid-column:${low === s.flip ? s.col : s.col + 3};grid-row:${r0 + 1 + (low ? HALF - n : n - HALF - 1)};--c:${lab.c}`, n);
       c.dataset.stand = s.id; c.dataset.place = n;
       c.onclick = () => openPlace(s.id, n);
     }
-  });
-  LABELS.forEach(l => {
-    const cols = l.s.map(id => colOf[id].col);
-    const r0 = colOf[l.s[0]].top ? 2 : 14;
-    el('slabel' + (l.light ? ' lighttxt' : ''), `grid-column:${Math.min(...cols)}/${Math.max(...cols) + 1};grid-row:${r0}/${r0 + 10}`, `<span>${esc(l.t)}</span>`);
+    // yorliq: bo'lim o'z joylari ustuni yonida turadi
+    const parts = SECTIONS.filter(x => x.s === s.id);
+    parts.forEach(l => {
+      const low = !l.a || l.a <= HALF;
+      const col = parts.length === 1 ? `${s.col + 1}/${s.col + 3}` : low === s.flip ? s.col + 1 : s.col + 2;
+      const d = el('slabel' + (l.light ? ' lighttxt' : '') + (parts.length > 1 ? ' narrow' : ''),
+        `grid-column:${col};grid-row:${r0 + 1}/${r0 + 1 + HALF};--c:${l.c}`, `<span>${esc(l.t)}</span>`);
+      d.dataset.stand = s.id;
+      d.onclick = () => openStand(s.id);
+    });
   });
 }
-
 // Xaritani ekranga moslash
 function fitMap() {
   // butun xarita scroll'siz ekranga sig'adi (faqat telefonda juda kichik bo'lib ketsa scroll)
@@ -461,6 +465,7 @@ function highlight(keys) {
     if (keys) c.classList.add(keys.has(c.dataset.stand + '-' + c.dataset.place) ? 'hit' : 'dim');
     else if (set && !set.has(c.dataset.stand)) c.classList.add('dim');
   });
+  $$('.slabel').forEach(l => l.classList.toggle('dim', !!keys || !!(set && !set.has(l.dataset.stand))));
 }
 
 /* ---------- modal ---------- */
@@ -481,21 +486,29 @@ function header(lab, kick, title, badge) {
     <button class="x" data-close aria-label="Yopish" title="Yopish (Esc)">${xIcon}</button></div>`;
 }
 const zoomIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
-const capOf = g => esc((g.cap || '').replace(/^\d+[.,]\s*/, ''));
+// Nom katagiga to'liq tavsif yozilgan bo'lsa: birinchi gap — sarlavha, qolgani — tavsif
+function splitName(s) {
+  const name = String(s || '').replace(/^\d+\s*[.,)]\s*/, '').trim();
+  const m = name.length > 120 && name.match(/^(.{3,120}?)(?:\s[-–—]\s|\.\s)([\s\S]+)$/);
+  return m ? [m[1], m[2].trim()] : [name, ''];
+}
 function openPlace(id, n) {
-  const lab = labelOf[id];
+  const lab = labOf(id, n);
   const p = place(id, n);
   const main = p && p.cont ? place(id, p.cont) : null;
   const d = main || p;
   nav = {id, n: +n};
-  const range = main ? `${main.place}–${n}-joylar` : `${n}-joy`;
+  // bir tashkilot egallagan barcha joylar (asosiy joy va uning davomlari)
+  const mainNo = main ? +main.place : +n;
+  const group = [mainNo, ...(byStand[id] || []).filter(x => +x.cont === mainNo).map(x => +x.place)];
+  const range = group.length > 1 ? `${Math.min(...group)}–${Math.max(...group)}-joylar` : `${n}-joy`;
   let body;
   gallery = [];
   if (!d || !d.org) {
     body = `<div class="empty-state"><div class="big">🗂️</div>Bu joy uchun hozircha ma'lumot kiritilmagan.</div>`;
   } else {
     const prods = d.products;
-    prods.forEach(x => x.img.forEach(f => gallery.push({f, cap: x.name})));
+    prods.forEach(x => x.img.forEach(f => gallery.push({f, cap: splitName(x.name)[0]})));
     // "1. …" bilan boshlanmagan qator — oldingi bandning davomi (Excel'da bitta band ikki qatorga bo'lingan)
     const lines = d.info.split('\n').map(s => s.trim()).filter(Boolean).reduce((a, s) => {
       if (a.length && /^\d+[.)]/.test(a[0]) && !/^\d+[.)]/.test(s)) a[a.length - 1] += ' ' + s; else a.push(s);
@@ -517,11 +530,12 @@ function openPlace(id, n) {
     const used = new Set();
     const cards = prods.map((x, i) => {
       const no = String(i + 1);
-      const name = (x.name || '').replace(/^\d+[.,)]\s*/, '').trim();
+      const [name, more] = splitName(x.name);
       let about = byNo[no] || '';
       if (about) used.add(no);
-      if (!name && !about && prods.length === 1 && !numbered) { about = d.info; used.add('all'); }
-      const title = name || about || `${no}-mahsulot`;
+      // nomsiz yagona ishlanma: qisqa tavsif sarlavha bo'ladi, uzuni pastda alohida ko'rsatiladi
+      if (!name && !about && prods.length === 1 && !numbered && d.info && d.info.length <= 140) { about = d.info; used.add('all'); }
+      const title = name || about || (prods.length > 1 ? `${no}-mahsulot` : first(d.org));
       // tavsif nomdan farq qilsa (masalan, qo'shimcha izoh yoki tashkilot nomi bo'lsa) ko'rsatiladi
       let extra = about && norm(about) !== norm(title) ? about : '';
       // tavsif nomni takrorlasa, faqat qolgan qismini qoldiramiz: "Samomoyka (Andijon yoshlar texnoparki)" -> "Andijon yoshlar texnoparki"
@@ -536,7 +550,7 @@ function openPlace(id, n) {
       const strip = x.img.length > 1 ? `<div class="strip">${x.img.slice(1).map(f => `<img loading="lazy" src="${imgSrc(f)}" data-gi="${gallery.findIndex(g => g.f === f)}" alt="">`).join('')}</div>` : '';
       return `<article class="pcard">${pic}<div class="txt">
         ${prods.length > 1 ? `<div class="no"><span>${no}</span>mahsulot</div>` : ''}
-        <h3>${esc(title)}</h3>${extra ? (extra === about ? `<p>${esc(extra)}</p>` : `<p class="by">${icon.org.replace(/18/g, '15')}${esc(extra)}</p>`) : ''}${strip}</div></article>`;
+        <h3>${esc(title)}</h3>${extra ? (extra === about ? `<p>${esc(extra)}</p>` : `<p class="by">${icon.org.replace(/18/g, '15')}${esc(extra)}</p>`) : ''}${more ? `<p>${esc(more)}</p>` : ''}${strip}</div></article>`;
     }).join('');
     // mahsulotlarga bog'lanmagan qolgan tavsif qatorlari
     const rest = used.has('all') ? [] : numbered ? lines.filter(s => !used.has((s.match(/^(\d+)/) || [])[1])) : lines;
@@ -549,7 +563,7 @@ function openPlace(id, n) {
          ${restBox || ppl ? `<div class="side">${restBox}${ppl}</div>` : ''}</div>`
       : `<div class="side">${desc}${ppl}</div>`;
   }
-  const prev = +n > 1, next = +n < 10;
+  const prev = +n > 1, next = +n < PER;
   const key = `${id}|${d && d.org ? d.place : n}`;
   const adminBtns = !isAdmin ? '' : d && d.org
     ? `<div class="grp"><button class="btn" data-edit="${key}">✎ Tahrirlash</button><button class="btn danger" data-del="${key}">O'chirish</button></div>`
@@ -563,12 +577,12 @@ function openPlace(id, n) {
       <button class="nav" data-go="1" ${next ? '' : 'disabled'}>${id}-${next ? +n + 1 : ''} ›</button>
     </div>`;
   $$('.cell.sel').forEach(x => x.classList.remove('sel'));
-  document.querySelector(`.cell[data-stand="${id}"][data-place="${n}"]`)?.classList.add('sel');
+  [...group, +n].forEach(g => document.querySelector(`.cell[data-stand="${id}"][data-place="${g}"]`)?.classList.add('sel'));
   openModal();
 }
 
 function openStand(id) {
-  const lab = labelOf[id];
+  const lab = standLab(id);
   const list = byStand[id] || [];
   const filled = list.filter(p => p.org).length;
   nav = null;
@@ -592,7 +606,7 @@ function openResults() {
   if (!q) return;
   $('#modal').innerHTML = header(null, `Qidiruv · «${esc(q)}»`, `${hits.length} ta natija topildi`, `<b>${hits.length}</b><span>natija</span>`) +
     `<div class="mb">${hits.length ? `<div class="rows">${hits.map(p => {
-      const lab = labelOf[p.stand];
+      const lab = labOf(p.stand, p.place);
       return `<button class="row" data-s="${p.stand}" data-p="${p.place}">
         <span class="n${lab.light ? ' lt' : ''}" style="--c:${lab.c};width:auto;padding:0 8px">${p.stand}-${p.place}</span>
         <span class="t"><b>${esc(first(p.org))}</b><small>${esc(lab.t)}</small></span></button>`;
@@ -648,7 +662,7 @@ document.addEventListener('keydown', e => {
   else if (lbOpen && e.key === 'ArrowRight') openLb(gi + 1);
   else if (!lbOpen && nav && $('#modal').classList.contains('open') && document.activeElement !== $('#q')) {
     if (e.key === 'ArrowLeft' && nav.n > 1) openPlace(nav.id, nav.n - 1);
-    if (e.key === 'ArrowRight' && nav.n < 10) openPlace(nav.id, nav.n + 1);
+    if (e.key === 'ArrowRight' && nav.n < PER) openPlace(nav.id, nav.n + 1);
   }
 });
 $('#overlay').onclick = closeModal;
@@ -674,7 +688,7 @@ function renderList(q = '') {
   $('#listCnt').textContent = `${rows.length} ta joy · ${rows.filter(p => p.org).length} tasi band`;
   $('#tableCard').innerHTML = `<table><thead><tr><th>Joy</th><th>Yo'nalish</th><th>Tashkilot</th><th>Ishlanma</th><th>Mas'ul</th></tr></thead><tbody>` +
     rows.map(p => {
-      const lab = labelOf[p.stand];
+      const lab = labOf(p.stand, p.place);
       return `<tr data-s="${p.stand}" data-p="${p.place}">
         <td><span class="tag${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${p.stand}-${p.place}</span></td>
         <td>${esc(lab.t)}</td>
@@ -742,15 +756,15 @@ function openForm(id, n) {
   const isNew = !id;
   const p = id ? place(id, n) : null;
   const d = p && p.org ? p : {section: '', org: '', info: '', contact: '', dept: '', products: []};
-  if (!d.section && id) d.section = (byStand[id] || []).find(x => x.section)?.section || '';
-  const lab = id ? labelOf[id] : null;
+  if (!d.section && id) d.section = sectionOf(id, n);
+  const lab = id ? labOf(id, n) : null;
   const opts = (arr, v) => arr.map(x => `<option ${String(x) === String(v) ? 'selected' : ''}>${x}</option>`).join('');
   $('#modal').innerHTML = header(lab, id ? esc(lab.t) : "Ro'yxatga qo'shish", p && p.org ? "Ma'lumotni tahrirlash" : 'Yangi ishtirokchi',
       id ? `<b>${id}</b><span>${n}-joy</span>` : '<b>＋</b>') +
     `<form class="mb form" id="pform" novalidate>
       <div class="fgrid">
-        ${isNew ? `<label><span class="lt">Stend <em>*</em></span><select name="stand">${opts(STANDS.map(s => s.id), 'A1')}</select></label>
-        <label><span class="lt">Joy <em>*</em></span><select name="place">${opts([1,2,3,4,5,6,7,8,9,10], 1)}</select></label>
+        ${isNew ? `<label><span class="lt">Stend <em>*</em></span><select name="stand">${opts(EXPO.stands, EXPO.stands[0])}</select></label>
+        <label><span class="lt">Joy <em>*</em></span><select name="place">${opts(Array.from({length: PER}, (_, i) => i + 1), 1)}</select></label>
         <div class="warn" id="occ" hidden></div>` : ''}
         <label class="full"><span class="lt">Tashkilot nomi <em>*</em></span><input name="org" value="${esc(d.org)}" required></label>
         <label class="full"><span class="lt">Yo'nalish (bo'lim)</span><input name="section" value="${esc(d.section)}"></label>
@@ -787,7 +801,7 @@ function openForm(id, n) {
       o.hidden = !(q && q.org);
       if (q && q.org) o.textContent = `Diqqat: bu joy band — «${first(q.org)}». Saqlasangiz, ma'lumot almashtiriladi.`;
       // yo'nalishni tanlangan stenddan avtomatik olish (foydalanuvchi o'zi yozmagan bo'lsa)
-      const auto = (byStand[form.stand.value] || []).find(x => x.section)?.section || '';
+      const auto = sectionOf(form.stand.value, form.place.value);
       if (!form.section.value || form.section.value === chk.auto) form.section.value = auto;
       chk.auto = auto;
     };

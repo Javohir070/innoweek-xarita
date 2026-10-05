@@ -38,6 +38,9 @@ class ExpoImportExcel extends Command
         $rows = $reader->read($file, fn () => $bar->advance());
         $bar->finish();
         $this->newLine();
+        foreach ($reader->warnings() as $warning) {
+            $this->warn($warning);
+        }
 
         $count = $importer->replaceAll($rows);
         $images = collect($rows)->flatMap(fn ($r) => collect($r['products'])->flatMap(fn ($p) => $p['img']))->unique()->count();

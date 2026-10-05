@@ -26,10 +26,13 @@ class ExpoImageStore
         return "$dir/$name.jpg";
     }
 
-    /** Excel ichidagi rasm -> expo/{name}.jpg (o'qib bo'lmasa asl ko'rinishda) */
-    public function putBinary(string $binary, string $name, string $ext): string
+    /** Excel ichidagi rasm -> expo/{name}.jpg (o'qib bo'lmasa asl ko'rinishda; brauzer ko'rsata olmaydigan tur bo'lsa null) */
+    public function putBinary(string $binary, string $name, string $ext): ?string
     {
         $jpeg = $this->toJpeg($binary, 1000);
+        if ($jpeg === null && ! in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'gif'], true)) {
+            return null;
+        }
         $path = config('expo.image_dir').'/'.$name.'.'.($jpeg === null ? $ext : 'jpg');
         Storage::disk('public')->put($path, $jpeg ?? $binary);
 

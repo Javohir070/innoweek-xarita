@@ -20,6 +20,8 @@ class PlaceService
                 'contact' => (string) ($data['contact'] ?? ''),
                 'dept' => (string) ($data['dept'] ?? ''),
             ])->save();
+            // "davomi" joylar tashkilot nomining nusxasini saqlaydi — ro'yxatda eskirib qolmasin
+            Place::where('stand', $stand)->where('cont', $number)->update(['org' => $place->org]);
 
             $place->products()->delete();
             foreach (array_values($data['products'] ?? []) as $i => $product) {
