@@ -47,6 +47,7 @@ main{flex:1;min-height:0;display:flex;flex-direction:column}
 .dir i{width:14px;height:14px;border-radius:4px;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
 .dir:hover{border-color:#94a3b8}
 .dir.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dir.all{padding-left:11px;font-weight:600}
 
 /* ---------- xarita ---------- */
 .mapCard{flex:1;min-height:0;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px;overflow:hidden;display:flex;align-items:center;justify-content:center}
@@ -450,15 +451,15 @@ map.addEventListener('mouseleave', () => tip.style.opacity = 0);
 /* ---------- legenda ---------- */
 let activeDir = null;
 function buildDirs() {
-  $('#dirs').innerHTML = DIRS.map((d, i) => `<button class="dir" data-i="${i}" style="--c:${d.c}"><i></i>${esc(d.n)}</button>`).join('');
+  $('#dirs').innerHTML = '<button class="dir all on" data-all>Barchasi</button>' + DIRS.map((d, i) => `<button class="dir" data-i="${i}" style="--c:${d.c}"><i></i>${esc(d.n)}</button>`).join('');
   $('#dirs').onclick = e => {
     const b = e.target.closest('.dir'); if (!b) return;
-    activeDir = activeDir === +b.dataset.i ? null : +b.dataset.i;
-    $('#q').value = ''; highlight();
+    activeDir = b.dataset.all != null || activeDir === +b.dataset.i ? null : +b.dataset.i;
+    $('#q').value = ''; hits = []; highlight(); renderList();
   };
 }
 function highlight(keys) {
-  $$('.dir').forEach(b => b.classList.toggle('on', +b.dataset.i === activeDir));
+  $$('.dir').forEach(b => b.classList.toggle('on', b.dataset.all != null ? activeDir == null && !keys : +b.dataset.i === activeDir));
   const set = activeDir != null ? new Set(DIRS[activeDir].s) : null;
   $$('.cell').forEach(c => {
     c.classList.remove('hit', 'dim');
