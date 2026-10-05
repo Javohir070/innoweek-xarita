@@ -21,22 +21,18 @@ button{font:inherit}
 [hidden]{display:none!important}
 
 /* ---------- header ---------- */
-header{background:linear-gradient(180deg,#0b3d91,#0a347c);color:#fff;padding:14px 20px 0}
-.hrow{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.logo{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.14);display:grid;place-items:center;flex:none}
+header{background:linear-gradient(180deg,#0b3d91,#0a347c);color:#fff;padding:12px 20px 0;display:flex;align-items:flex-end;gap:14px}
+.logo{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.14);display:grid;place-items:center;flex:none;margin-bottom:12px}
+.brand{padding-bottom:12px;min-width:0}
 .brand h1{margin:0;font-size:18px;font-weight:800;letter-spacing:-.01em}
 .brand p{margin:0;font-size:12px;opacity:.75}
-.chips{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
-.chip{background:rgba(255,255,255,.12);border-radius:999px;padding:5px 12px;font-size:12px;white-space:nowrap}
-.chip b{font-weight:700;font-size:13px;margin-right:3px}
-.hrow2{display:flex;align-items:flex-end;gap:12px;margin-top:14px;flex-wrap:wrap}
-.tabs{display:flex;gap:2px}
+.tabs{display:flex;gap:2px;margin-left:auto}
 .tabs button{border:0;background:transparent;color:rgba(255,255,255,.75);padding:10px 16px;border-radius:10px 10px 0 0;cursor:pointer;font-weight:600}
 .tabs button.on{background:var(--bg);color:var(--ink)}
-.search{position:relative;flex:1;max-width:460px;margin:0 0 8px auto;min-width:220px}
+.search{position:relative;display:block;flex:none}
 .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.6}
-#q{width:100%;padding:10px 12px 10px 38px;border:0;border-radius:10px;font:inherit;background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.15)}
-#q:focus{outline:3px solid rgba(250,204,21,.7)}
+#q{width:100%;padding:11px 12px 11px 38px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff;color:var(--ink);box-shadow:var(--shadow)}
+#q:focus{outline:3px solid rgba(29,111,224,.22);border-color:var(--brand2)}
 /* yozish paytida chiqadigan natijalar */
 #sug{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#fff;color:var(--ink);border-radius:12px;box-shadow:0 14px 36px rgba(15,23,42,.28);overflow:hidden;z-index:20;display:none}
 #sug.open{display:block}
@@ -50,9 +46,14 @@ header{background:linear-gradient(180deg,#0b3d91,#0a347c);color:#fff;padding:14p
 #sug .more{justify-content:center;color:var(--brand2);font-weight:600;font-size:13px}
 #sug .none{padding:14px;color:var(--muted);text-align:center;font-size:13px}
 
-main{flex:1;min-height:0;display:flex;flex-direction:column}
+main{flex:1;min-height:0;display:flex}
+/* yon panel: qidiruv, yo'nalishlar, statistika */
+#side{flex:none;width:272px;padding:14px 0 12px 20px;display:flex;flex-direction:column;gap:12px;min-height:0}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chip{background:var(--surface);border-radius:12px;box-shadow:var(--shadow);padding:9px 12px;display:flex;flex-direction:column;font-size:11.5px;color:var(--muted);line-height:1.3}
+.chip b{font-size:19px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
 
-#mapView{flex:1;min-height:0;overflow:hidden;padding:14px 20px 12px;display:flex;flex-direction:column;gap:10px}
+#mapView{flex:1;min-width:0;min-height:0;overflow:hidden;padding:14px 20px 12px;display:flex;flex-direction:column;gap:10px}
 
 /* ---------- yo'nalishlar legendasi ---------- */
 .dirs{display:flex;gap:6px;flex-wrap:wrap}
@@ -103,7 +104,7 @@ main{flex:1;min-height:0;display:flex;flex-direction:column}
 #tip b{display:block;font-size:11px;color:var(--sel);margin-bottom:2px}
 
 /* ---------- list view ---------- */
-#listView{flex:1;overflow:auto;padding:20px;display:none}
+#listView{flex:1;min-width:0;overflow:auto;padding:20px;display:none}
 .tableCard{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 table{border-collapse:collapse;width:100%;font-size:13px}
 th,td{padding:10px 12px;vertical-align:top;text-align:left;border-bottom:1px solid var(--line)}
@@ -235,9 +236,8 @@ td.pre{white-space:pre-line}
 #lb .lbx{position:absolute;right:20px;top:20px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:24px;cursor:pointer}
 
 /* ---------- admin ---------- */
-.adminBtn{display:flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer}
-.adminBtn:hover{background:rgba(255,255,255,.2)}
-.adminBtn.on{background:#facc15;color:#0f172a;border-color:#facc15}
+.adminBtn{margin-top:auto;align-self:flex-start;display:flex;align-items:center;gap:6px;border:0;background:#facc15;color:#0f172a;border-radius:999px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer}
+.adminBtn:hover{background:#eab308}
 .listBar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .listBar .cnt{color:var(--muted);font-size:13px;margin-right:auto}
 .btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 16px;cursor:pointer;font-weight:600;color:var(--ink2);display:inline-flex;align-items:center;gap:6px}
@@ -274,6 +274,24 @@ td.pre{white-space:pre-line}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 #toast.err{background:#dc2626}
 
+/* keng ekranda yo'nalishlar yon panelda ustun bo'lib turadi */
+@media (min-width:901px){
+  .dirs{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:8px;overflow-y:auto;min-height:0;
+    background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px}
+  .dir{flex:none;border-radius:10px;padding:9px 12px 9px 10px;font-size:13px;text-align:left;gap:9px}
+  .dir.all{justify-content:center;padding:9px 12px}
+}
+/* tor ekranda yon panel tepaga chiqadi: qidiruv va bitta qatorda yo'nalishlar */
+@media (max-width:900px){
+  main{flex-direction:column}
+  #side{width:auto;padding:10px 12px 0;gap:8px}
+  .chips{display:none}
+  .dirs{flex-wrap:nowrap;overflow-x:auto;margin:0 -12px;padding:0 12px 2px;scrollbar-width:none}
+  .dirs::-webkit-scrollbar{display:none}
+  .dir{flex:none}
+  .adminBtn{align-self:flex-end;margin-top:0}
+  #mapView,#listView{padding:10px 12px}
+}
 /* sensorli ekranda sichqoncha effektlari yopishib qolmasin */
 @media (hover:none){
   #tip{display:none}
@@ -283,24 +301,13 @@ td.pre{white-space:pre-line}
 }
 @media (max-width:700px){
   .form .fgrid{grid-template-columns:1fr}
-  header{padding:10px 12px 0}
-  .hrow{flex-wrap:nowrap;gap:10px}
-  .logo{width:34px;height:34px}
-  .brand{min-width:0}
+  header{padding:10px 12px 0;gap:10px}
+  .logo{width:34px;height:34px;margin-bottom:10px}
+  .brand{padding-bottom:10px}
   .brand h1{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .brand p{font-size:11px}
-  .chips{display:none}
-  .adminBtn{margin-left:auto;flex:none;padding:6px 10px}
-  .adminBtn .lbl{display:none}
-  .hrow2{margin-top:10px;gap:0}
-  .search{margin:0 0 8px;max-width:none;order:-1;flex-basis:100%}
-  .tabs button{padding:8px 16px}
-  #mapView,#listView{padding:10px 12px}
+  .brand p{display:none}
+  .tabs button{padding:8px 12px}
   #mapView{gap:8px}
-  /* yo'nalishlar bitta qatorda, yon tomonga suriladi */
-  .dirs{flex-wrap:nowrap;overflow-x:auto;margin:0 -12px;padding:0 12px 2px;scrollbar-width:none}
-  .dirs::-webkit-scrollbar{display:none}
-  .dir{flex:none}
   .mapCard{padding:8px}
   .maphint{gap:4px 14px;font-size:11.5px}
   .zoomCtl{right:8px;bottom:8px}
@@ -347,31 +354,29 @@ td.pre{white-space:pre-line}
 </head>
 <body>
 <header>
-  <div class="hrow">
-    <div class="logo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
-    <div class="brand">
-      <h1>Innovatsion ko'rgazma 2026</h1>
-      <p>Ishtirokchilar joylashuvi xaritasi</p>
-    </div>
-    <div class="chips" id="chips"></div>
-    <button class="adminBtn" id="adminBtn" hidden></button>
+  <div class="logo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+  <div class="brand">
+    <h1>Innovatsion ko'rgazma 2026</h1>
+    <p>Ishtirokchilar joylashuvi xaritasi</p>
   </div>
-  <div class="hrow2">
-    <div class="tabs">
-      <button id="tMap" class="on">Xarita</button>
-      <button id="tList">Ro'yxat</button>
-    </div>
-    <label class="search">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Tashkilot, mahsulot yoki stend nomini yozing…" autocomplete="off">
-      <div id="sug"></div>
-    </label>
+  <div class="tabs">
+    <button id="tMap" class="on">Xarita</button>
+    <button id="tList">Ro'yxat</button>
   </div>
 </header>
 
 <main>
-  <section id="mapView">
+  <aside id="side">
+    <label class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Tashkilot yoki mahsulot…" autocomplete="off">
+      <div id="sug"></div>
+    </label>
     <div class="dirs" id="dirs"></div>
+    <div class="chips" id="chips"></div>
+    <button class="adminBtn" id="adminBtn" hidden></button>
+  </aside>
+  <section id="mapView">
     <div class="mapWrap">
       <div class="mapCard" id="mapCard">
         <div class="mapScale" id="mapScale"><div class="map" id="map"></div></div>
@@ -886,7 +891,7 @@ $('#tableCard').addEventListener('click', e => { const tr = e.target.closest('tr
 function showTab(list) {
   requestAnimationFrame(fitMap);
   $('#tMap').classList.toggle('on', !list); $('#tList').classList.toggle('on', list);
-  $('#mapView').style.display = list ? 'none' : ''; $('#listView').style.display = list ? 'block' : 'none';
+  $('#mapView').style.display = $('#dirs').style.display = list ? 'none' : ''; $('#listView').style.display = list ? 'block' : 'none';
   if (!list) fitMap();
 }
 $('#tMap').onclick = () => showTab(false);
@@ -910,14 +915,11 @@ function toast(msg, err) {
 }
 function renderAdmin() {
   const b = $('#adminBtn');
-  b.hidden = false;
-  b.classList.toggle('on', isAdmin);
-  b.innerHTML = isAdmin ? '● <span class="lbl">Admin · </span>Chiqish' : '🔒<span class="lbl"> Admin kirish</span>';
-  b.title = isAdmin ? 'Admin rejimidan chiqish' : 'Admin kirish';
+  b.hidden = !isAdmin;
+  b.innerHTML = '● Admin · Chiqish';
   $('#addBtn').hidden = !isAdmin;
 }
 $('#adminBtn').onclick = () => {
-  if (!isAdmin) { location.href = EXPO.routes.login; return; }
   const f = document.createElement('form');
   f.method = 'POST'; f.action = EXPO.routes.logout;
   f.innerHTML = `<input type="hidden" name="_token" value="${csrf}">`;
