@@ -132,13 +132,27 @@ main{flex:1;min-height:0;display:flex}
 
 /* ---------- list view ---------- */
 #listView{flex:1;min-width:0;overflow:auto;padding:20px;display:none}
-.tableCard{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-table{border-collapse:collapse;width:100%;font-size:13px}
-th,td{padding:10px 12px;vertical-align:top;text-align:left;border-bottom:1px solid var(--line)}
-th{background:#f8fafc;position:sticky;top:0;z-index:1;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-tbody tr{cursor:pointer;transition:background .1s}
-tbody tr:hover{background:#f1f6ff}
-td.pre{white-space:pre-line}
+/* ishtirokchilar kartochkalari, stend bo'limlari bo'yicha guruhlangan */
+.tableCard{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.tableCard .empty-state{grid-column:1/-1;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow)}
+.lgroup{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.lgroup:first-child{margin-top:0}
+.lgroup b{background:var(--c);color:#fff;border-radius:8px;padding:3px 10px;font-size:13px;letter-spacing:0}
+.lgroup b.lt{color:#1e293b}
+.lgroup i{flex:1;height:1px;background:#d5dde8}
+.lgroup small{color:var(--muted);font-weight:600;letter-spacing:0;text-transform:none;font-size:12px}
+.lcard{display:flex;gap:12px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;cursor:pointer;min-width:0;color:inherit;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);transition:border-color .15s,box-shadow .15s,transform .15s}
+.lcard:hover{border-color:var(--c);box-shadow:0 10px 24px rgba(15,23,42,.1);transform:translateY(-1px)}
+.lpic{flex:none;width:86px;height:86px;border-radius:10px;overflow:hidden;display:grid;place-items:center;font-weight:800;font-size:15px;
+  background:color-mix(in srgb,var(--c) 12%,#fff);color:color-mix(in srgb,var(--c) 70%,#334155)}
+.lpic img{width:100%;height:100%;object-fit:cover;display:block}
+.lbody{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.lbody b{font-size:14px;line-height:1.3;font-weight:700;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.labout{font-size:12.5px;line-height:1.45;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lmeta{margin-top:auto;padding-top:2px;display:flex;gap:4px 12px;flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
+.lmeta span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.lmeta .pr{color:var(--brand2);font-weight:600}
 .tag{display:inline-block;padding:2px 8px;border-radius:6px;font-weight:700;font-size:12px;background:var(--c);color:#fff;white-space:nowrap}
 .tag.lt{color:#1e293b}
 .muted{color:#94a3b8}
@@ -266,7 +280,7 @@ td.pre{white-space:pre-line}
 .adminBtn{margin-top:auto;align-self:flex-start;display:flex;align-items:center;gap:6px;border:0;background:#facc15;color:#0f172a;border-radius:999px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer}
 .adminBtn:hover{background:#eab308}
 .listBar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.listBar .cnt{color:var(--muted);font-size:13px;margin-right:auto}
+.listBar .cnt{color:var(--ink2);font-size:13px;font-weight:600;margin-right:auto}
 .btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 16px;cursor:pointer;font-weight:600;color:var(--ink2);display:inline-flex;align-items:center;gap:6px}
 .btn:hover{border-color:var(--brand2);color:var(--brand2)}
 .btn.primary{background:var(--brand2);border-color:var(--brand2);color:#fff}
@@ -365,19 +379,10 @@ td.pre{white-space:pre-line}
   .mf{padding:10px 12px}
   .mf .nav,.mf .btn{padding:9px 12px}
   #lb .lbn{top:auto;bottom:24px;transform:none}
-  /* ro'yxat: jadval o'rniga kartochkalar */
+  /* ro'yxat: bitta ustun */
   .listBar{flex-wrap:wrap}
-  .tableCard{background:none;box-shadow:none;overflow:visible;border-radius:0}
-  .tableCard thead{display:none}
-  .tableCard table,.tableCard tbody{display:block}
-  .tableCard tr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 10px;align-items:start;background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:11px 12px;margin-bottom:8px}
-  .tableCard td{display:block;border:0;padding:0}
-  .tableCard td:empty{display:none}
-  .tableCard td:nth-child(1){grid-row:1/3}
-  .tableCard td:nth-child(3){grid-column:2;grid-row:1;font-weight:600;font-size:14px}
-  .tableCard td:nth-child(2){grid-column:2;grid-row:2;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-  .tableCard td:nth-child(4){grid-column:1/-1;color:var(--ink2);margin-top:4px}
-  .tableCard td:nth-child(5){grid-column:1/-1;color:var(--muted);font-size:12px}
+  .tableCard{grid-template-columns:1fr;gap:8px}
+  .lpic{width:72px;height:72px}
 }
 </style>
 @endverbatim
@@ -918,28 +923,43 @@ $('#sug').addEventListener('click', e => {
 });
 
 /* ---------- ro'yxat ---------- */
-// Har bir ishtirokchi bitta qatorda (egallagan joylari oraliq bilan); bo'sh joylar ham ko'rinadi
+// Har bir ishtirokchi — bitta kartochka (egallagan joylari oraliq bilan), stend bo'limlari bo'yicha guruhlangan.
+// Tanlangan yo'nalish ro'yxatga ham ta'sir qiladi; bo'sh joylar soni guruh sarlavhasida.
 function renderList(q = '') {
-  const rows = DATA.filter(p => !p.cont && (!q || match(p, q)));
-  $('#listCnt').textContent = q ? `${rows.length} ta natija` : `${DATA.length} ta joy · ${DATA.filter(p => p.org).length} tasi band`;
-  $('#tableCard').innerHTML = !rows.length ? '<div class="empty-state"><div class="big">🔍</div>Hech narsa topilmadi.</div>'
-    : `<table><thead><tr><th>Joy</th><th>Yo'nalish</th><th>Tashkilot</th><th>Ishlanma</th><th>Mas'ul</th></tr></thead><tbody>` +
-    rows.map(p => {
-      const lab = labOf(p.stand, p.place);
-      const about = first(p.info) || p.products.map(x => splitName(x.name)[0]).filter(Boolean).join(', ');
-      return `<tr data-s="${p.stand}" data-p="${p.place}">
-        <td><span class="tag${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${tagOf(p.stand, p.place)}</span></td>
-        <td>${esc(lab.t)}</td>
-        <td class="pre">${p.org ? esc(p.org) : '<span class="muted">Bo\'sh joy</span>'}</td>
-        <td>${esc(about.slice(0, 140))}</td>
-        <td class="pre">${esc(p.contact)}</td></tr>`;
-    }).join('') + '</tbody></table>';
+  const dir = activeDir != null ? new Set(DIRS[activeDir].s) : null;
+  const all = DATA.filter(p => !p.cont && (!dir || dir.has(p.stand)) && (!q || match(p, q)));
+  const rows = all.filter(p => p.org);
+  $('#listCnt').textContent = q || dir ? `${rows.length} ta yozuv topildi`
+    : `${rows.length} ta yozuv · ${DATA.filter(p => p.org).length} ta joy band`;
+  let last = null;
+  $('#tableCard').innerHTML = !rows.length ? '<div class="empty-state"><div class="big">🔍</div>Hech narsa topilmadi.</div>' : rows.map(p => {
+    const lab = labOf(p.stand, p.place);
+    let head = '';
+    if (lab !== last) {
+      last = lab;
+      const inSec = x => x.stand === p.stand && labOf(x.stand, x.place) === lab;
+      const free = q ? 0 : DATA.filter(x => inSec(x) && !x.org).length;
+      head = `<div class="lgroup" style="--c:${lab.c}"><b class="${lab.light ? 'lt' : ''}">${p.stand}</b>${esc(lab.t)}<i></i>
+        <small>${rows.filter(inSec).length} ta yozuv${free ? ` · ${free} ta bo'sh joy` : ''}</small></div>`;
+    }
+    const about = first(p.info) || p.products.map(x => splitName(x.name)[0]).filter(Boolean).join(', ');
+    const img = p.products.flatMap(x => x.img)[0];
+    const who = first(p.contact).replace(phoneRe, '').trim();
+    return head + `<button class="lcard" data-s="${p.stand}" data-p="${p.place}" style="--c:${lab.c}">
+      <span class="lpic">${img ? `<img loading="lazy" src="${imgSrc(img)}" alt="">` : p.stand}</span>
+      <span class="lbody">
+        <span><span class="tag${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${tagOf(p.stand, p.place)}</span></span>
+        <b>${esc(first(orgLines(p.org)))}</b>
+        ${about ? `<span class="labout">${esc(about.slice(0, 180))}</span>` : ''}
+        <span class="lmeta">${p.products.length ? `<span class="pr">${p.products.length} ta ishlanma</span>` : ''}${who ? `<span>${esc(who)}</span>` : ''}</span>
+      </span></button>`;
+  }).join('');
 }
-$('#tableCard').addEventListener('click', e => { const tr = e.target.closest('tr[data-s]'); if (tr) openPlace(tr.dataset.s, tr.dataset.p); });
+$('#tableCard').addEventListener('click', e => { const c = e.target.closest('[data-s]'); if (c) openPlace(c.dataset.s, c.dataset.p); });
 function showTab(list) {
   requestAnimationFrame(fitMap);
   $('#tMap').classList.toggle('on', !list); $('#tList').classList.toggle('on', list);
-  $('#mapView').style.display = $('#dirs').style.display = list ? 'none' : ''; $('#listView').style.display = list ? 'block' : 'none';
+  $('#mapView').style.display = list ? 'none' : ''; $('#listView').style.display = list ? 'block' : 'none';
   if (!list) fitMap();
 }
 $('#tMap').onclick = () => showTab(false);
