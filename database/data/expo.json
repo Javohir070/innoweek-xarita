@@ -540,7 +540,7 @@
         "cont": null,
         "section": "Ҳудуд инновациялари",
         "org": "Сирдарё вилояти",
-        "info": "1. GlitsBUT- preparati (GULISTON DAVLAT UNIVERSITETI)\n2. Agrolaboratoriya xizmati (GULISTON DAVLAT UNIVERSITETI)\n3. Oyoq terlashi hamda xidlanishiga qarshi eruvchan bombochkalar (\"GULISTON YOSHLAR TEXNOPARKI\" DM)\n4. Noto‘qima polipropilen mato (Spunbond) va qop mahsulotlari \"SIRDARYO MEGA LUKS\" MCHJ)\n5. Yuqori sifatli keramik qoplama plitalari (\"SIRDARYA CERAMIC PRODUCTION\" MCHJ)\n6. Sanoat va energetika sohalari uchun elektr kabel mahsulotlari (\"GULISTON ALUMIN PRO MAKS\" MCHJ)",
+        "info": "1. GlitsBUT- preparati (GULISTON DAVLAT UNIVERSITETI)\n2. Agrolaboratoriya xizmati (GULISTON DAVLAT UNIVERSITETI)\n3. Noto‘qima polipropilen mato (Spunbond) va qop mahsulotlari \"SIRDARYO MEGA LUKS\" MCHJ)\n4. Yuqori sifatli keramik qoplama plitalari (\"SIRDARYA CERAMIC PRODUCTION\" MCHJ)\n5. Sanoat va energetika sohalari uchun elektr kabel mahsulotlari (\"GULISTON ALUMIN PRO MAKS\" MCHJ)",
         "contact": "Isanturdiyev Sayfiddin Yusupbayevich\n(97) 020-08-87",
         "dept": "",
         "products": [
@@ -557,27 +557,21 @@
                 ]
             },
             {
-                "name": "3. Oyoq terlashi hamda xidlanishiga qarshi eruvchan bombochkalar",
+                "name": "3. Noto‘qima polipropilen mato (Spunbond) va qop mahsulotlari",
                 "img": [
                     "s063.jpg"
                 ]
             },
             {
-                "name": "4. Noto‘qima polipropilen mato (Spunbond) va qop mahsulotlari",
+                "name": "4. Yuqori sifatli keramik qoplama plitalari",
                 "img": [
                     "s064.jpg"
                 ]
             },
             {
-                "name": "5. Yuqori sifatli keramik qoplama plitalari",
+                "name": "5. Sanoat va energetika sohalari uchun elektr kabel mahsulotlari",
                 "img": [
                     "s065.jpg"
-                ]
-            },
-            {
-                "name": "6. Sanoat va energetika sohalari uchun elektr kabel mahsulotlari",
-                "img": [
-                    "s066.jpg"
                 ]
             }
         ]
@@ -606,37 +600,37 @@
             {
                 "name": "1. TEMIR (III) XLORID",
                 "img": [
-                    "s067.jpg"
+                    "s066.jpg"
                 ]
             },
             {
                 "name": "2. Agrodron",
                 "img": [
-                    "s068.jpg"
+                    "s067.jpg"
                 ]
             },
             {
                 "name": "3. Eko daraxt",
                 "img": [
-                    "s069.jpg"
+                    "s068.jpg"
                 ]
             },
             {
                 "name": "4. FITO CHOY (FITO CUP)",
                 "img": [
-                    "s070.jpg"
+                    "s069.jpg"
                 ]
             },
             {
                 "name": "5. Elektor kabellari ishlab chiqarish",
                 "img": [
-                    "s071.jpg"
+                    "s070.jpg"
                 ]
             },
             {
                 "name": "6. «Vitis vinifera linnaeus»",
                 "img": [
-                    "s072.jpg"
+                    "s071.jpg"
                 ]
             }
         ]
@@ -658,44 +652,38 @@
         "cont": null,
         "section": "Ҳудуд инновациялари",
         "org": "Наманган вилояти",
-        "info": "1. In-vitro diagnostika (IVD) sohasiga oid ekspress testlar (“NAM BIOTEST” MChJ)\n2. Pektin mahsulotlari (\"Siberian Wellness Namangan\" MCHJ XK)\n3. Elektron qurilmalar (“TECHNOLOGY ELECTRONIC L-TECH” MCHJ)\n4. Quyosh panellari uchun sanoat batareyalari (\"Exam Energy\" MCHJ QK)\n5. Ekoplastilin (Namangan davlat pedagogika instituti)\n6. BIOGROW (Namangan davlat texnika universiteti)",
+        "info": "1. In-vitro diagnostika (IVD) sohasiga oid ekspress testlar (“NAM BIOTEST” MChJ)\n2. Pektin mahsulotlari (\"Siberian Wellness Namangan\" MCHJ XK)\n3. Elektron qurilmalar (“TECHNOLOGY ELECTRONIC L-TECH” MCHJ)\n4. Quyosh panellari uchun sanoat batareyalari (\"Exam Energy\" MCHJ QK)\n5. BIOGROW (Namangan davlat texnika universiteti)",
         "contact": "Xamidov Behzod Abdumalikovich\n(90) 554-49-95",
         "dept": "",
         "products": [
             {
                 "name": "1. In-vitro diagnostika (IVD) sohasiga oid ekspress testlar",
                 "img": [
-                    "s073.jpg"
+                    "s072.jpg"
                 ]
             },
             {
                 "name": "2. Pektin mahsulotlari",
                 "img": [
-                    "s074.jpg"
+                    "s073.jpg"
                 ]
             },
             {
                 "name": "3. Elektron qurilmalar",
                 "img": [
-                    "s075.jpg"
+                    "s074.jpg"
                 ]
             },
             {
                 "name": "4. Quyosh panellari uchun sanoat batareyalari",
                 "img": [
+                    "s075.jpg"
+                ]
+            },
+            {
+                "name": "5. BIOGROW",
+                "img": [
                     "s076.jpg"
-                ]
-            },
-            {
-                "name": "5. Ekoplastlin",
-                "img": [
-                    "s077.jpg"
-                ]
-            },
-            {
-                "name": "6. BIOGROW",
-                "img": [
-                    "s078.jpg"
                 ]
             }
         ]
@@ -705,21 +693,15 @@
         "place": 1,
         "cont": null,
         "section": "MUNIS лойиҳалари",
-        "org": "1. \"CBF animal nutrition\" МЧЖ\n2. \"Agrobiotech\" МЧЖ",
-        "info": "1. Дала ҳайвонлари учун тежамкор озуқа компонентларини ишлаб чиқариш учун гуруч чиқиндиларидан фойдаланишнсинг инновацион технологияси\n2. Биологик фаол ўғитларни ишлаб чиқариш ва тижоратлаштириш",
-        "contact": "1. Аброр Дадаҳоджаев\n2. Дмитрий Пастухов",
+        "org": "1. \"CBF animal nutrition\" МЧЖ",
+        "info": "1. Дала ҳайвонлари учун тежамкор озуқа компонентларини ишлаб чиқариш учун гуруч чиқиндиларидан фойдаланишнсинг инновацион технологияси",
+        "contact": "1. Аброр Дадаҳоджаев",
         "dept": "",
         "products": [
             {
                 "name": "1. Дала ҳайвонлари учун тежамкор озуқа компонентларини ишлаб чиқариш учун гуруч чиқиндиларидан фойдаланишнсинг инновацион технологияси",
                 "img": [
-                    "s079.jpg"
-                ]
-            },
-            {
-                "name": "2. Биологик фаол ўғитларни ишлаб чиқариш ва тижоратлаштириш",
-                "img": [
-                    "s080.jpg"
+                    "s077.jpg"
                 ]
             }
         ]
@@ -729,15 +711,15 @@
         "place": 2,
         "cont": null,
         "section": "MUNIS лойиҳалари",
-        "org": "\"PROTECT WILDLIFE\" МЧЖ",
-        "info": "Тошкент вилоятидаги Туябуғуз сув омборида илиқ сув балиқлари учун тўлиқ тизимли қафасли балиқ фермаси",
-        "contact": "Жобир Собиров",
+        "org": "\"Biofield\" МЧЖ",
+        "info": "Тупроқдаги пестицидларни қолдиқларини бартараф қилиш ва тупроқ унумдорлигини ошириш учун биологик маҳсулот ишлаб чиқариш.",
+        "contact": "Жаҳонгир Улжабоев",
         "dept": "",
         "products": [
             {
                 "name": "",
                 "img": [
-                    "s081.jpg"
+                    "s078.jpg"
                 ]
             }
         ]
@@ -755,13 +737,13 @@
             {
                 "name": "1. Ўзбекистонда пахта уруғи ишлаб чиқарувчи корхона ташкил этиш.",
                 "img": [
-                    "s082.jpg"
+                    "s079.jpg"
                 ]
             },
             {
                 "name": "2. Growz — Маълумотларга асосланган ақлли фермерликни қўллаб-қувватлаш платформаси.",
                 "img": [
-                    "s083.jpg"
+                    "s080.jpg"
                 ]
             }
         ]
@@ -771,21 +753,15 @@
         "place": 4,
         "cont": null,
         "section": "MUNIS лойиҳалари",
-        "org": "1. \"ECOBIOME\" МЧЖ\n2. \"Biofield\" МЧЖ",
-        "info": "1. Экологик тоза биокўмир асосидаги ва суюқ микробиал ўғитлар: Биоўғит ишлаб чиқариш линияси.\n2. Тупроқдаги пестицидларни қолдиқларини бартараф қилиш ва тупроқ унумдорлигини ошириш учун биологик маҳсулот ишлаб чиқариш.",
-        "contact": "1. Дилфуза Эгамбердиэва\n2. Жаҳонгир Улжабоев",
+        "org": "1. \"ECOBIOME\" МЧЖ",
+        "info": "1. Экологик тоза биокўмир асосидаги ва суюқ микробиал ўғитлар: Биоўғит ишлаб чиқариш линияси.",
+        "contact": "1. Дилфуза Эгамбердиэва",
         "dept": "",
         "products": [
             {
                 "name": "1. Экологик тоза биокўмир асосидаги ва суюқ микробиал ўғитлар: Биоўғит ишлаб чиқариш линияси.",
                 "img": [
-                    "s084.jpg"
-                ]
-            },
-            {
-                "name": "2. Тупроқдаги пестицидларни қолдиқларини бартараф қилиш ва тупроқ унумдорлигини ошириш учун биологик маҳсулот ишлаб чиқариш.",
-                "img": [
-                    "s085.jpg"
+                    "s081.jpg"
                 ]
             }
         ]
@@ -803,7 +779,7 @@
             {
                 "name": "",
                 "img": [
-                    "s086.jpg"
+                    "s082.jpg"
                 ]
             }
         ]
@@ -821,13 +797,13 @@
             {
                 "name": "1. Бемор ва шифокор натижаларини яхшилаш учун сунъий интеллектга асосланган клиник ахборот тизимини ишлаб чиқиш",
                 "img": [
-                    "s087.jpg"
+                    "s083.jpg"
                 ]
             },
             {
                 "name": "2. Айрим зооназ инфекцияларнинг нуклеин кислоталарини аниқлаш учун лиофилизациянланган диагностик тест тўпламларини (НААТС) ишлаб чиқариш технологияси",
                 "img": [
-                    "s088.jpg"
+                    "s084.jpg"
                 ]
             }
         ]
@@ -845,13 +821,13 @@
             {
                 "name": "1. Суяк нуқсонлари бўлган беморлар учун 3Д титан имплантларини буюртма асосида замонавий босма ишлаб чиқариш.",
                 "img": [
-                    "s089.jpg"
+                    "s085.jpg"
                 ]
             },
             {
                 "name": "2. Радиологик текширувларда сунъий интеллектдан фойдаланиш технологияси",
                 "img": [
-                    "s090.jpg"
+                    "s086.jpg"
                 ]
             }
         ]
@@ -861,21 +837,15 @@
         "place": 8,
         "cont": null,
         "section": "MUNIS лойиҳалари",
-        "org": "1. \"BIM Scanner\" МЧЖ\n2. \"AZKAMAR\" МЧЖ",
-        "info": "1. Сунъий интеллектга асосланган қурилиш жараёнини бошқариш тизими («BIM Scanner CDE»)\n2. Навоий вилоятида бентонит гил хомашёсини қайта ишлашнинг самарали технологиясини жорий этиш ва қурилиш учун энергия тежовчи керамзит панеллар ишлаб чиқаришни ташкил этиш.",
-        "contact": "1. Ринат Насиров\n2. Ориф Жумаев",
+        "org": "1. \"BIM Scanner\" МЧЖ",
+        "info": "1. Сунъий интеллектга асосланган қурилиш жараёнини бошқариш тизими («BIM Scanner CDE»)",
+        "contact": "1. Ринат Насиров",
         "dept": "",
         "products": [
             {
-                "name": "1. Сунъий интеллектга асосланган қурилиш жараёнини бошқариш тизими («BIM Scanner CDE»)",
+                "name": "",
                 "img": [
-                    "s091.jpg"
-                ]
-            },
-            {
-                "name": "2. Навоий вилоятида бентонит гил хомашёсини қайта ишлашнинг самарали технологиясини жорий этиш ва қурилиш учун энергия тежовчи керамзит панеллар ишлаб чиқаришни ташкил этиш.",
-                "img": [
-                    "s092.jpg"
+                    "s087.jpg"
                 ]
             }
         ]
@@ -893,7 +863,7 @@
             {
                 "name": "",
                 "img": [
-                    "s093.jpg"
+                    "s088.jpg"
                 ]
             }
         ]
@@ -903,15 +873,15 @@
         "place": 10,
         "cont": null,
         "section": "MUNIS лойиҳалари",
-        "org": "SOLQD МЧЖ",
-        "info": "Қурилиш объектлари ва ақлли иссиқхоналар учун люминесент квант нуқтали қуёшли деразалар ишлаб чиқариш технологияси",
-        "contact": "Алишер Атаҳоджаев",
+        "org": "\"Agrobiotech\" МЧЖ",
+        "info": "Биологик фаол ўғитларни ишлаб чиқариш ва тижоратлаштириш",
+        "contact": "Дмитрий Пастухов",
         "dept": "",
         "products": [
             {
                 "name": "",
                 "img": [
-                    "s094.jpg"
+                    "s089.jpg"
                 ]
             }
         ]
@@ -929,7 +899,7 @@
             {
                 "name": "Sanoat korhonalaridan chiqayotgan zaharli gaz va changlarni tozalovchi qurulma. Ixtironing mohiyati: gazlarni tozalash uchun qurilma taklif qilingan bo‘lib, uning tarkibiga suyuqlik uchun vannali gorizontal korpus va unga o‘rnatilgan gazni keltirish va chiqarish uchun tarmoqlangan quvurlari, ifloslangan suyuqlikni olib ketuvchi tarmoqlangan quvur va unga silindr shaklidagi to‘rsimon kontakt qurilmasi mahkamlangan gorizontal val va kontakt qurilmasi ustidan suvni purkaydigan forsunkalar kiradi. Kontakt qurilmasi gorizontal joylashgan sterjenlardan iborat bo‘lib, sterjenlarning har ikki uchlari valga tayanchlar orqali o‘rnatilgan xalqa shaklidagi plastinalarga mahkamlangan va sterjenlarga o‘rnatilgan to‘rli barabanning oxirga qismiga diametri bo‘ylab valga kurakchali parrak o‘rnatilgan. Ixtirodan ajralib chiqayotgan gazlar tarkibini mayda dispers zarrachalardan namlab tozalash uchun sanoatning turli tarmoqlarida foydalanish mumkin bo‘lib, FAP2584 patentning takomillashtirilgan ko‘rinishidir.",
                 "img": [
-                    "s095.jpg"
+                    "s090.jpg"
                 ]
             }
         ]
@@ -947,13 +917,13 @@
             {
                 "name": "1. Kombinatsiyalashgan avtonom energiya ta’minoti tizimi. Ixtironing mohiyati: Maishiy va biomassa chiqindilarini quyosh energiyasi asosidagi geliopiroliz qurilmasida qayta ishlash orqali muqobil yoqilg‘ilar olinadi, chiqindilar hajmi va ekologik ta'sir kamayadi hamda qayta tiklanuvchi energiyadan foydalanish imkoniyati kengayadi, shu sababli texnologiya dolzarb hisoblanadi.",
                 "img": [
-                    "s096.jpg"
+                    "s091.jpg"
                 ]
             },
             {
                 "name": "2 Ko'chat yetishtirish uchun biogumusdan tuvakchalar tayyorlash qurilmasi. Ixtironing mohiyati: Ko'chat yetishtirish uchun biogumusdan tuvakchalar tayyorlash qurilmasi rama 1, elektrodvigatel 2,\nkompressor 3, biogumus (organik o'g'it)ni yuklash bunkeri 4, biogumus siqish silindri 5, zichlovchi porshen 6, zichlovchi porshenni harakatlantiruvchi pnevmo silindr 7, biogumus tuvakchalari shaklini hosil qiluvchi yoysimon qolip 8 lar, yoysimon qoliplarni harakatga keltiruvchi pnevmo silindr 9 lar, biogumus tarkibidagi suvni chiqib ketishi uchun maxsus teshik 10, hamda kantroller 11 lardan iborat.",
                 "img": [
-                    "s097.jpg"
+                    "s092.jpg"
                 ]
             }
         ]
@@ -971,7 +941,7 @@
             {
                 "name": "APOLLON AI DRONE - bu Sun’iy intellekt algoritmlari bilan integratsiyalashgan, 3D printerda tayyorlangan 25 grammli avtonom mikrodron qishloq xo‘jaligi ekinlarining fenotipik ko‘rsatkichlarini real vaqt rejimida monitoring qiladi. Qurilma multispektral sensorlar va NDVI indeksatsiyasi asosida o‘simliklarning fotosintetik faolligi, oziqlanish darajasi, suv tanqisligi va biotik hamda abiotik stress omillarini aniqlaydi. Tizim tomonidan shakllantirilgan analitik ma’lumotlar hosildorlik prognozini tuzish, o‘g‘itlash samaradorligini baholash va agrotexnologik qarorlar qabul qilish jarayonlarini takomillashtirishga xizmat qiladi.",
                 "img": [
-                    "s098.jpg"
+                    "s093.jpg"
                 ]
             }
         ]
@@ -989,7 +959,7 @@
             {
                 "name": "Vinilatsetat ishlab chiqarish uchun katalizator olish usuli - O’zbekiston kimyogar olimlari oldida turgan asosiy vazifalardan biri mahalliy xom ashyolar va chiqindi gazlaridan foydalanib chetdan valyuta evaziga olib keltirilayotgan mahsulotlar o‘rnini bosa oladigan, eksportga yo‘naltirilgan, xalq xo‘jaligi uchun muhim bo‘lgan moddalar ishlab chiqarishning yangi, tejamkor va chiqindisiz usullari va texnologiyalarini yaratish hamda shu asosda mamlakatimizning eksport potensialini oshirishdan iborat. Asetilenni katalitik asetillab vinilasetat olish reaksiyasini o‘rganish, ushbu jarayon uchun yuqori faollik, selektivlik, unumdorlikka ega bo‘lgan barqaror katalizator tanlash va u asosida reaksiyaning kinetik qonuniyatlarini o‘rganish dolzarb masaladir.",
                 "img": [
-                    "s099.jpg"
+                    "s094.jpg"
                 ]
             }
         ]
@@ -1007,13 +977,13 @@
             {
                 "name": "1 .FOTOELEKTRIK STANSIYA TARMOQ INVERTORLARINI LOKAL ELEKTR TARMOG‘IDAGI SIFATSIZ ELEKTR ENERGIYASIDAN QO‘SHIMCHA QIMOYALASH USKUNASI - Keskin ob‑havo sharoitida past kuchlanishli taqsimlovchi tarmoqda har bir fazaning kuchlanishi nominaldan pastroq.A, B va C fazalarda tok va kuchlanishning sezilarli og‘ishlari past kuchlanishli tarmoqqa ulangan FES ishlashi paytida markaziy invertorning relye, varistor, saqlagich kabi detallarining qizishiga va ishdan chiqishi hamda yong'in sodir bo'lishiga olib keladi. Taklif etilayotgan ishlanma lokal elektr tarmoqqa ulangan invertorlarni ishonchli va barqaror ximoyalaydi.",
                 "img": [
-                    "s100.jpg"
+                    "s095.jpg"
                 ]
             },
             {
                 "name": "2. RFID-tizimi temir yo'l transportida qo'llanishi - Temir yo‘l transportida svetoforlar, signalizatsiya qurilmalari va poyezdlar harakatini nazorat qilishda nosozliklarni o‘z vaqtida aniqlash hamda obyektlarni real vaqt rejimida kuzatish imkoniyatlari cheklangan. RFID tizimi ushbu muammoni hal qilib, temir yo‘l infratuzilmasi obyektlarini avtomatik identifikatsiya qilish, nosozliklarni tezkor aniqlash va harakat xavfsizligini oshirish imkonini beradi. Natijada inson omili kamayadi, boshqaruv samaradorligi ortadi va mijozlar poyezdlar harakatini rostlaydi.",
                 "img": [
-                    "s101.jpg"
+                    "s096.jpg"
                 ]
             }
         ]
@@ -1031,7 +1001,7 @@
             {
                 "name": "Biotauch Audio - Hozirgi kunda ko‘zi ojiz va zaif ko‘ruvchi o‘quvchilarni biologiya faniga o‘qitishda bir qator muammolar mavjud. Jumladan, biologiya fanida ko‘plab mavzular vizual tasvirlar, diagrammalar, rasmlar, mikroskopik obyektlar va sxemalar orqali tushuntiriladi. Ko‘rish imkoniyati cheklangan o‘quvchilar ushbu ma’lumotlarni to‘liq qabul qila olmaydi, natijada mavzularni o‘zlashtirish darajasi pasayadi. Ayni shu muamolarni oldini olish uchun amaliy yechim bo'ladi.",
                 "img": [
-                    "s102.jpg"
+                    "s097.jpg"
                 ]
             }
         ]
@@ -1049,7 +1019,7 @@
             {
                 "name": "Mendeleev jadvali - Mendeleev davriy jadvallari asosan vizual ko‘rinishda bo‘lib, ko‘zi ojiz va zaif ko‘ruvchi o‘quvchilar uchun ulardan foydalanish qiyin. Mavjud elektron platformalarda esa elementlar haqida ovozli ma’lumot berish imkoniyati cheklangan yoki umuman mavjud emas. Natijada mazkur toifadagi o‘quvchilar kimyo fanini o‘rganishda qiyinchiliklarga duch keladi. Taklif etilayotgan raqamlashtirilgan Mendeleev jadvali ushbu muammoni bajaradi.",
                 "img": [
-                    "s103.jpg"
+                    "s098.jpg"
                 ]
             }
         ]
@@ -1067,7 +1037,7 @@
             {
                 "name": "Rain Box ixtirosi yomg‘ir suvlarini yig‘ish, filtrlash va saqlash orqali ushbu muammoni bartaraf etishga xizmat qiladi. Tizim yomg‘ir suvlaridan qayta foydalanish imkoniyatini yaratib, markazlashgan suv ta’minotiga bo‘lgan ehtiyojni kamaytiradi, suv sarfini optimallashtiradi hamda ekologik barqarorlikni ta’minlaydi. Natijada suv resurslaridan oqilona foydalanish, suv tanqisligi xavfini kamaytirish va atrof-muhitni muhofaza qilishga erishiladi.",
                 "img": [
-                    "s104.jpg"
+                    "s099.jpg"
                 ]
             }
         ]
@@ -1085,7 +1055,7 @@
             {
                 "name": "Ekologik toza transport konsepsiyasi - Hozirgi kunda dunyo miqyosida atrof-muhitning ifloslanishi, iqlim o‘zgarishi va energiya resurslarining kamayib borishi eng muhim ekologik muammolardan biri hisoblanadi. Ushbu muammolarning asosiy sabablaridan biri transport vositalaridan ajralib chiqadigan zararli gazlar va yuqori yoqilg‘i sarfidir. An’anaviy transport turlari atmosfera havosiga karbonat angidrid (CO₂), azot oksidlari va boshqa zararli moddalarni chiqarib, ekologik holatning yomonlashishiga olib kelmoqda. Shu sababli ekologik toza transport tizimlarini yaratish va joriy etish bugungi kunning dolzarb vazifalaridan biri hisoblanadi. Elektr transport vositalari, gibrid avtomobillar, velotransport va qayta tiklanuvchi energiya manbalaridan foydalanuvchi transport vositalari ekologik xavfsizlikni ta’minlashda muhim ahamiyat kasb etadi.Ixtironing ilmiy yangiligi - ekologik toza transport vositalarining samaradorligini oshirishga qaratilgan yangi konseptual yondashuv ishlab chiqilishi;",
                 "img": [
-                    "s105.jpg"
+                    "s100.jpg"
                 ]
             }
         ]
@@ -1103,7 +1073,7 @@
             {
                 "name": "Davolovchi kosmetik krem - Хозирги кунда ҳуснбузар (акне) шунчаки тери касаллиги эмас, балки ёшлар ўртасидаги жиддий психологик муаммодир. У ўсмирлар ва ёш йигит-қизларда ўзига бўлган ишончнинг йўқолишига, ижтимоий фаолликнинг чекланишига ва стрессга сабаб бўлмоқда. Биз ишлаб чиққан инновацион крем айнан бугунги кун ёшларининг ушбу оғриқли муаммосини илмий ва хавфсиз ёндашув билан самарали ҳал этади. Маҳсулотимиз ёшларга нафақат соғлом тери, балки юқори ўзига бўлган ишончни ҳам қайтаради",
                 "img": [
-                    "s106.jpg"
+                    "s101.jpg"
                 ]
             }
         ]
@@ -1231,7 +1201,7 @@
             {
                 "name": "",
                 "img": [
-                    "s107.jpg"
+                    "s102.jpg"
                 ]
             }
         ]
@@ -1249,7 +1219,7 @@
             {
                 "name": "",
                 "img": [
-                    "s108.jpg"
+                    "s103.jpg"
                 ]
             }
         ]
@@ -1267,7 +1237,7 @@
             {
                 "name": "",
                 "img": [
-                    "s109.jpg"
+                    "s104.jpg"
                 ]
             }
         ]
@@ -1285,7 +1255,7 @@
             {
                 "name": "",
                 "img": [
-                    "s110.jpg"
+                    "s105.jpg"
                 ]
             }
         ]
@@ -1303,7 +1273,7 @@
             {
                 "name": "",
                 "img": [
-                    "s111.jpg"
+                    "s106.jpg"
                 ]
             }
         ]
@@ -1321,7 +1291,7 @@
             {
                 "name": "",
                 "img": [
-                    "s112.jpg"
+                    "s107.jpg"
                 ]
             }
         ]
@@ -1339,7 +1309,7 @@
             {
                 "name": "",
                 "img": [
-                    "s113.jpg"
+                    "s108.jpg"
                 ]
             }
         ]
@@ -1357,7 +1327,7 @@
             {
                 "name": "",
                 "img": [
-                    "s114.jpg"
+                    "s109.jpg"
                 ]
             }
         ]
@@ -1375,7 +1345,7 @@
             {
                 "name": "",
                 "img": [
-                    "s115.jpg"
+                    "s110.jpg"
                 ]
             }
         ]
@@ -1393,7 +1363,7 @@
             {
                 "name": "",
                 "img": [
-                    "s116.jpg"
+                    "s111.jpg"
                 ]
             }
         ]
@@ -1411,13 +1381,13 @@
             {
                 "name": "1. “Kombinatsiyalashgan bioenergetik qurilma”",
                 "img": [
-                    "s117.jpg"
+                    "s112.jpg"
                 ]
             },
             {
                 "name": "2.“Cottony AI-Based Farming Assistant”.",
                 "img": [
-                    "s118.jpg"
+                    "s113.jpg"
                 ]
             }
         ]
@@ -1435,13 +1405,13 @@
             {
                 "name": "1. “Argus-X: Intellektual havo mudofaa platformasi”",
                 "img": [
-                    "s119.jpg"
+                    "s114.jpg"
                 ]
             },
             {
                 "name": "2. “NextGen Engineering”",
                 "img": [
-                    "s120.jpg"
+                    "s115.jpg"
                 ]
             }
         ]
@@ -1459,13 +1429,13 @@
             {
                 "name": "1.“Qaytmas MK Vanguard”",
                 "img": [
-                    "s121.jpg"
+                    "s116.jpg"
                 ]
             },
             {
                 "name": "2.“Inovatsion Samolyot simulyator”",
                 "img": [
-                    "s122.jpg"
+                    "s117.jpg"
                 ]
             }
         ]
@@ -1483,13 +1453,13 @@
             {
                 "name": "1. “Yuqori nur sindirish koeffitsientiga ega shisha mikrosferalar”",
                 "img": [
-                    "s123.jpg"
+                    "s118.jpg"
                 ]
             },
             {
                 "name": "2.“ImoVox — Giving Voice to Signs” imo-ishoralarni ovozga aylantiruvchi qurilma”",
                 "img": [
-                    "s124.jpg"
+                    "s119.jpg"
                 ]
             }
         ]
@@ -1507,13 +1477,13 @@
             {
                 "name": "1. “Chuchuk va issiq suv olishga mo‘ljallangan quyosh havo isitgichi asosidagi Energiya tejamkor poligeneratsiya qurilmasini ishlab chiqish”",
                 "img": [
-                    "s125.jpg"
+                    "s120.jpg"
                 ]
             },
             {
                 "name": "2. “Havoni tunnelli namlab-sovutish qurilmasi”",
                 "img": [
-                    "s126.jpg"
+                    "s121.jpg"
                 ]
             }
         ]
@@ -1531,13 +1501,13 @@
             {
                 "name": "1.“Oqava suv tozalash inshootlari va ochiq kanallarda suv resurslari sarfini intellektual o'lchov-monitoring qurilmasi”",
                 "img": [
-                    "s127.jpg"
+                    "s122.jpg"
                 ]
             },
             {
                 "name": "2. “Tog‘ jinslarini o‘ta mayin darajada maydalash sharli tegirmon qoplamalasi”",
                 "img": [
-                    "s128.jpg"
+                    "s123.jpg"
                 ]
             }
         ]
@@ -1555,13 +1525,13 @@
             {
                 "name": "1. “Tog‘ jinslarini o‘ta mayin darajada maydalash sharli tegirmon qoplamalasi",
                 "img": [
-                    "s129.jpg"
+                    "s124.jpg"
                 ]
             },
             {
                 "name": "2. “HaWoO2 havodan namlikni yigʻib, uni suvga aylantirishga moʻljallangan qurilma”",
                 "img": [
-                    "s130.jpg"
+                    "s125.jpg"
                 ]
             }
         ]
@@ -1579,13 +1549,13 @@
             {
                 "name": "1. “Hand Control Mouse K10G qoʻl harakatlari orqali kompyuterni boshqarishga moʻljallangan aqlli qurilma”",
                 "img": [
-                    "s131.jpg"
+                    "s126.jpg"
                 ]
             },
             {
                 "name": "2. “Quyosh fotoelektrik panellari yuzasini changdan tozalashga mo‘ljallangan energiya tejamkor avtomatlashtirilgan qurilma”",
                 "img": [
-                    "s132.jpg"
+                    "s127.jpg"
                 ]
             }
         ]
@@ -1603,13 +1573,13 @@
             {
                 "name": "1. Sun’iy intellekt texnologiyalari asosida sanoat gaz yoquvchi pechlar uchun energiya tejamkor boshqarish tizimini ishlab chiqish",
                 "img": [
-                    "s133.jpg"
+                    "s128.jpg"
                 ]
             },
             {
                 "name": "2. Mahalliy homashyolar asosida suvlarni tozalovchi gibrid membranalar yaratish",
                 "img": [
-                    "s134.jpg"
+                    "s129.jpg"
                 ]
             }
         ]
@@ -1627,13 +1597,13 @@
             {
                 "name": "1. Intellektual vizual nazorat va yig‘ish jarayonlarini optimallashtirish tizimi",
                 "img": [
-                    "s135.jpg"
+                    "s130.jpg"
                 ]
             },
             {
                 "name": "2. Foydalanilgan elektromobillar BLADE batareyalarini quyosh panellari uchun samarador foydalanish texnologiyasi",
                 "img": [
-                    "s136.jpg"
+                    "s131.jpg"
                 ]
             }
         ]
@@ -1651,13 +1621,13 @@
             {
                 "name": "1. “Barlos” yеr usti robotlashgan majmuasi”",
                 "img": [
-                    "s137.jpg"
+                    "s132.jpg"
                 ]
             },
             {
                 "name": "2. Shunqor 8",
                 "img": [
-                    "s138.jpg"
+                    "s133.jpg"
                 ]
             }
         ]
@@ -1675,13 +1645,13 @@
             {
                 "name": "1. “AgroPhotonics”",
                 "img": [
-                    "s139.jpg"
+                    "s134.jpg"
                 ]
             },
             {
                 "name": "2. “UpWheelchair Nogironligi bo‘lgan shaxslar uchun ko‘p funksiyali aqlli elektr aravacha”",
                 "img": [
-                    "s140.jpg"
+                    "s135.jpg"
                 ]
             }
         ]
@@ -1699,13 +1669,13 @@
             {
                 "name": "1. “Qoraqalpog'iston shaharlarida chang-bo'ron va jaziramaga mos sensorli aqlli bekat prototipini yaratish”",
                 "img": [
-                    "s141.jpg"
+                    "s136.jpg"
                 ]
             },
             {
                 "name": "2. “GUARD-X”",
                 "img": [
-                    "s142.jpg"
+                    "s137.jpg"
                 ]
             }
         ]
@@ -1723,13 +1693,13 @@
             {
                 "name": "1. ForestBuilder",
                 "img": [
-                    "s143.jpg"
+                    "s138.jpg"
                 ]
             },
             {
                 "name": "2. “Eco Bike”",
                 "img": [
-                    "s144.jpg"
+                    "s139.jpg"
                 ]
             }
         ]
@@ -1747,13 +1717,13 @@
             {
                 "name": "1. “Smart bench”",
                 "img": [
-                    "s145.jpg"
+                    "s140.jpg"
                 ]
             },
             {
                 "name": "2. “Qishloq ho’jaligida foydalanishga mo’ljallangan kichik gibrit traktor ishlab chiqish”",
                 "img": [
-                    "s146.jpg"
+                    "s141.jpg"
                 ]
             }
         ]
@@ -1771,13 +1741,13 @@
             {
                 "name": "1. “Mikro suv o’tlarini yetishtirish uchun innovatsion fotobioreakt ishlab chiqarish”",
                 "img": [
-                    "s147.jpg"
+                    "s142.jpg"
                 ]
             },
             {
                 "name": "2.“Po‘lat eritish shlakidan marganes va temirni ajratib olish”",
                 "img": [
-                    "s148.jpg"
+                    "s143.jpg"
                 ]
             }
         ]
@@ -1795,13 +1765,13 @@
             {
                 "name": "1.“Braille”",
                 "img": [
-                    "s149.jpg"
+                    "s144.jpg"
                 ]
             },
             {
                 "name": "2. “Gerkules droni”",
                 "img": [
-                    "s150.jpg"
+                    "s145.jpg"
                 ]
             }
         ]
@@ -1819,13 +1789,13 @@
             {
                 "name": "1. “Atir sepgich”",
                 "img": [
-                    "s151.jpg"
+                    "s146.jpg"
                 ]
             },
             {
                 "name": "2. “Shell mashina”",
                 "img": [
-                    "s152.jpg"
+                    "s147.jpg"
                 ]
             }
         ]
@@ -1843,13 +1813,13 @@
             {
                 "name": "1. “Lift stendi”",
                 "img": [
-                    "s153.jpg"
+                    "s148.jpg"
                 ]
             },
             {
                 "name": "2. “E-ofis tizimi”",
                 "img": [
-                    "s154.jpg"
+                    "s149.jpg"
                 ]
             }
         ]
@@ -1867,13 +1837,13 @@
             {
                 "name": "1. “3D printerlar klasteri”",
                 "img": [
-                    "s155.jpg"
+                    "s150.jpg"
                 ]
             },
             {
                 "name": "2. “Robot assistant”",
                 "img": [
-                    "s156.jpg"
+                    "s151.jpg"
                 ]
             }
         ]
@@ -1891,37 +1861,37 @@
             {
                 "name": "1. Quyosh suv isitgichi (kollektor) mahalliy homashyolardan tayyorlangan boʻlib suvni quyosh nuri orqali isitishga moʻljallangan. Asosiy tarkibiy qismlari: - quyosh nurini yigʻuvchi zanglamas materialdan tayyorlangan parabola-silindrik konsentrator; - quyosh nurini qabul qiluvchi aktiv yuza (mis simli truba); - suvni saqlovchi bak va suvni aylantiruvchi suv nasosdan iborat.",
                 "img": [
-                    "s157.jpg"
+                    "s152.jpg"
                 ]
             },
             {
                 "name": "2. Kichik quvvatli fotoelektrik stansiya tarkibiy qismlari 200 Vtli quyosh paneli, 2400 Vtli toza sinusli 12V-220V li invertor, kontroller, zaryadlagich va Litiy-temir-fosfat (LiFePO4) 12 V 135 A li akkumulyatorni oʻz ichiga olib, 1620 Vt elektr energiyasini oʻzida saqlay oladi. Bu energetik qurilma elektr energiyasi yetib bormagan hududlarga, xonadonlarga, picnik yokisayohatlarda va dala sharoitida ishlatish qulayligi mavjud",
                 "img": [
-                    "s158.jpg"
+                    "s153.jpg"
                 ]
             },
             {
                 "name": "3. Gibrid quyosh-shamol energetik qurilmasi - vertikal shamol generatori hamda optimal piramida geometrik shaklidagi fotoelektrik moduldan tashkil topgan boʻlib, avtomagistrallarni medianasiga oʻrnatilib istalgan yoʻnalishda esuvchi shamol oqimi hamda avtomashinalarning qarama-qarshi harakatlari hisobiga yuzaga keluvchi majburiy shamol qolimidan ekologik toza elektr tolini ishlab chiqarib tarmoqqa uzatadi. Elektr quvvati hajmini oshirish uchun avtomagistral medianasiga ketma-ket oʻrnatish orqali amalga oshirsa boʻladi.",
                 "img": [
-                    "s159.jpg"
+                    "s154.jpg"
                 ]
             },
             {
                 "name": "4. Oddiy quyosh kollektorini quvurlari orqasiga nur qaytaruvchu taglik qoʻyilishi natijasida uning samaradorligi 1.3 barobargacha oshiriladi. Bu esa quyosh energiyasidan issiq suv olishda ham yuqori temperaturaga erishishga, ham isish vaqtini kamyatirishga erishiladi. Qurilma patentlangan.",
                 "img": [
-                    "s160.jpg"
+                    "s155.jpg"
                 ]
             },
             {
                 "name": "5. AUS Med” yordamida bemorning yurak urishi, nafas olish jarayoni va oʻpkadagi patologik tovushlar raqamli formatda qayd etiladi. Olingan maʼlumotlarni qayta eshitish, saqlash, solishtirish va masofadan turib boshqa mutaxassislarga yuborish imkoniyati yaratiladi.",
                 "img": [
-                    "s161.jpg"
+                    "s156.jpg"
                 ]
             },
             {
                 "name": "6. Bugʻ generatorining ushbu sanoat namunasi hozirda yurtimizga Xitoy va Turkiyadan kirib kelayotgan bugʻ generatorlari oʻrnini egallaydi.",
                 "img": [
-                    "s162.jpg"
+                    "s157.jpg"
                 ]
             }
         ]
@@ -1939,61 +1909,61 @@
             {
                 "name": "1. Val va shesternya (tishli gildirak) bir butun yaxlit qism sifatida tayyorlangan mashinasozlik detali.",
                 "img": [
-                    "s163.jpg"
+                    "s158.jpg"
                 ]
             },
             {
                 "name": "2. Dvigateldan kelayotgan aylanishlar sonini (tezlikni) kamaytirib, chiquvchi valda buralish momentini oshirib beradigan mexanik uzatmalardir",
                 "img": [
-                    "s164.jpg"
+                    "s159.jpg"
                 ]
             },
             {
                 "name": "3. Aylanma harakatni va aylantiruvchi momentni bir valdan boshqasiga uzatish uchun mo‘ljallangan mashina va mexanizmlarning asosiy detallaridir.",
                 "img": [
-                    "s165.jpg"
+                    "s160.jpg"
                 ]
             },
             {
                 "name": "4. Burg‘ulash tizimida aylanish va kuchni uzatish, quvurlarni bir-biriga mustahkam va jipslashtirib ulash uchun xizmat qiladi.",
                 "img": [
-                    "s166.jpg"
+                    "s161.jpg"
                 ]
             },
             {
                 "name": "5. Traktorlar, qishloq xoʻjaligi va qurilish texnikalarining gidravlik tizimlarida ishchi suyuqlikni uzatish uchun moʻljallangan tishli (shesteryonchatiy) gidronasosdir",
                 "img": [
-                    "s167.jpg"
+                    "s162.jpg"
                 ]
             },
             {
                 "name": "6. Ichki yonuv dvigatelining asosiy korrus qismi (asosi) bo‘lib, dvigatelning barcha asosiy detallari va tizimlarini birlashtiradi",
                 "img": [
-                    "s168.jpg"
+                    "s163.jpg"
                 ]
             },
             {
                 "name": "7. Konchilik sanoatida shaxta kleti yoki skipini ko‘tarish arqoni uzilib ketgan taqdirda halokatning oldini olish, ularni yo‘naltiruvchi ustunlarda (napravlyayushiye/provodniki) ushlab qolish va xavfsiz to‘xtatish uchun mo‘ljallangan favqulodda xavfsizlik qurilmasi.",
                 "img": [
-                    "s169.jpg"
+                    "s164.jpg"
                 ]
             },
             {
                 "name": "8. bu porshenli kompressorlar va dvigatellarda kreytsofni (surilma) porshen bilan bog'lab, ilgarilama-qaytma harakatni va kuchni uzatuvchi metall sterjen (val) hisoblanadi.",
                 "img": [
-                    "s170.jpg"
+                    "s165.jpg"
                 ]
             },
             {
                 "name": "9. Suyuqliklarni markazdan qochma kuch hisobiga haydab beruvchi gidravlik qurilma.",
                 "img": [
-                    "s171.jpg"
+                    "s166.jpg"
                 ]
             },
             {
                 "name": "10. Burg‘ulash qurilmasining tal tizimi (osma qismi) bilan aylanadigan burg‘ulash ustunini bog‘lab turuvchi va burg‘ulash suyuqligini (loyni) quduqqa haydash uchun xizmat qiladigan muhim mexanik qurilma",
                 "img": [
-                    "s172.jpg"
+                    "s167.jpg"
                 ]
             }
         ]
@@ -2011,25 +1981,25 @@
             {
                 "name": "1. Burg‘ulash apparatlarida elektr va elektron tizimlarni boshqarish, nazorat qilish hamda himoyalash uchun mo‘ljallangan elektron boshqaruv qurilmasi.",
                 "img": [
-                    "s173.jpg"
+                    "s168.jpg"
                 ]
             },
             {
                 "name": "2. Burg‘ulash apparatining elektr va elektron tizimlarida signallarni qabul qilish, qayta ishlash va boshqaruv funksiyalarini ta’minlash uchun mo‘ljallangan elektron plata.",
                 "img": [
-                    "s174.jpg"
+                    "s169.jpg"
                 ]
             },
             {
                 "name": "3. O‘zgarmas tok elektrodvigatellarini yig‘ish va ta’mirlashda qo‘llaniladigan elektromagnit va mexanik qismlar majmuasi",
                 "img": [
-                    "s175.jpg"
+                    "s170.jpg"
                 ]
             },
             {
                 "name": "4. O‘zgarmas tok elektrodvigatellarida elektr tokini yakor chulg‘amiga uzatish va kommutatsiya jarayonini ta’minlash uchun mo‘ljallangan elektromexanik qism.",
                 "img": [
-                    "s176.jpg"
+                    "s171.jpg"
                 ]
             }
         ]
@@ -2047,13 +2017,13 @@
             {
                 "name": "1. Surxondaryo viloyatida aholini arzon va muqobil elektr energiya bilan ta’minlash maqsadida,  Boysun tumani hududidan oqib o‘tuvchi  “Xo‘jamayxona” bulog‘i oqimidan samarali foydalangan holda elektr energiyasi ishlab chiqarish.",
                 "img": [
-                    "s177.jpg"
+                    "s172.jpg"
                 ]
             },
             {
                 "name": "2. Toshkent davlat tibbiyot universiteti Termiz filiali qoshida tashkil etilgan zamonaviy innovatsion tibbiyot markazida kasalliklarni erta aniqlash, bemorlarni tezkor tekshiruvdan o‘tkazish va tibbiy xizmat sifatini oshirish.",
                 "img": [
-                    "s178.jpg"
+                    "s173.jpg"
                 ]
             }
         ]
@@ -2071,19 +2041,19 @@
             {
                 "name": "1. Rezina shina, pokrishka va kameralar ishlab chiqarish",
                 "img": [
-                    "s179.jpg"
+                    "s174.jpg"
                 ]
             },
             {
                 "name": "2. Avtotransport vositalari uchun boshqa butlovchi qismlar va aksessuarlar ishlab chiqarish",
                 "img": [
-                    "s180.jpg"
+                    "s175.jpg"
                 ]
             },
             {
                 "name": "3. Boshqa rezina buyumlar ishlab chiqarish",
                 "img": [
-                    "s181.jpg"
+                    "s176.jpg"
                 ]
             }
         ]
@@ -2101,19 +2071,19 @@
             {
                 "name": "1. Tabiiy asalga murch, jenshen, zanjabil hamda turli shifobaxsh va foydali o‘simliklar qo‘shilishi asosida tayyorlanadigan funksional oziq-ovqat mahsulotidir. Mahsulot tarkibidagi tabiiy komponentlar bir-birini to‘ldirib, organizmning umumiy tetikligi va hayotiy faolligini qo‘llab-quvvatlashga yo‘naltirilgan.",
                 "img": [
-                    "s182.jpg"
+                    "s177.jpg"
                 ]
             },
             {
                 "name": "2. Quritilgan muzqaymoq-innovatsion, tabiiy, energiya tejovchi, uzoq saqlanadigan, sayohat uchun qulay",
                 "img": [
-                    "s183.jpg"
+                    "s178.jpg"
                 ]
             },
             {
                 "name": "3. “Mushroom KSU” korxonasi zamonaviy va nazorat qilinadigan yopiq sharoitda ekologik toza qoʼziqorin mahsulotlarini yetishtirishga ixtisoslashgan. Ishlab chiqarish jarayonida harorat, namlik, havo almashinuvi va yoritish koʼrsatkichlari doimiy boshqarilib, yil davomida sifatli va xavfsiz mahsulot yetishtirish imkoniyati yaratilgan.",
                 "img": [
-                    "s184.jpg"
+                    "s179.jpg"
                 ]
             }
         ]
@@ -2131,13 +2101,13 @@
             {
                 "name": "1.Oltinko‘z (Chrysoperla carnea) entomofagi asosida o‘simlik zararkunandalariga qarshi ekologik xavfsiz biologik himoya vositasi ishlab chiqilgan bo‘lib, maxsus qadoqlash texnologiyasi orqali tirik holda ekin maydonlariga yetkaziladi. Loyiha kimyoviy pestitsidlardan foydalanishni kamaytirish, atrof-muhitni muhofaza qilish va ekologik toza mahsulot yetishtirishga xizmat qiladi",
                 "img": [
-                    "s185.jpg"
+                    "s180.jpg"
                 ]
             },
             {
                 "name": "2. Ushbu mahsulot o‘simliklarning o‘sishi, rivojlanishi va hosildorligini oshirishga xizmat qiluvchi azotli mineral o‘g‘itdir. Innovatsion jihati azotning samarali o‘zlashtirilishini ta’minlab, o‘g‘itdan foydalanish samaradorligini oshirishidadir.",
                 "img": [
-                    "s186.jpg"
+                    "s181.jpg"
                 ]
             }
         ]
@@ -2155,7 +2125,7 @@
             {
                 "name": "1. Korxona tashkilotlardagi va axoli yashaydigan xonadonlarda induktiv bogʻlanishga ega boʻlgan elektr qurilmalarining reaktiv quvvati kompensatsiyalanadi. Elektr qurilmalarining reaktiv quvvatini kompensatsiyalash orqali elektr energiyasi sarfini 7-35 % ga kamaytirishga erishiladi.",
                 "img": [
-                    "s187.jpg"
+                    "s182.jpg"
                 ]
             }
         ]
@@ -2173,8 +2143,8 @@
             {
                 "name": "1.Mahalliy xomashyolardan foydalangan holda baliqlar va jo‘jalarning ozuqa bazasini mustahkamlash maqsadida omuxta yemlar tayyorlanib sotuv ga tayyor mahsulot yaratilgan",
                 "img": [
-                    "s188.jpg",
-                    "s189.jpg"
+                    "s183.jpg",
+                    "s184.jpg"
                 ]
             }
         ]
@@ -2192,14 +2162,14 @@
             {
                 "name": "1. Kvant nuqtalari bilan boyitilgan polimer plyonka ekinlar uchun zararli boʻlgan ultrabinafsha va yashil nur spektrini fotosintez uchun oʻta foydali boʻlgan qizil va koʻk nur spektriga oʻzgartirib beradi. Sinov natijalari: Agrobiotexnologiyalar institutida oʻtkazilgan dala sinovlari hosildorlikning 20–30% ga oshishini hamda ekinlarning pishib yetilish muddatini 10–15 kunga qisqarishini tasdiqladi.",
                 "img": [
-                    "s190.jpg",
-                    "s191.jpg"
+                    "s185.jpg",
+                    "s186.jpg"
                 ]
             },
             {
                 "name": "2. Kvant nuqtalari bilan boyitilgan polimer plyonka ekinlar uchun zararli boʻlgan ultrabinafsha va yashil nur spektrini fotosintez uchun oʻta foydali boʻlgan qizil va koʻk nur spektriga oʻzgartirib beradi. Sinov natijalari: Agrobiotexnologiyalar institutida oʻtkazilgan dala sinovlari hosildorlikning 20–30% ga oshishini hamda ekinlarning pishib yetilish muddatini 10–15 kunga qisqarishini tasdiqladi.",
                 "img": [
-                    "s192.jpg"
+                    "s187.jpg"
                 ]
             }
         ]
@@ -2217,31 +2187,31 @@
             {
                 "name": "1. 3D-принтер Creality K1 Max",
                 "img": [
-                    "s193.jpg"
+                    "s188.jpg"
                 ]
             },
             {
                 "name": "2. Ручной 3D-сканер SHINING 3D EinScan Pro HD",
                 "img": [
-                    "s194.jpg"
+                    "s189.jpg"
                 ]
             },
             {
                 "name": "3. Комплект оборудования Graphy",
                 "img": [
-                    "s195.jpg"
+                    "s190.jpg"
                 ]
             },
             {
                 "name": "4. Лазерный гравёр LaserPecker 3",
                 "img": [
-                    "s196.jpg"
+                    "s191.jpg"
                 ]
             },
             {
                 "name": "5. Режущий плоттер Silhouette CAMEO 4",
                 "img": [
-                    "s197.jpg"
+                    "s192.jpg"
                 ]
             }
         ]
@@ -2285,10 +2255,29 @@
         "cont": null,
         "section": "Инновацион тадбиркорлик ва халқаро ҳамкорлик",
         "org": "O‘zbekiston-Yaponiya yoshlar innovatsiya markazi (UJICY)",
-        "info": "1. Yogʻoch kompozitsion materiallari namunalari.\n2. Zamonaviy piyodalar oʻtish joyi uchun yoʻl namunasi\n3. 3d printer, flotomashina, 3D skaner\n4, Metall buyumlari namunalari",
+        "info": "1. Energetika laboratoriyasi\n2. Konchilik laboratoriyasi\n3. Mashinasozlik va materialshunoslik laboratoriyasi",
         "contact": "Сунаттила\n99 852 99 16",
         "dept": "",
-        "products": []
+        "products": [
+            {
+                "name": "1. Energetika laboratoriyasi",
+                "img": [
+                    "s193.jpg"
+                ]
+            },
+            {
+                "name": "2. Konchilik laboratoriyasi",
+                "img": [
+                    "s194.jpg"
+                ]
+            },
+            {
+                "name": "3. Mashinasozlik va materialshunoslik laboratoriyasi",
+                "img": [
+                    "s195.jpg"
+                ]
+            }
+        ]
     },
     {
         "stand": "A5",
@@ -2358,7 +2347,7 @@
             {
                 "name": "",
                 "img": [
-                    "s198.jpg"
+                    "s196.jpg"
                 ]
             }
         ]
@@ -2376,7 +2365,7 @@
             {
                 "name": "",
                 "img": [
-                    "s199.jpg"
+                    "s197.jpg"
                 ]
             }
         ]
@@ -2394,7 +2383,7 @@
             {
                 "name": "",
                 "img": [
-                    "s200.jpg"
+                    "s198.jpg"
                 ]
             }
         ]
@@ -2412,7 +2401,7 @@
             {
                 "name": "",
                 "img": [
-                    "s201.jpg"
+                    "s199.jpg"
                 ]
             }
         ]
@@ -2430,7 +2419,7 @@
             {
                 "name": "",
                 "img": [
-                    "s202.jpg"
+                    "s200.jpg"
                 ]
             }
         ]
@@ -2440,15 +2429,16 @@
         "place": 6,
         "cont": null,
         "section": "Стартап лойиҳалар",
-        "org": "E-Medstat",
-        "info": "",
-        "contact": "Ismoilov Axad\n(99)617-63-30",
+        "org": "1. E-Medstat\n2. In-vitro diagnostika (IVD) sohasiga oid ekspress testlar",
+        "info": "1. E-Medstat\n2. In-vitro diagnostika (IVD) sohasiga oid ekspress testlar",
+        "contact": "1. Ismoilov Axad\n(99)617-63-30\n2. SODIQJONOV ISMOILJON ABDUHOLIQ O`G`LI \n(50) 711-31-67",
         "dept": "",
         "products": [
             {
                 "name": "",
                 "img": [
-                    "s203.jpg"
+                    "s201.jpg",
+                    "s202.jpg"
                 ]
             }
         ]
@@ -2466,7 +2456,7 @@
             {
                 "name": "",
                 "img": [
-                    "s204.jpg"
+                    "s203.jpg"
                 ]
             }
         ]
@@ -2484,7 +2474,7 @@
             {
                 "name": "",
                 "img": [
-                    "s205.jpg"
+                    "s204.jpg"
                 ]
             }
         ]
@@ -2502,7 +2492,7 @@
             {
                 "name": "",
                 "img": [
-                    "s206.jpg"
+                    "s205.jpg"
                 ]
             }
         ]
@@ -2512,13 +2502,19 @@
         "place": 10,
         "cont": null,
         "section": "Стартап лойиҳалар",
-        "org": "In-vitro diagnostika (IVD) sohasiga oid ekspress testlar",
-        "info": "",
-        "contact": "SODIQJONOV ISMOILJON ABDUHOLIQ O`G`LI \n(50) 711-31-67",
+        "org": "\"Fanur Group\" МЧЖ",
+        "info": "1. Davlat tashkilotlari va korxonalar rahbarlari hamda xodimlari uchun ishlab chiqilgan amaliy AI o'quv dasturi.\n2. xalqaro loyiha boshqaruvi, strategik konsalting va professional kompetensiyalarni rivojlantirishga ixtisoslashgan konsalting kompaniyasi. Kompaniya AzPMA/IPMA tomonidan akkreditatsiyadan o'tgan rasmiy trening provayderi bo'lib, davlat va xususiy sektor tashkilotlari uchun xalqaro standartlar asosida loyiha boshqaruvi tizimlarini joriy etish va mutaxassislarni tayyorlash xizmatlarini ko'rsatadi.",
+        "contact": "Нурилла\n(97) 752-17-27",
         "dept": "",
         "products": [
             {
-                "name": "",
+                "name": "1. Davlat tashkilotlari va korxonalar rahbarlari hamda xodimlari uchun ishlab chiqilgan amaliy AI o'quv dasturi.",
+                "img": [
+                    "s206.jpg"
+                ]
+            },
+            {
+                "name": "2. xalqaro loyiha boshqaruvi, strategik konsalting va professional kompetensiyalarni rivojlantirishga ixtisoslashgan konsalting kompaniyasi. Kompaniya AzPMA/IPMA tomonidan akkreditatsiyadan o'tgan rasmiy trening provayderi bo'lib, davlat va xususiy sektor tashkilotlari uchun xalqaro standartlar asosida loyiha boshqaruvi tizimlarini joriy etish va mutaxassislarni tayyorlash xizmatlarini ko'rsatadi.",
                 "img": [
                     "s207.jpg"
                 ]
@@ -2585,26 +2581,20 @@
         "cont": null,
         "section": "Яшнабод технопарки",
         "org": "“EPG POS” MCHJ, “MEP GROUP” MChJ, “POWER CLASS” MCHJ, “GROAL PLYUS” MCHJ",
-        "info": "1. POS materiallari. Bizning yechimlarimizdan davlat idoralarida, chakana savdo tarmoqlarida, doʻkonlarda, koʻrgazma zallarida, savdo ofislarida va kerakli joyda foydalanish mumkin. 2. Polimer kompozit materiallar modifikatsiyalanganligi va zamonaviy talablarga javob bera olishi bilan ajralib turadi. Kompleks xususiyatlari yaxshilangan mahalliy xomashyo bazalariga toʻliq oʻtkazildi. 3. Avtomobil uchun aksasuar va butlovchi qismlar.",
+        "info": "1. Polimer kompozit materiallar modifikatsiyalanganligi va zamonaviy talablarga javob bera olishi bilan ajralib turadi. Kompleks xususiyatlari yaxshilangan mahalliy xomashyo bazalariga toʻliq oʻtkazildi.\n2. Avtomobil uchun aksasuar va butlovchi qismlar.",
         "contact": "998 97 2658400",
         "dept": "",
         "products": [
             {
-                "name": "1. POS materiallari. Bizning yechimlarimizdan davlat idoralarida, chakana savdo tarmoqlarida, doʻkonlarda, koʻrgazma zallarida, savdo ofislarida va kerakli joyda foydalanish mumkin.",
+                "name": "2. Polimer kompozit materiallar modifikatsiyalanganligi va zamonaviy talablarga javob bera olishi bilan ajralib turadi. Kompleks xususiyatlari yaxshilangan mahalliy xomashyo bazalariga toʻliq oʻtkazildi.",
                 "img": [
                     "s213.jpg"
                 ]
             },
             {
-                "name": "2. Polimer kompozit materiallar modifikatsiyalanganligi va zamonaviy talablarga javob bera olishi bilan ajralib turadi. Kompleks xususiyatlari yaxshilangan mahalliy xomashyo bazalariga toʻliq oʻtkazildi.",
-                "img": [
-                    "s214.jpg"
-                ]
-            },
-            {
                 "name": "3. Avtomobil uchun aksasuar va butlovchi qismlar.",
                 "img": [
-                    "s215.jpg"
+                    "s214.jpg"
                 ]
             }
         ]
@@ -2615,26 +2605,20 @@
         "cont": null,
         "section": "Яшнабод технопарки",
         "org": "“POJARNO-TEXNICHESKIY ALYANS” MChJ, “ISTAL” MChJ, “TOSHKENT PLAST POLIMER” MChJ QK",
-        "info": "1. Kompression ko'pik: siqish ko'pikini asosiy yong'inga qarshi vosita sifatida ishlatish suv yoki chang agentlari kabi an'anaviy usullarga nisbatan yangi yondashuv. 2,  Issiq suv va bugʻ qozonlari va qozonxonaari, konvektiv turdagi havo isitgichlar (gorelkalar), aralash turdagi  havo isitgichlar, turli  sanoat pechlari, suv yumshatgichlar (non, qandolat, isitish va boshqalar): qoʻllanishiga qarab,  avtomatik ravishda boshqarish pulti, himoya qilish va signal imkoniga ega boʻlgan nazorat paneli. 3. Polimer kompozitsion materiallar",
+        "info": "1. Kompression ko'pik: siqish ko'pikini asosiy yong'inga qarshi vosita sifatida ishlatish suv yoki chang agentlari kabi an'anaviy usullarga nisbatan yangi yondashuv. 2,  Issiq suv va bugʻ qozonlari va qozonxonaari, konvektiv turdagi havo isitgichlar (gorelkalar), aralash turdagi  havo isitgichlar, turli  sanoat pechlari, suv yumshatgichlar (non, qandolat, isitish va boshqalar): qoʻllanishiga qarab,  avtomatik ravishda boshqarish pulti, himoya qilish va signal imkoniga ega boʻlgan nazorat paneli.",
         "contact": "998 97 2658400",
         "dept": "",
         "products": [
             {
                 "name": "1. Kompression ko'pik: siqish ko'pikini asosiy yong'inga qarshi vosita sifatida ishlatish suv yoki chang agentlari kabi an'anaviy usullarga nisbatan yangi yondashuv.",
                 "img": [
-                    "s216.jpg"
+                    "s215.jpg"
                 ]
             },
             {
                 "name": "2,  Issiq suv va bugʻ qozonlari va qozonxonaari, konvektiv turdagi havo isitgichlar (gorelkalar), aralash turdagi  havo isitgichlar, turli  sanoat pechlari, suv yumshatgichlar (non, qandolat, isitish va boshqalar): qoʻllanishiga qarab,  avtomatik ravishda boshqarish pulti, himoya qilish va signal imkoniga ega boʻlgan nazorat paneli.",
                 "img": [
-                    "s217.jpg"
-                ]
-            },
-            {
-                "name": "3. Polimer kompozitsion materiallar",
-                "img": [
-                    "s218.jpg"
+                    "s216.jpg"
                 ]
             }
         ]
@@ -2656,13 +2640,13 @@
             {
                 "name": "2. AD*STAR turkumidagi polipropilen qoplarning asosiy afzalligi shundaki, ular boshqa analog qogʻoz qoplarga nisbatan suv oʻtkazmaydi, oziq-ovqat mahsulotlari uchun xavfsiz va ekologik toza.",
                 "img": [
-                    "s219.jpg"
+                    "s217.jpg"
                 ]
             },
             {
                 "name": "3. Qishloq xo‘jaligida o‘simliklarni oziqlantirish va ximoya qilish uchun mikrobiologik o‘g‘itlar va pestitsidlar ishlab chiqarish",
                 "img": [
-                    "s220.jpg"
+                    "s218.jpg"
                 ]
             }
         ]
@@ -2680,19 +2664,19 @@
             {
                 "name": "1,O‘zbekistonda qoliplash tizimlarining birinchi va yagona professional ishlab chiqaruvchisi hisoblanadi va o‘ziga xos xususiyatlaridan biri murakkab turdagi va nostandart qoliplarni tez ishonchli etkazib berishida,  ishonchli etkazib berishida,",
                 "img": [
-                    "s221.jpg"
+                    "s219.jpg"
                 ]
             },
             {
                 "name": "2,Ushbu mahsulotlar innovatsion uskunalarda ishlab chiqariladi. Ekologiya sohasidagi xalqaro standartlarga javob beradi. Barcha turdagi sanoat mahsulotlar qadoqlari uchun a’lo yechim",
                 "img": [
-                    "s222.jpg"
+                    "s220.jpg"
                 ]
             },
             {
                 "name": "3, Loyiha doirasida gips asosidagi kompozitsion mаtеriаl tarkibini optimallashtirish orqali yuqori mustahkamlikka ega, issiqlik va tovush izolyatsiyasi yuqori bo‘lgan plitalarni ishlab chiqarish texnologiyasi ishlab chiqiladi,",
                 "img": [
-                    "s223.jpg"
+                    "s221.jpg"
                 ]
             }
         ]
@@ -2710,25 +2694,25 @@
             {
                 "name": "1, Loyiha sensorlar, mini-PC va intellektual dasturiy ta’minot asosida ishlovchi aqlli polka va ombor tizimini joriy etadi.tizim tovar harakatini, qoldiq holatini, sifatini va yaroqlilik muddatini kamerasiz avtomatik va real vaqt rejimida nazorat qiladi",
                 "img": [
-                    "s224.jpg"
+                    "s222.jpg"
                 ]
             },
             {
                 "name": "2, Sanoat va qurilish materiallari texnologiyasi Innovatsion kompozitsion materiallardan drenaj lotoklarini ishlab chiqarish, yuqori sifatli, uzoq muddat xizmat qiladigan, mahalliy ishlab chiqarishni rivojlantiruvchi va importni kamaytiruvchi mahsulot yaratish",
                 "img": [
-                    "s225.jpg"
+                    "s223.jpg"
                 ]
             },
             {
                 "name": "3,polimer kimyosi va plastmassa materiallari texnologiyasi sohasiga tegishli bo‘lib, polimer xomashyosini modifikatsiya qilish, turli funksional qo‘shimchalar qo‘shish orqali yuqori sifatli polimer kompaundlar va masterbatchlar ishlab chiqarish",
                 "img": [
-                    "s226.jpg"
+                    "s224.jpg"
                 ]
             },
             {
                 "name": "4, O‘zbekistonda import o‘rnini bosuvchi mikroelektron komponentlarni mahalliylashtirish va ishlab chiqarishni tashkil etish",
                 "img": [
-                    "s227.jpg"
+                    "s225.jpg"
                 ]
             }
         ]
@@ -2746,13 +2730,13 @@
             {
                 "name": "1. Mahalliy marmar resurslarini innovatsion, energiya tejamkor va ekologik xavfsiz texnologiya asosida qayta ishlash orqali yuqori sifatli mikrokalsit ishlab chiqarish hamda sanoat korxonalari uchun raqobatbardosh, import o‘rnini bosuvchi mahsulot yaratishdan iborat",
                 "img": [
-                    "s228.jpg"
+                    "s226.jpg"
                 ]
             },
             {
                 "name": "2, Mahalliy marmar resurslarini innovatsion, energiya tejamkor va ekologik xavfsiz texnologiya asosida qayta ishlash orqali yuqori sifatli bentonit gili kukunini ishlab chiqarish hamda sanoat korxonalari uchun raqobatbardosh, import o‘rnini bosuvchi mahsulot yaratishdan iborat",
                 "img": [
-                    "s229.jpg"
+                    "s227.jpg"
                 ]
             }
         ]
@@ -2770,13 +2754,13 @@
             {
                 "name": "1. Konsepsiyaning asosiy g‘oyasi — bir vaqtning o‘zida bir nechta vazifani bajara oladigan, ya’ni qazish, so‘rish, tozalash va yuklash funksiyalarini birlashtirgan universal texnikani ishlab chiqarishdan iborat.",
                 "img": [
-                    "s230.jpg"
+                    "s228.jpg"
                 ]
             },
             {
                 "name": "2,Loyiha innovatsion, zamonaviy va funksional mebel yechimlarini yaratishga ixtisoslashgan yetakchi mebel ishlab chiqaruvchi kompaniya",
                 "img": [
-                    "s231.jpg"
+                    "s229.jpg"
                 ]
             }
         ]
@@ -2794,7 +2778,7 @@
             {
                 "name": "",
                 "img": [
-                    "s232.jpg"
+                    "s230.jpg"
                 ]
             }
         ]
@@ -2812,7 +2796,7 @@
             {
                 "name": "",
                 "img": [
-                    "s233.jpg"
+                    "s231.jpg"
                 ]
             }
         ]
@@ -2830,7 +2814,7 @@
             {
                 "name": "",
                 "img": [
-                    "s234.jpg"
+                    "s232.jpg"
                 ]
             }
         ]
@@ -2848,7 +2832,7 @@
             {
                 "name": "",
                 "img": [
-                    "s235.jpg"
+                    "s233.jpg"
                 ]
             }
         ]
@@ -2866,7 +2850,7 @@
             {
                 "name": "",
                 "img": [
-                    "s236.jpg"
+                    "s234.jpg"
                 ]
             }
         ]
@@ -2884,7 +2868,7 @@
             {
                 "name": "",
                 "img": [
-                    "s237.jpg"
+                    "s235.jpg"
                 ]
             }
         ]
@@ -2902,7 +2886,7 @@
             {
                 "name": "",
                 "img": [
-                    "s238.jpg"
+                    "s236.jpg"
                 ]
             }
         ]
@@ -2920,7 +2904,7 @@
             {
                 "name": "",
                 "img": [
-                    "s239.jpg"
+                    "s237.jpg"
                 ]
             }
         ]
@@ -2938,7 +2922,7 @@
             {
                 "name": "",
                 "img": [
-                    "s240.jpg"
+                    "s238.jpg"
                 ]
             }
         ]
@@ -2956,7 +2940,7 @@
             {
                 "name": "",
                 "img": [
-                    "s241.jpg"
+                    "s239.jpg"
                 ]
             }
         ]
@@ -2974,7 +2958,7 @@
             {
                 "name": "",
                 "img": [
-                    "s242.jpg"
+                    "s240.jpg"
                 ]
             }
         ]
@@ -2992,7 +2976,7 @@
             {
                 "name": "",
                 "img": [
-                    "s243.jpg"
+                    "s241.jpg"
                 ]
             }
         ]
@@ -3010,7 +2994,7 @@
             {
                 "name": "",
                 "img": [
-                    "s244.jpg"
+                    "s242.jpg"
                 ]
             }
         ]
@@ -3028,7 +3012,7 @@
             {
                 "name": "",
                 "img": [
-                    "s245.jpg"
+                    "s243.jpg"
                 ]
             }
         ]
@@ -3046,7 +3030,7 @@
             {
                 "name": "",
                 "img": [
-                    "s246.jpg"
+                    "s244.jpg"
                 ]
             }
         ]
@@ -3064,7 +3048,7 @@
             {
                 "name": "",
                 "img": [
-                    "s247.jpg"
+                    "s245.jpg"
                 ]
             }
         ]
@@ -3082,7 +3066,7 @@
             {
                 "name": "",
                 "img": [
-                    "s248.jpg"
+                    "s246.jpg"
                 ]
             }
         ]
@@ -3100,7 +3084,7 @@
             {
                 "name": "",
                 "img": [
-                    "s249.jpg"
+                    "s247.jpg"
                 ]
             }
         ]
@@ -3118,7 +3102,7 @@
             {
                 "name": "",
                 "img": [
-                    "s250.jpg"
+                    "s248.jpg"
                 ]
             }
         ]
@@ -3136,7 +3120,7 @@
             {
                 "name": "",
                 "img": [
-                    "s251.jpg"
+                    "s249.jpg"
                 ]
             }
         ]
@@ -3154,7 +3138,7 @@
             {
                 "name": "",
                 "img": [
-                    "s252.jpg"
+                    "s250.jpg"
                 ]
             }
         ]
@@ -3172,7 +3156,7 @@
             {
                 "name": "",
                 "img": [
-                    "s253.jpg"
+                    "s251.jpg"
                 ]
             }
         ]
@@ -3190,7 +3174,7 @@
             {
                 "name": "1. Kosmetika mahsulotlari",
                 "img": [
-                    "s254.jpg"
+                    "s252.jpg"
                 ]
             },
             {
@@ -3212,7 +3196,7 @@
             {
                 "name": "",
                 "img": [
-                    "s255.jpg"
+                    "s253.jpg"
                 ]
             }
         ]
@@ -3241,7 +3225,7 @@
             {
                 "name": "",
                 "img": [
-                    "s256.jpg"
+                    "s254.jpg"
                 ]
             }
         ]
@@ -3259,7 +3243,7 @@
             {
                 "name": "",
                 "img": [
-                    "s257.jpg"
+                    "s255.jpg"
                 ]
             }
         ]
@@ -3277,7 +3261,7 @@
             {
                 "name": "",
                 "img": [
-                    "s258.jpg"
+                    "s256.jpg"
                 ]
             }
         ]
@@ -3295,7 +3279,7 @@
             {
                 "name": "",
                 "img": [
-                    "s259.jpg"
+                    "s257.jpg"
                 ]
             }
         ]
@@ -3313,7 +3297,7 @@
             {
                 "name": "",
                 "img": [
-                    "s260.jpg"
+                    "s258.jpg"
                 ]
             }
         ]
@@ -3331,7 +3315,7 @@
             {
                 "name": "",
                 "img": [
-                    "s261.jpg"
+                    "s259.jpg"
                 ]
             }
         ]
@@ -3349,7 +3333,7 @@
             {
                 "name": "",
                 "img": [
-                    "s262.jpg"
+                    "s260.jpg"
                 ]
             }
         ]
@@ -3367,7 +3351,7 @@
             {
                 "name": "",
                 "img": [
-                    "s263.jpg"
+                    "s261.jpg"
                 ]
             }
         ]
@@ -3385,7 +3369,7 @@
             {
                 "name": "",
                 "img": [
-                    "s264.jpg"
+                    "s262.jpg"
                 ]
             }
         ]
@@ -3403,7 +3387,7 @@
             {
                 "name": "",
                 "img": [
-                    "s265.jpg"
+                    "s263.jpg"
                 ]
             }
         ]
@@ -3421,13 +3405,13 @@
             {
                 "name": "1. Agricultural Machinery Manufacturing",
                 "img": [
-                    "s266.jpg"
+                    "s264.jpg"
                 ]
             },
             {
                 "name": "2. Tractor mounted harvester",
                 "img": [
-                    "s267.jpg"
+                    "s265.jpg"
                 ]
             }
         ]
@@ -3445,7 +3429,7 @@
             {
                 "name": "",
                 "img": [
-                    "s268.jpg"
+                    "s266.jpg"
                 ]
             }
         ]
@@ -3463,7 +3447,7 @@
             {
                 "name": "",
                 "img": [
-                    "s269.jpg"
+                    "s267.jpg"
                 ]
             }
         ]
@@ -3503,7 +3487,7 @@
             {
                 "name": "",
                 "img": [
-                    "s270.jpg"
+                    "s268.jpg"
                 ]
             }
         ]
@@ -3521,7 +3505,7 @@
             {
                 "name": "",
                 "img": [
-                    "s271.jpg"
+                    "s269.jpg"
                 ]
             }
         ]
@@ -3539,7 +3523,7 @@
             {
                 "name": "",
                 "img": [
-                    "s272.jpg"
+                    "s270.jpg"
                 ]
             }
         ]
@@ -3557,7 +3541,7 @@
             {
                 "name": "",
                 "img": [
-                    "s273.jpg"
+                    "s271.jpg"
                 ]
             }
         ]
@@ -3575,7 +3559,7 @@
             {
                 "name": "",
                 "img": [
-                    "s274.jpg"
+                    "s272.jpg"
                 ]
             }
         ]
@@ -3593,7 +3577,7 @@
             {
                 "name": "",
                 "img": [
-                    "s274.jpg"
+                    "s272.jpg"
                 ]
             }
         ]
@@ -3611,7 +3595,7 @@
             {
                 "name": "",
                 "img": [
-                    "s275.jpg"
+                    "s273.jpg"
                 ]
             }
         ]
@@ -3629,7 +3613,7 @@
             {
                 "name": "",
                 "img": [
-                    "s276.jpg"
+                    "s274.jpg"
                 ]
             }
         ]
@@ -3647,7 +3631,7 @@
             {
                 "name": "",
                 "img": [
-                    "s277.jpg"
+                    "s275.jpg"
                 ]
             }
         ]
@@ -3665,7 +3649,7 @@
             {
                 "name": "",
                 "img": [
-                    "s277.jpg"
+                    "s275.jpg"
                 ]
             }
         ]
@@ -3683,7 +3667,7 @@
             {
                 "name": "",
                 "img": [
-                    "s278.jpg"
+                    "s276.jpg"
                 ]
             }
         ]
@@ -3701,7 +3685,7 @@
             {
                 "name": "",
                 "img": [
-                    "s279.jpg"
+                    "s277.jpg"
                 ]
             }
         ]
@@ -3719,7 +3703,7 @@
             {
                 "name": "",
                 "img": [
-                    "s280.jpg"
+                    "s278.jpg"
                 ]
             }
         ]
@@ -3737,8 +3721,8 @@
             {
                 "name": "",
                 "img": [
-                    "s281.jpg",
-                    "s282.jpg"
+                    "s279.jpg",
+                    "s280.jpg"
                 ]
             }
         ]
@@ -3756,7 +3740,7 @@
             {
                 "name": "",
                 "img": [
-                    "s283.jpg"
+                    "s281.jpg"
                 ]
             }
         ]
@@ -3774,7 +3758,7 @@
             {
                 "name": "",
                 "img": [
-                    "s284.jpg"
+                    "s282.jpg"
                 ]
             }
         ]
@@ -3792,7 +3776,7 @@
             {
                 "name": "",
                 "img": [
-                    "s285.jpg"
+                    "s283.jpg"
                 ]
             }
         ]
@@ -3810,7 +3794,7 @@
             {
                 "name": "",
                 "img": [
-                    "s286.jpg"
+                    "s284.jpg"
                 ]
             }
         ]
@@ -3828,7 +3812,7 @@
             {
                 "name": "",
                 "img": [
-                    "s287.jpg"
+                    "s285.jpg"
                 ]
             }
         ]
@@ -3846,7 +3830,7 @@
             {
                 "name": "",
                 "img": [
-                    "s288.jpg"
+                    "s286.jpg"
                 ]
             }
         ]
@@ -3864,7 +3848,7 @@
             {
                 "name": "",
                 "img": [
-                    "s289.jpg"
+                    "s287.jpg"
                 ]
             }
         ]
@@ -3875,19 +3859,14 @@
         "cont": null,
         "section": "7TECH",
         "org": "7TECH",
-        "info": "Ақлли уй",
+        "info": "Aqlli uy",
         "contact": "Бобур\n+998935796900",
         "dept": "",
         "products": [
             {
                 "name": "",
                 "img": [
-                    "s290.jpg",
-                    "s291.jpg",
-                    "s292.jpg",
-                    "s293.jpg",
-                    "s294.jpg",
-                    "s295.jpg"
+                    "s288.jpg"
                 ]
             }
         ]
@@ -3906,18 +3885,25 @@
     {
         "stand": "B4",
         "place": 3,
-        "cont": 1,
+        "cont": null,
         "section": "7TECH",
         "org": "7TECH",
-        "info": "",
-        "contact": "",
+        "info": "Eng so'ngi texnologiyalari",
+        "contact": "Бобур\n+998935796900",
         "dept": "",
-        "products": []
+        "products": [
+            {
+                "name": "",
+                "img": [
+                    "s289.jpg"
+                ]
+            }
+        ]
     },
     {
         "stand": "B4",
         "place": 4,
-        "cont": 1,
+        "cont": 3,
         "section": "7TECH",
         "org": "7TECH",
         "info": "",
@@ -3928,18 +3914,25 @@
     {
         "stand": "B4",
         "place": 5,
-        "cont": 1,
+        "cont": null,
         "section": "7TECH",
         "org": "7TECH",
-        "info": "",
-        "contact": "",
+        "info": "Eng so'ngi texnologiyalari",
+        "contact": "Бобур\n+998935796900",
         "dept": "",
-        "products": []
+        "products": [
+            {
+                "name": "",
+                "img": [
+                    "s290.jpg"
+                ]
+            }
+        ]
     },
     {
         "stand": "B4",
         "place": 6,
-        "cont": 1,
+        "cont": 5,
         "section": "7TECH",
         "org": "7TECH",
         "info": "",
@@ -3950,18 +3943,25 @@
     {
         "stand": "B4",
         "place": 7,
-        "cont": 1,
+        "cont": null,
         "section": "7TECH",
         "org": "7TECH",
-        "info": "",
-        "contact": "",
+        "info": "Eng so'ngi texnologiyalari",
+        "contact": "Бобур\n+998935796900",
         "dept": "",
-        "products": []
+        "products": [
+            {
+                "name": "",
+                "img": [
+                    "s291.jpg"
+                ]
+            }
+        ]
     },
     {
         "stand": "B4",
         "place": 8,
-        "cont": 1,
+        "cont": 7,
         "section": "7TECH",
         "org": "7TECH",
         "info": "",
@@ -3972,61 +3972,27 @@
     {
         "stand": "B4",
         "place": 9,
-        "cont": 1,
-        "section": "7TECH",
-        "org": "7TECH",
-        "info": "",
-        "contact": "",
-        "dept": "",
-        "products": []
-    },
-    {
-        "stand": "B4",
-        "place": 10,
-        "cont": 1,
-        "section": "7TECH",
-        "org": "7TECH",
-        "info": "",
-        "contact": "",
-        "dept": "",
-        "products": []
-    },
-    {
-        "stand": "B4",
-        "place": 11,
         "cont": null,
-        "section": "Университет технологиялари",
-        "org": "Samarqand davlat universiteti",
-        "info": "1. Kvant nuqtalari asosidagi yarim shaffof quyosh oynalari.\n2. Issiqxonalar uchun kvant nuqtalari bilan modifikatsiyalangan spektral plyonkalar.\n3. Magnit separator",
-        "contact": "",
+        "section": "7TECH",
+        "org": "7TECH",
+        "info": "Eng so'ngi texnologiyalari",
+        "contact": "Бобур\n+998935796900",
         "dept": "",
         "products": [
             {
-                "name": "1. Kvant nuqtalari asosidagi yarim shaffof quyosh oynalari.",
+                "name": "",
                 "img": [
-                    "s296.jpg"
-                ]
-            },
-            {
-                "name": "2. Issiqxonalar uchun kvant nuqtalari bilan modifikatsiyalangan spektral plyonkalar.",
-                "img": [
-                    "s297.jpg"
-                ]
-            },
-            {
-                "name": "3. Magnit separator",
-                "img": [
-                    "s298.jpg"
+                    "s292.jpg"
                 ]
             }
         ]
     },
     {
         "stand": "B4",
-        "place": 12,
-        "cont": 11,
-        "section": "Университет технологиялари",
-        "org": "Samarqand davlat universiteti",
+        "place": 10,
+        "cont": 9,
+        "section": "7TECH",
+        "org": "7TECH",
         "info": "",
         "contact": "",
         "dept": "",
@@ -4045,19 +4011,19 @@
             {
                 "name": "1. Kern oluvchi snaryadlar va ularning butlash qismlari.",
                 "img": [
-                    "s299.jpg"
+                    "s293.jpg"
                 ]
             },
             {
                 "name": "2. SafeAlert — is gazi va yong‘in xavfini aniqlovchi aqlli xavfsizlik qurilmasi.",
                 "img": [
-                    "s300.jpg"
+                    "s294.jpg"
                 ]
             },
             {
                 "name": "3. AquaAir - Kondensatsion suv generatori",
                 "img": [
-                    "s301.jpg"
+                    "s295.jpg"
                 ]
             }
         ]
@@ -4086,31 +4052,31 @@
             {
                 "name": "1. \"ZAMIN QUVVATI\" — Tabiiy va ishonchli energiya manbai. MiniGAES",
                 "img": [
-                    "s302.jpg"
+                    "s296.jpg"
                 ]
             },
             {
                 "name": "2. “SMART DRIP IRRIGATION SYSTEM”",
                 "img": [
-                    "s303.jpg"
+                    "s297.jpg"
                 ]
             },
             {
                 "name": "3. Xlorella yordamida havo tozalash.",
                 "img": [
-                    "s304.jpg"
+                    "s298.jpg"
                 ]
             },
             {
                 "name": "4. Nasos stansiyalarini intellektual boshqarish va optimal nazorat qilish tizimini ishlab chiqish.",
                 "img": [
-                    "s305.jpg"
+                    "s299.jpg"
                 ]
             },
             {
                 "name": "5. “HydroPulse: Kichik Oqim, Barqaror Quvvat”",
                 "img": [
-                    "s306.jpg"
+                    "s300.jpg"
                 ]
             }
         ]
@@ -4139,19 +4105,19 @@
             {
                 "name": "1. Unitree Go2 Pro — Sun'iy intellekt va avtonom navigatsiyaga asoslangan bionik tadqiqot roboti.",
                 "img": [
-                    "s307.jpg"
+                    "s301.jpg"
                 ]
             },
             {
                 "name": "2. Luffa biofiltr.",
                 "img": [
-                    "s308.jpg"
+                    "s302.jpg"
                 ]
             },
             {
                 "name": "3. Ko‘cha chiroqlari o‘rnatilgan quyosh panellarini dron yordamida tozalash qurilmasi",
                 "img": [
-                    "s309.jpg"
+                    "s303.jpg"
                 ]
             }
         ]
@@ -4180,25 +4146,25 @@
             {
                 "name": "1. Avtotransport va temir yo’l ko’priklarini diagnostika qilish tizimi.",
                 "img": [
-                    "s310.jpg"
+                    "s304.jpg"
                 ]
             },
             {
                 "name": "2. Induksion pechlar uchun resurs tejamkor yuklash moslamasi.",
                 "img": [
-                    "s311.jpg"
+                    "s305.jpg"
                 ]
             },
             {
                 "name": "3. Sun’iy intelekt asosida ishlovchi sanoat manipulatorlarini ishlab chiqish.",
                 "img": [
-                    "s312.jpg"
+                    "s306.jpg"
                 ]
             },
             {
                 "name": "4. Sun’iy intelekt asosida ishlovchi gumanoid robot",
                 "img": [
-                    "s313.jpg"
+                    "s307.jpg"
                 ]
             }
         ]
@@ -4227,7 +4193,7 @@
             {
                 "name": "",
                 "img": [
-                    "s314.jpg"
+                    "s308.jpg"
                 ]
             }
         ]
@@ -4245,7 +4211,7 @@
             {
                 "name": "",
                 "img": [
-                    "s315.jpg"
+                    "s309.jpg"
                 ]
             }
         ]
@@ -4263,7 +4229,7 @@
             {
                 "name": "",
                 "img": [
-                    "s316.jpg"
+                    "s310.jpg"
                 ]
             }
         ]
@@ -4281,7 +4247,7 @@
             {
                 "name": "",
                 "img": [
-                    "s317.jpg"
+                    "s311.jpg"
                 ]
             }
         ]
@@ -4299,7 +4265,7 @@
             {
                 "name": "",
                 "img": [
-                    "s318.jpg"
+                    "s312.jpg"
                 ]
             }
         ]
@@ -4317,7 +4283,7 @@
             {
                 "name": "",
                 "img": [
-                    "s319.jpg"
+                    "s313.jpg"
                 ]
             }
         ]
@@ -4335,7 +4301,7 @@
             {
                 "name": "",
                 "img": [
-                    "s320.jpg"
+                    "s314.jpg"
                 ]
             }
         ]
@@ -4353,7 +4319,7 @@
             {
                 "name": "",
                 "img": [
-                    "s321.jpg"
+                    "s315.jpg"
                 ]
             }
         ]
@@ -4371,7 +4337,7 @@
             {
                 "name": "",
                 "img": [
-                    "s322.jpg"
+                    "s316.jpg"
                 ]
             }
         ]
@@ -4389,7 +4355,7 @@
             {
                 "name": "",
                 "img": [
-                    "s323.jpg"
+                    "s317.jpg"
                 ]
             }
         ]
@@ -4407,37 +4373,37 @@
             {
                 "name": "1. Rux nitrati",
                 "img": [
-                    "s324.jpg"
+                    "s318.jpg"
                 ]
             },
             {
                 "name": "2. Qo‘rg‘oshin nitrati",
                 "img": [
-                    "s325.jpg"
+                    "s319.jpg"
                 ]
             },
             {
                 "name": "3. Vanadiyli katalizator",
                 "img": [
-                    "s326.jpg"
+                    "s320.jpg"
                 ]
             },
             {
                 "name": "4. Zichlashtirilgan ammoniy sulfati",
                 "img": [
-                    "s327.jpg"
+                    "s321.jpg"
                 ]
             },
             {
                 "name": "5. Silindrsimon kaustik soda",
                 "img": [
-                    "s328.jpg"
+                    "s322.jpg"
                 ]
             },
             {
                 "name": "6. Butilatsetat",
                 "img": [
-                    "s329.jpg"
+                    "s323.jpg"
                 ]
             }
         ]
@@ -4477,13 +4443,13 @@
             {
                 "name": "Costdata dasturi",
                 "img": [
-                    "s330.jpg"
+                    "s324.jpg"
                 ]
             },
             {
                 "name": "Cobalt avtomobili uchun qo'shimcha elektronikani qo'shish\nKorxonada Kayzen tizimi (uzluksiz yaxshilash faoliyati)\nInventarizatsiyani avtomatlashtirish\nIoT texnologiyasi",
                 "img": [
-                    "s331.jpg"
+                    "s325.jpg"
                 ]
             }
         ]
@@ -4512,37 +4478,37 @@
             {
                 "name": "1. Temir yo‘l relslarida rels haroratini onlayn monitoring qilish axborot dasturi va ulchash qurulmasi",
                 "img": [
-                    "s332.jpg"
+                    "s326.jpg"
                 ]
             },
             {
                 "name": "2.  32-6776-016 rusumli o‘qli dumpkar vagon-ag‘darma",
                 "img": [
-                    "s333.jpg"
+                    "s327.jpg"
                 ]
             },
             {
                 "name": "3.   15-9721-01 rusumli Neft mahsulotlarini tashish uchun",
                 "img": [
-                    "s334.jpg"
+                    "s328.jpg"
                 ]
             },
             {
                 "name": "4. Payvandlashda robotlashtirilgan qurilmani joriy qilish",
                 "img": [
-                    "s335.jpg"
+                    "s329.jpg"
                 ]
             },
             {
                 "name": "5.  15-9724-07 rusumli Tozalangan sulfat kislotasini tashish uchun",
                 "img": [
-                    "s336.jpg"
+                    "s330.jpg"
                 ]
             },
             {
                 "name": "6.15-9724-05 rusumli Natriy sianidini tashish uchun",
                 "img": [
-                    "s337.jpg"
+                    "s331.jpg"
                 ]
             }
         ]
@@ -4571,37 +4537,37 @@
             {
                 "name": "1. Izolyatsiya chidamliligini tekshirish qurilmasi",
                 "img": [
-                    "s338.jpg"
+                    "s332.jpg"
                 ]
             },
             {
                 "name": "2. Kuchlanish voltmetrlarini qiyoslash qurilmasi",
                 "img": [
-                    "s339.jpg"
+                    "s333.jpg"
                 ]
             },
             {
                 "name": "3. Suyultirilgan gaz miqdorini o’lchash namunali metalli o’lchagich",
                 "img": [
-                    "s340.jpg"
+                    "s334.jpg"
                 ]
             },
             {
                 "name": "4.Termodatchik BF-01",
                 "img": [
-                    "s341.jpg"
+                    "s335.jpg"
                 ]
             },
             {
                 "name": "5.Suyuqlik termostati",
                 "img": [
-                    "s342.jpg"
+                    "s336.jpg"
                 ]
             },
             {
                 "name": "6. Gaz tarkibini tahlil qilish",
                 "img": [
-                    "s343.jpg"
+                    "s337.jpg"
                 ]
             }
         ]
@@ -4641,32 +4607,32 @@
             {
                 "name": "1. “AI-GEO” platformasi",
                 "img": [
-                    "s344.jpg"
+                    "s338.jpg"
                 ]
             },
             {
                 "name": "2. VR Geologiya Laboratoriyasi",
                 "img": [
-                    "s345.jpg",
-                    "s346.jpg"
+                    "s339.jpg",
+                    "s340.jpg"
                 ]
             },
             {
                 "name": "3. Allmuseum mobil ilovasi",
                 "img": [
-                    "s347.jpg"
+                    "s341.jpg"
                 ]
             },
             {
                 "name": "4. UNIMA mobil ilovasi",
                 "img": [
-                    "s348.jpg"
+                    "s342.jpg"
                 ]
             },
             {
                 "name": "5. Rock and Stones mobil ilovasi",
                 "img": [
-                    "s349.jpg"
+                    "s343.jpg"
                 ]
             }
         ]
@@ -4695,31 +4661,31 @@
             {
                 "name": "1. NT 425 modelli tokarlig vint qirqish stanogi",
                 "img": [
-                    "s350.jpg"
+                    "s344.jpg"
                 ]
             },
             {
                 "name": "2.Sharli tegirmon\nМШЦ 5500х7500",
                 "img": [
-                    "s351.jpg"
+                    "s345.jpg"
                 ]
             },
             {
                 "name": "3. 1M63 modelli tokarlig vint qirqish stanogi",
                 "img": [
-                    "s352.jpg"
+                    "s346.jpg"
                 ]
             },
             {
                 "name": "4.Oltin va kumush quymalar maketi",
                 "img": [
-                    "s353.jpg"
+                    "s347.jpg"
                 ]
             },
             {
                 "name": "5.Sgustitel  Ц-36",
                 "img": [
-                    "s354.jpg"
+                    "s348.jpg"
                 ]
             }
         ]
@@ -4748,37 +4714,37 @@
             {
                 "name": "1. Oltin quymasi",
                 "img": [
-                    "s355.jpg"
+                    "s349.jpg"
                 ]
             },
             {
                 "name": "2. Kumush quymasi",
                 "img": [
-                    "s355.jpg"
+                    "s349.jpg"
                 ]
             },
             {
                 "name": "3. Palladiy quymasi",
                 "img": [
-                    "s356.jpg"
+                    "s350.jpg"
                 ]
             },
             {
                 "name": "4. Platina quymasi",
                 "img": [
-                    "s357.jpg"
+                    "s351.jpg"
                 ]
             },
             {
                 "name": "5 .Indiy quymasi",
                 "img": [
-                    "s358.jpg"
+                    "s352.jpg"
                 ]
             },
             {
                 "name": "6. Qoʻrgʻoshin quymasi",
                 "img": [
-                    "s359.jpg"
+                    "s353.jpg"
                 ]
             }
         ]
@@ -4807,37 +4773,37 @@
             {
                 "name": "1. Impuls chiqishli SWEM suv hisoblagichi modem bilan",
                 "img": [
-                    "s360.jpg"
+                    "s354.jpg"
                 ]
             },
             {
                 "name": "2. SWEM ultratovushli suv hisoblagichi R200, IP68, 1,6 MPa, T50 latun korpusli, RS485 interfeysli, modem bilan",
                 "img": [
-                    "s361.jpg"
+                    "s355.jpg"
                 ]
             },
             {
                 "name": "3. SWEM ultratovushli sarf o‘lchagichi, ustki o‘rnatiladigan datchiklar bilan, DN150–DN6000 (modemsiz)",
                 "img": [
-                    "s362.jpg"
+                    "s356.jpg"
                 ]
             },
             {
                 "name": "4. SWEM rezina qoplamali pona bilan jihozlangan cho‘yan surma klapani 30ch39r, PN16, GGG50",
                 "img": [
-                    "s363.jpg"
+                    "s357.jpg"
                 ]
             },
             {
                 "name": "5. SWEM rezina qoplamali pona bilan jihozlangan cho‘yan surma klapan 30ch39r, PN16, GGG50, elektr yuritma bilan (Elektroprivod)",
                 "img": [
-                    "s364.jpg"
+                    "s358.jpg"
                 ]
             },
             {
                 "name": "6. SWEM flanesli to‘rli filtr, GGG50, PN16",
                 "img": [
-                    "s365.jpg"
+                    "s359.jpg"
                 ]
             }
         ]
@@ -4866,19 +4832,19 @@
             {
                 "name": "1.O‘ta past bosimli mikro GES agregati (spiral turbina)",
                 "img": [
-                    "s366.jpg"
+                    "s360.jpg"
                 ]
             },
             {
                 "name": "2.Kapsula tipidagi gidroagregat",
                 "img": [
-                    "s367.jpg"
+                    "s361.jpg"
                 ]
             },
             {
                 "name": "3.Norin GESlar kaskadi gidroagregati maketi",
                 "img": [
-                    "s368.jpg"
+                    "s362.jpg"
                 ]
             }
         ]
@@ -4896,25 +4862,25 @@
             {
                 "name": "1.Ender-3  3D printeri",
                 "img": [
-                    "s369.jpg"
+                    "s363.jpg"
                 ]
             },
             {
                 "name": "2.Gaz turbinasi 3D maketi",
                 "img": [
-                    "s370.jpg"
+                    "s364.jpg"
                 ]
             },
             {
                 "name": "3.Dron uchuvchisiz qurilmasi",
                 "img": [
-                    "s371.jpg"
+                    "s365.jpg"
                 ]
             },
             {
                 "name": "4. Robot manipulyator",
                 "img": [
-                    "s372.jpg"
+                    "s366.jpg"
                 ]
             }
         ]
@@ -4965,31 +4931,31 @@
             {
                 "name": "1.Керамик плитка",
                 "img": [
-                    "s373.jpg"
+                    "s367.jpg"
                 ]
             },
             {
                 "name": "2.Керамогранит",
                 "img": [
-                    "s374.jpg"
+                    "s368.jpg"
                 ]
             },
             {
                 "name": "3.Керамогранит",
                 "img": [
-                    "s375.jpg"
+                    "s369.jpg"
                 ]
             },
             {
                 "name": "4.Базальтдан минерал вата",
                 "img": [
-                    "s376.jpg"
+                    "s370.jpg"
                 ]
             },
             {
                 "name": "5.Базальтдан композит геосетка",
                 "img": [
-                    "s377.jpg"
+                    "s371.jpg"
                 ]
             }
         ]
@@ -5018,37 +4984,37 @@
             {
                 "name": "1. Pishitish-o‘rash qurilmasi",
                 "img": [
-                    "s378.jpg"
+                    "s372.jpg"
                 ]
             },
             {
                 "name": "2. .Paxtani tarkibidan begona aralashmalarni ajratadigan qurilma",
                 "img": [
-                    "s379.jpg"
+                    "s373.jpg"
                 ]
             },
             {
                 "name": "3. тўқувчилик жараёнида танда ипларини намлигини меёрлаштириш",
                 "img": [
-                    "s380.jpg"
+                    "s374.jpg"
                 ]
             },
             {
                 "name": "4.Qandli diabetga chalingan inson;ar uchun ECO profilaktik va stabillashtiruvchi pataklar",
                 "img": [
-                    "s381.jpg"
+                    "s375.jpg"
                 ]
             },
             {
                 "name": "5. Olovbardosh mato",
                 "img": [
-                    "s382.jpg"
+                    "s376.jpg"
                 ]
             },
             {
                 "name": "6. Tibbiyot xodimlari uchun maxsus poyabzal",
                 "img": [
-                    "s383.jpg"
+                    "s377.jpg"
                 ]
             }
         ]
@@ -5077,37 +5043,37 @@
             {
                 "name": "1.Yangi turdagi choksiz poyabzal zagatovkalarini ishlab chiqarish",
                 "img": [
-                    "s384.jpg"
+                    "s378.jpg"
                 ]
             },
             {
                 "name": "2. Turli hil mahsus poyabzal yeg‘ va benzinga chidamli materillardan",
                 "img": [
-                    "s385.jpg"
+                    "s379.jpg"
                 ]
             },
             {
                 "name": "3. Jelatin va protein mahsuloti",
                 "img": [
-                    "s386.jpg"
+                    "s380.jpg"
                 ]
             },
             {
                 "name": "4. Ishchilar poyabzali",
                 "img": [
-                    "s387.jpg"
+                    "s381.jpg"
                 ]
             },
             {
                 "name": "5. EVA granulalar",
                 "img": [
-                    "s388.jpg"
+                    "s382.jpg"
                 ]
             },
             {
                 "name": "6. Junjan turl xil isitish materiallari",
                 "img": [
-                    "s389.jpg"
+                    "s383.jpg"
                 ]
             }
         ]
@@ -5136,39 +5102,61 @@
             {
                 "name": "1. Bifidiumbakterin",
                 "img": [
-                    "s390.jpg"
+                    "s384.jpg"
                 ]
             },
             {
                 "name": "2. Laktobakterin",
                 "img": [
-                    "s391.jpg"
+                    "s385.jpg"
                 ]
             },
             {
                 "name": "3. Koviglobin",
                 "img": [
-                    "s392.jpg"
+                    "s386.jpg"
                 ]
             },
             {
                 "name": "4. Vermialdazol",
                 "img": [
-                    "s393.jpg"
+                    "s387.jpg"
                 ]
             },
             {
                 "name": "5. Antibol",
                 "img": [
-                    "s394.jpg"
+                    "s388.jpg"
                 ]
             },
             {
                 "name": "6. Kaltsiy D3",
                 "img": [
-                    "s395.jpg"
+                    "s389.jpg"
                 ]
             }
         ]
+    },
+    {
+        "stand": "B4",
+        "place": 11,
+        "cont": null,
+        "section": "7TECH",
+        "org": "",
+        "info": "",
+        "contact": "",
+        "dept": "",
+        "products": []
+    },
+    {
+        "stand": "B4",
+        "place": 12,
+        "cont": null,
+        "section": "Университет технологиялари",
+        "org": "",
+        "info": "",
+        "contact": "",
+        "dept": "",
+        "products": []
     }
 ]

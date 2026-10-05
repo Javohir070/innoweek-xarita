@@ -56,6 +56,8 @@ class ExcelImportTest extends TestCase
         $ws->fromArray([8, 'Hudud', 'А1', 2, 'Takror'], null, 'A11');
         $ws->fromArray([9, 'Hudud', 'А1', 21, 'Ortiqcha'], null, 'A12');
         $ws->fromArray([10, 'Hudud', 'А1', 'kirish', 'Tushunarsiz'], null, 'A13');
+        // павильон yozilmagan qator
+        $ws->fromArray([11, null, null, '5-6', 'Pavilyonsiz'], null, 'A14');
 
         $this->addImages($ws, ['I4', 'K4', 'H6', 'H7', 'I7', 'J7']);
         // 5-qator katagining eng pastidan boshlangan rasm aslida 6-qatorda turibdi
@@ -87,11 +89,17 @@ class ExcelImportTest extends TestCase
 
         $this->artisan('expo:import-excel', ['file' => $this->makeExcel()])
             ->expectsOutputToContain('kirish')
+            ->expectsOutputToContain('павильон')
             ->expectsOutputToContain('(A1-2)')
             ->expectsOutputToContain('(A1-21)')
+            ->expectsOutputToContain('A1-5, A1-6')
             ->assertSuccessful();
 
-        $this->assertSame(18, Place::count());
+        // ro'yxatda uchragan uchta stendning barcha joylari mavjud: yozilmaganlari bo'sh joy bo'lib qo'shiladi
+        $this->assertSame(60, Place::count());
+        $a5 = Place::where(['stand' => 'A1', 'place' => 5])->first();
+        $this->assertSame(['', 'Hudud'], [$a5->org, $a5->section]);
+        $this->assertSame(0, Place::where('org', 'Pavilyonsiz')->count());
 
         $a1 = Place::where(['stand' => 'A1', 'place' => 1])->with('products')->first();
         $this->assertSame('Andijon', $a1->org);
@@ -115,12 +123,12 @@ class ExcelImportTest extends TestCase
         $this->assertSame('', $a4->products[0]->name); // rasm izohi nom sifatida olinmaydi
         $this->assertCount(2, $a4->products[0]->images); // o'z rasmi + yuqori qatordan osilib tushgani
 
-        $b4 = Place::where('stand', 'B4')->with('products')->orderBy('place')->get();
+        $b4 = Place::where('stand', 'B4')->where('place', '<=', 10)->with('products')->orderBy('place')->get();
         $this->assertCount(10, $b4);
         $this->assertCount(1, $b4[0]->products);
         $this->assertSame([null, 1, 1], [$b4[0]->cont, $b4[1]->cont, $b4[9]->cont]);
 
-        $b6 = Place::where('stand', 'B6')->orderBy('place')->get();
+        $b6 = Place::where('stand', 'B6')->where('place', '<=', 4)->orderBy('place')->get();
         $this->assertSame(['Vazirlik', 'Vazirlik', 'Kombinat', 'Zavod'], $b6->pluck('org')->all());
         $this->assertSame([null, 1, null, null], $b6->pluck('cont')->all());
     }

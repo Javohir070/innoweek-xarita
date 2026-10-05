@@ -65,6 +65,10 @@ class ExcelExpoReader
         for ($r = self::FIRST_ROW; $r <= $last; $r++) {
             $stand = $this->normStand($this->val($r, 3));
             if ($stand === '') {
+                if ($this->val($r, 4) !== '' || $this->val($r, 5) !== '') {
+                    $this->warnings[] = "$r-qator: павильон (stend) yozilmagan — o'tkazib yuborildi.";
+                }
+
                 continue;
             }
 
@@ -169,7 +173,8 @@ class ExcelExpoReader
             $rest = count($places) % count($entries);
             foreach ($entries as $i => $e) {
                 $own = array_splice($places, 0, $base + ($i < $rest ? 1 : 0));
-                foreach ($own as $j => $number) {
+                $mainNo = null;   // shu tashkilotning haqiqatda qo'shilgan birinchi joyi
+                foreach ($own as $number) {
                     $where = "{$e['row']}-qator ({$e['stand']}-$number)";
                     if (! in_array($e['stand'], $stands, true) || $number < 1 || $number > $max) {
                         $this->warnings[] = "$where: bunday stend yoki joy yo'q — o'tkazib yuborildi.";
@@ -182,11 +187,12 @@ class ExcelExpoReader
                         continue;
                     }
                     $seen[$e['stand'].':'.$number] = $e['row'];
-                    $main = $j === 0;
+                    $main = $mainNo === null;
+                    $mainNo ??= $number;
                     $rows[] = [
                         'stand' => $e['stand'],
                         'place' => $number,
-                        'cont' => $main ? $e['cont'] : $own[0],
+                        'cont' => $main ? $e['cont'] : $mainNo,
                         'section' => $e['section'],
                         'org' => $e['org'],
                         'info' => $main ? $e['info'] : '',
@@ -196,6 +202,35 @@ class ExcelExpoReader
                     ];
                 }
             }
+        }
+
+        return $this->fillMissing($rows, $seen);
+    }
+
+    /** Ro'yxatda uchramagan joylarni bo'sh qilib qo'shadi; yo'nalish shu stenddagi eng yaqin joydan olinadi */
+    private function fillMissing(array $rows, array $seen): array
+    {
+        $max = config('expo.places_per_stand');
+        $missing = [];
+        foreach (config('expo.stands') as $stand) {
+            $known = array_values(array_filter($rows, fn ($r) => $r['stand'] === $stand));
+            if (! $known) {
+                continue;   // stend ro'yxatda umuman yo'q — boshqa varaq yoki eski fayl bo'lishi mumkin
+            }
+            for ($n = 1; $n <= $max; $n++) {
+                if (isset($seen["$stand:$n"])) {
+                    continue;
+                }
+                usort($known, fn ($a, $b) => abs($a['place'] - $n) <=> abs($b['place'] - $n));
+                $rows[] = [
+                    'stand' => $stand, 'place' => $n, 'cont' => null, 'section' => $known[0]['section'],
+                    'org' => '', 'info' => '', 'contact' => '', 'dept' => '', 'products' => [],
+                ];
+                $missing[] = "$stand-$n";
+            }
+        }
+        if ($missing) {
+            $this->warnings[] = "Ro'yxatda yo'q joylar bo'sh joy sifatida qo'shildi: ".implode(', ', $missing).'.';
         }
 
         return $rows;

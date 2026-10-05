@@ -101,6 +101,7 @@ main{flex:1;min-height:0;display:flex}
 .shdr{align-items:center;padding:0;z-index:1}
 .shdr span{background:#eef2f7;border-radius:999px;padding:1px 12px;font-size:11.5px;font-weight:800;color:var(--ink2);letter-spacing:.03em;transition:.15s}
 .shdr:hover span{background:var(--brand2);color:#fff}
+.shdr small{display:none}
 .cell{justify-content:center;padding:0;border-radius:5px;font-size:10.5px;color:rgba(0,0,0,.55);
   background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
 .cell.dark{color:rgba(255,255,255,.9)}
@@ -124,7 +125,118 @@ main{flex:1;min-height:0;display:flex}
 .dir.on .cnt{background:rgba(255,255,255,.18);color:#fff}
 .dir.on i{box-shadow:0 0 0 2px rgba(255,255,255,.35)}
 .chip b{color:var(--brand)}
-/* xaritani kattalashtirish tugmalari */
+/* ---------- xarita ko'rinishlari (sinov): v1 — zal rejasi, v2 — zal rejasi, stendlar gorizontal ---------- */
+.viewCtl{position:absolute;left:12px;top:12px;z-index:8;display:flex;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,.14)}
+.viewCtl button{border:0;background:#fff;color:var(--ink2);font-size:12px;font-weight:600;padding:7px 11px;cursor:pointer}
+.viewCtl button+button{border-left:1px solid var(--line)}
+.viewCtl button.on{background:var(--ink);color:#fff}
+/* zal rejasi (v1 va v2 uchun umumiy): devor, pol, xonalar, stend bloklari */
+.map.plan{padding:22px;background:linear-gradient(180deg,#ecf2fb,#dfe8f5);border:6px solid #111827;border-radius:6px;box-shadow:0 12px 32px rgba(15,23,42,.2)}
+.map.plan .zone{background:#fff;border:2px solid #111827;border-radius:3px;color:#111827;font-weight:800;font-size:11.5px;letter-spacing:.03em}
+.map.plan .zone.hall{background:#fff radial-gradient(#a3afc0 1.5px,transparent 1.7px) 3px 3px/9px 9px}
+.map.plan .zone b{background:#fff;padding:2px 8px;border-radius:3px;font-weight:800}
+.map.plan .aisle{background:none}
+.map.plan .corr{background:none;color:#7c8aa0;font-weight:700}
+/* stend — yaxlit rangli blok: kod katagi, och rangli kataklar, bog'lovchi chiziqlarsiz */
+.map.plan .sbg{margin:0 -1px -1px 0;border:0;border-radius:4px;background:#fff;box-shadow:0 4px 12px rgba(15,23,42,.2)}
+.map.plan .shdr{align-items:stretch;justify-content:stretch;padding:0;margin:0 -1px 0 0}
+.map.plan .shdr span{display:grid;place-items:center;width:100%;padding:0;border-radius:0;background:var(--c);color:#fff;font-size:13px;font-weight:800;letter-spacing:.02em;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.16)}
+.map.plan .shdr.lt span{color:#1e293b}
+.map.plan .shdr:hover span{background:var(--c);filter:brightness(.9)}
+.map.plan .cell,.map.plan .cell.cl,.map.plan .cell.cr{margin:0 -1px -1px 0;border-radius:0}
+.map.plan .cell{box-shadow:none;font-size:10px;font-weight:700;
+  background:color-mix(in srgb,var(--c) 40%,#fff);border:1px solid color-mix(in srgb,var(--c) 82%,#334155);color:color-mix(in srgb,var(--c) 38%,#0f172a)}
+.map.plan .cell.empty{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--c) 16%,#fff) 0 5px,#fff 5px 10px);color:color-mix(in srgb,var(--c) 55%,#64748b)}
+.map.plan .cell::after{display:none}
+.map.plan .cell:hover{transform:none;filter:brightness(.93);box-shadow:none;z-index:2}
+.map.plan .cell.sel{box-shadow:0 0 0 3px var(--sel),0 0 0 5px var(--ink);z-index:6}
+.map.plan .cell.hit{box-shadow:0 0 0 3px var(--hit);z-index:4}
+/* v1: stendlar tik — o'rtada to'q rangli yorliq, ikki yonida kataklar */
+.map.v1 .slabel{margin:0 -1px -1px 0;border-radius:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
+.map.v1 .cell.wide{font-size:11px}
+/* v2: "tungi zal" — Excel'dagi yo'nalish (ALFA HALL tepada), qorong'i pol ustida hajmli (ko'tarilgan) rangli stend bloklari.
+   Blok: tepada kod va bandlik, o'rtada bo'lim nomi (tik yozuv), ikki yonida joy kataklari. */
+.mapWrap.night .mapCard{background:#0a1020 radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.2px) 0 0/18px 18px}
+.mapWrap.night::after{background:linear-gradient(90deg,rgba(10,16,32,0),rgba(10,16,32,.92))}
+.map.v2{padding:30px 30px 40px;border:2px solid #33415f;border-radius:18px;
+  background:
+    radial-gradient(900px 420px at 50% -8%,rgba(96,165,250,.22),transparent 70%),
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/100% 46px,
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/46px 100%,
+    linear-gradient(180deg,#16213d,#0c1428);
+  box-shadow:0 0 0 6px #0f1a33,0 24px 60px rgba(0,0,0,.55)}
+/* zonalar — shisha panellar */
+.map.v2 .zone{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.22);border-radius:12px;color:#e2e8f0;font-size:12px;font-weight:700;letter-spacing:.06em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.map.v2 .zone.hall{background:rgba(255,255,255,.05) radial-gradient(rgba(255,255,255,.2) 1.4px,transparent 1.6px) 4px 4px/10px 10px}
+.map.v2 .zone b,.map.v2 .zone.vert span{background:rgba(12,20,40,.82);border-radius:999px;padding:4px 12px;font-weight:700}
+.map.v2 .zone.vert span{padding:12px 4px}
+.map.v2 .zone b::before,.map.v2 .zone span::before{margin-right:6px}
+.map.v2 .zpress b::before{content:"🎤"}
+.map.v2 .zalfa b::before,.map.v2 .zbeta b::before{content:"🎬"}
+.map.v2 .zevent b::before{content:"🎪"}
+.map.v2 .zbaby b::before{content:"🧸"}
+.map.v2 .zb2b b::before{content:"🤝"}
+.map.v2 .zarvr b::before{content:"🥽"}
+.map.v2 .zsci span::before{content:"🔬"}
+.map.v2 .zmil span::before{content:"🛡️"}
+.map.v2 .zb2b{background:rgba(59,130,246,.16);border-color:rgba(96,165,250,.7);box-shadow:0 0 22px rgba(59,130,246,.25)}
+.map.v2 .zarvr{background:rgba(139,92,246,.16);border-color:rgba(167,139,250,.7);box-shadow:0 0 22px rgba(139,92,246,.25)}
+.map.v2 .zsci,.map.v2 .zmil{background:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 9px,rgba(255,255,255,.02) 9px 18px)}
+/* yo'laklar — harakatlanuvchi uzuq chiziq */
+@keyframes flowY{to{background-position:center 24px}}
+@keyframes flowX{to{background-position:24px center}}
+.map.v2 .corr{letter-spacing:.55em;font-size:11px;font-weight:700;color:#93a4c3;
+  background:repeating-linear-gradient(90deg,rgba(147,197,253,.55) 0 12px,transparent 12px 24px) 0 center/100% 2px repeat-x;animation:flowX 1.4s linear infinite}
+.map.v2 .corr span{background:#111b34;padding:0 16px;border-radius:999px}
+.map.v2 .aisle{border-radius:0;background:repeating-linear-gradient(180deg,rgba(147,197,253,.4) 0 12px,transparent 12px 24px) center 0/2px 100% repeat-y;animation:flowY 1.4s linear infinite}
+/* stend — ko'tarilgan blok: pastida to'q qirra, atrofida o'z rangida yog'du */
+.map.v2 .sbg{margin:0 -1px -1px 0;border-radius:10px;background:var(--c);
+  box-shadow:0 9px 0 color-mix(in srgb,var(--c) 48%,#000),0 20px 26px rgba(0,0,0,.55),0 0 34px color-mix(in srgb,var(--c) 38%,transparent)}
+.map.v2 .shdr{margin:0 -1px 0 0}
+.map.v2 .shdr span{display:flex;align-items:baseline;justify-content:center;gap:7px;padding-top:7px;font-size:15px;border-radius:10px 10px 0 0;color:#fff;
+  background:linear-gradient(160deg,rgba(255,255,255,.3),rgba(0,0,0,.18)),var(--c);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset -1px 0 0 rgba(0,0,0,.2)}
+.map.v2 .shdr.lt span{color:#1e293b}
+.map.v2 .shdr small{display:block;font-size:9.5px;font-weight:700;letter-spacing:.02em;opacity:.9}
+.map.v2 .cell{font-size:10.5px;font-weight:700;color:rgba(15,23,42,.62);
+  background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 60%),var(--c);border:1px solid rgba(255,255,255,.3);transition:transform .12s,filter .12s}
+.map.v2 .cell.dark{color:rgba(255,255,255,.9)}
+.map.v2 .cell.wide{font-size:11.5px;font-weight:800}
+.map.v2 .cell:hover{transform:translateY(-3px);filter:brightness(1.12);box-shadow:0 6px 12px rgba(0,0,0,.4);z-index:5}
+/* bo'sh joy — qorong'i, o'z rangida uzuq hoshiya */
+.map.v2 .cell.empty{background:rgba(8,13,28,.78);border:1px dashed color-mix(in srgb,var(--c) 75%,#fff);color:color-mix(in srgb,var(--c) 70%,#fff)}
+.map.v2 .cell.sel{box-shadow:0 0 0 3px var(--sel),0 0 0 5px #fff,0 0 22px var(--sel)}
+.map.v2 .cell.hit{box-shadow:0 0 0 3px var(--hit),0 0 18px var(--hit)}
+.map.v2 .slabel{margin:0;padding:6px 0;background:none;border-radius:0;z-index:3;box-shadow:none}
+.map.v2 .slabel span{font-size:13.5px;font-weight:800;line-height:1.15;letter-spacing:.03em;
+  color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.55),0 0 10px rgba(0,0,0,.35)}
+.map.v2 .slabel.lighttxt span{color:#1e293b;text-shadow:0 0 6px rgba(255,255,255,.8)}
+.map.v2 .slabel.narrow span{font-size:11.5px}
+@media (prefers-reduced-motion:reduce){.map.v2 .corr,.map.v2 .aisle{animation:none}}
+/* v1: yo'laklar — oq yo'lka, o'rtasida harakatlanuvchi uzuq chiziq; asosiy kirishdan boshlanib, zal o'rtasida kesishadi */
+.map.v1 .corr{margin:7px 0;border-radius:999px;box-shadow:inset 0 0 0 1px #cbd6e4,0 1px 3px rgba(15,23,42,.06);color:#475569;font-size:11px;font-weight:800;letter-spacing:.38em;
+  background:repeating-linear-gradient(90deg,#8fa0b8 0 12px,transparent 12px 24px) 0 center/100% 2px repeat-x,rgba(255,255,255,.78);animation:flowX 1.6s linear infinite}
+.map.v1 .corr span{background:#fff;padding:4px 16px 4px 20px;border-radius:999px;box-shadow:0 0 0 1px #cbd6e4,0 2px 6px rgba(15,23,42,.1)}
+.map.v1 .aisle{margin:0 13px -22px;border-radius:999px 999px 0 0;box-shadow:inset 0 0 0 1px #cbd6e4,0 1px 3px rgba(15,23,42,.06);
+  background:repeating-linear-gradient(180deg,#8fa0b8 0 12px,transparent 12px 24px) center 0/2px 100% repeat-y,rgba(255,255,255,.78);animation:flowY 1.6s linear infinite reverse}
+@media (prefers-reduced-motion:reduce){.map.v1 .corr,.map.v1 .aisle{animation:none}}
+/* v1: kirish, chiqishlar va hojatxonalar — namunadagidek devorning tashqarisida turadi.
+   Buning uchun devor xaritaning chetida emas, ichkariroqda chiziladi (::before), atrofida belgilar uchun joy qoladi. */
+.map .door{display:none}
+.map.v1{--wt:46px;--wx:40px;--wb:66px;padding:calc(var(--wt) + 30px) calc(var(--wx) + 30px) calc(var(--wb) + 30px);border:0;border-radius:0;background:none;box-shadow:none}
+.map.v1::before{content:"";position:absolute;inset:var(--wt) var(--wx) var(--wb);z-index:-1;border:6px solid #111827;border-radius:3px;
+  background:linear-gradient(180deg,#ecf2fb,#dfe8f5);box-shadow:0 12px 32px rgba(15,23,42,.2)}
+.map.v1 .door{display:block;position:absolute;pointer-events:none;z-index:2;line-height:0}
+/* devordagi eshik: kulrang tavaqa */
+.door.leaf{background:#cbd5e1;border:1px solid #64748b}
+/* asosiy kirish: och yashil tavaqalar */
+.door.gate{background:repeating-linear-gradient(90deg,#d1fae5 0 30px,#16a34a 30px 32px);border:1.5px solid #16a34a;border-radius:2px}
+.door.inlbl{line-height:1;font-size:13px;font-weight:800;letter-spacing:.14em;color:#15803d;white-space:nowrap}
+/* yon eshiklar faqat chiqish: belgi va tashqariga qaragan strelka */
+.door.out{display:flex!important;align-items:center;gap:2px}
+.map:not(.v1) .door.out{display:none!important}
+/* xaritani kattalashtirish tugmalari *//* xaritani kattalashtirish tugmalari */
 .mapWrap{flex:1;min-height:0;position:relative;display:flex}
 .zoomCtl{position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,.18);border:1px solid var(--line);z-index:8}
 .zoomCtl button{width:40px;height:40px;border:0;background:#fff;color:var(--ink2);font-size:20px;font-weight:600;cursor:pointer;display:grid;place-items:center}
@@ -369,6 +481,8 @@ main{flex:1;min-height:0;display:flex}
   .maphint .hm{display:inline}
   /* kattalashtirish tugmalari kataklarni to'smasin: tepada, zallar qatorida */
   .zoomCtl{top:6px;right:6px;bottom:auto;flex-direction:row;border-radius:10px}
+  .viewCtl{left:6px;top:6px}
+  .viewCtl button{padding:6px 8px;font-size:11.5px}
   .zoomCtl button{width:34px;height:30px;font-size:18px}
   .zoomCtl button+button{border-top:0;border-left:1px solid var(--line)}
   /* oyna pastdan chiqadi; sarlavhadan pastga tortib yopiladi */
@@ -437,6 +551,9 @@ main{flex:1;min-height:0;display:flex}
     <div class="mapWrap">
       <div class="mapCard" id="mapCard">
         <div class="mapScale" id="mapScale"><div class="map" id="map"></div></div>
+      </div>
+      <div class="viewCtl" id="viewCtl">
+        <button data-v="v0">Hozirgi</button><button data-v="v1">1-variant</button><button data-v="v2">2-variant</button>
       </div>
       <div class="zoomCtl">
         <button id="zIn" aria-label="Kattalashtirish" title="Kattalashtirish">+</button>
@@ -547,6 +664,9 @@ const tagOf = (id, n) => groupOf(id, n).length > 1 ? `${id} · ${rangeOf(id, n)}
 const sectionOf = (id, n) => (byStand[id] || []).find(x => x.section && labOf(id, x.place) === labOf(id, n))?.section || '';
 const map = $('#map');
 
+// Ko'rinish (sinov): v0 — hozirgi, v1 — zal rejasi, v2 — zal rejasi, yonboshlatilgan (ustun va qatorlar almashadi)
+let view = 'v0';
+try { view = ['v0', 'v1', 'v2'].includes(localStorage.expoView) ? localStorage.expoView : 'v0'; } catch (e) {}
 function el(cls, style, html) {
   const d = document.createElement('div');
   d.className = cls; d.style.cssText = style; if (html != null) d.innerHTML = html;
@@ -557,23 +677,60 @@ function el(cls, style, html) {
 function buildMap() {
   map.innerHTML = '';
   const rB = 3, rCorr = rB + HALF + 1, rA = rCorr + 1, rEnd = rA + HALF + 1;
-  map.style.gridTemplateRows = `36px 10px 24px repeat(${HALF},27px) 40px 24px repeat(${HALF},27px)`;
-  el('zone soft', 'grid-column:3/9;grid-row:1', 'PRESS ZONE');
-  el('zone soft', 'grid-column:10/29;grid-row:1', 'ALFA HALL');
-  el('zone soft', `grid-column:1;grid-row:${rCorr - 3}/${rA + 4}`, 'BETA<br>HALL');
-  el('zone soft vert', `grid-column:3;grid-row:${rB + 1}/${rCorr}`, '<span>ILMIY TEXNIKA</span>');
-  el('zone soft vert', `grid-column:3;grid-row:${rA + 1}/${rEnd}`, '<span>XARBIY TEXNIKA</span>');
+  map.className = 'map ' + view + (view === 'v0' ? '' : ' plan');
+  document.querySelector('.mapWrap').classList.toggle('night', view === 'v2');
+  $$('#viewCtl button').forEach(b => b.classList.toggle('on', b.dataset.v === view));
+  if (view === 'v2') {
+    // tungi zal: stend sarlavhasi balandroq, yo'lak kengroq (blokning hajmli qirrasi sig'ishi uchun)
+    map.style.gridTemplateColumns = '';
+    map.style.gridTemplateRows = `42px 16px 32px repeat(${HALF},28px) 58px 32px repeat(${HALF},28px)`;
+  } else {
+    map.style.gridTemplateColumns = '';
+    map.style.gridTemplateRows = `36px 10px 24px repeat(${HALF},27px) 40px 24px repeat(${HALF},27px)`;
+  }
+  el('zone soft hz zpress', 'grid-column:3/9;grid-row:1', '<b>PRESS ZONE</b>');
+  el('zone soft hz hall zalfa', 'grid-column:10/29;grid-row:1', '<b>ALFA HALL</b>');
+  el('zone soft hall zbeta', `grid-column:1;grid-row:${rCorr - 3}/${rA + 4}`, '<b>BETA<br> HALL</b>');
+  el('zone soft vert zsci', `grid-column:3;grid-row:${rB + 1}/${rCorr}`, '<span>ILMIY TEXNIKA</span>');
+  el('zone soft vert zmil', `grid-column:3;grid-row:${rA + 1}/${rEnd}`, '<span>XARBIY TEXNIKA</span>');
   el('aisle', `grid-column:19;grid-row:${rB}/${rEnd}`);
-  el('corr', `grid-row:${rCorr}`, "YO'LAK");
-  el('zone soft', `grid-column:35;grid-row:${rB + 1}/${rCorr}`, 'B2B<br>ZONE');
-  el('zone soft', `grid-column:35;grid-row:${rA + 1}/${rEnd}`, 'AR/VR<br>ZONE');
-  el('zone soft', `grid-column:37;grid-row:${rCorr - 3}/${rA + 4}`, 'EVENT<br>ZONE');
-  el('zone soft', `grid-column:37;grid-row:${rEnd - 4}/${rEnd}`, 'BABY<br>HALL');
+  el('corr', `grid-column:5/34;grid-row:${rCorr}`, "<span>YO'LAK</span>");
+  el('zone soft zb2b', `grid-column:35;grid-row:${rB + 1}/${rCorr}`, '<b>B2B<br> ZONE</b>');
+  el('zone soft zarvr', `grid-column:35;grid-row:${rA + 1}/${rEnd}`, '<b>AR/VR<br> ZONE</b>');
+  el('zone soft hall zevent', `grid-column:37;grid-row:${rCorr - 3}/${rA + 4}`, '<b>EVENT<br> ZONE</b>');
+  el('zone soft hall zbaby', `grid-column:37;grid-row:${rEnd - 4}/${rEnd}`, '<b>BABY<br> HALL</b>');
 
+  if (view === 'v1') {
+    // Eshiklar o'rni devor bo'ylab ulushda (o'tgan yilgi zal rejasidan o'lchab olingan):
+    // chap va o'ng devorda 4 tadan chiqish, tepada 2 ta chiqish + hojatxona, pastda o'rtada asosiy kirish
+    const exit = `<svg width="20" height="20" viewBox="0 0 24 24"><rect x="1.2" y="1.2" width="21.6" height="21.6" rx="1.5" fill="#fff" stroke="#16a34a" stroke-width="2.2"/>
+      <rect x="14" y="4.5" width="5.5" height="15" fill="none" stroke="#16a34a" stroke-width="1.5"/><circle cx="9.3" cy="6.4" r="1.8" fill="#16a34a"/>
+      <path d="M4.6 11.6l3-2.3 2.7.6 1.5 2.5 2.2.5M9.8 10l-1.3 4.2 2.7 2.1.3 3.4M8.5 14.2l-1.6 2.3-2.9.5" fill="none" stroke="#16a34a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const wc = `<svg width="26" height="20" viewBox="0 0 26 20" fill="#111827"><circle cx="6.5" cy="2.6" r="2.3"/><path d="M3.2 6h6.6v7.2H8.3V20H4.7v-6.8H3.2z"/>
+      <circle cx="19.5" cy="2.6" r="2.3"/><path d="M17.2 6h4.6l2.4 8h-2.7v6h-4v-6h-2.7z"/></svg>`;
+    const arrow = `<svg width="38" height="46" viewBox="0 0 22 28" fill="#16a34a"><path d="M11 0l9 11h-6v17H8V11H2z"/></svg>`;
+    // tashqariga qaragan kichik strelka (o'ngga; chap devorda ko'zgu qilinadi)
+    const out = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 5l7 7-7 7"/></svg>`;
+    const y = p => `calc(var(--wt) + (100% - var(--wt) - var(--wb)) * ${p})`;   // devor bo'ylab tik
+    const x = p => `calc(var(--wx) + (100% - 2 * var(--wx)) * ${p})`;           // devor bo'ylab yotiq
+    // asosiy kirish tik yo'lakning o'rtasida: chap chet (--wx + 30px) + yo'lakkacha bo'lgan ustunlar (626px) + yo'lak yarmi (28px)
+    const mid = 'var(--wx) + 684px';
+    const side = (edge, p) => `<div class="door leaf" style="${edge}:calc(var(--wx) - 1px);top:calc(${y(p)} - 9px);width:8px;height:18px"></div>
+      <div class="door out" style="${edge}:0;top:calc(${y(p)} - 10px);${edge === 'left' ? 'transform:scaleX(-1)' : ''}">${exit}${out}</div>`;
+    const top = p => `<div class="door leaf" style="top:calc(var(--wt) - 1px);left:calc(${x(p)} - 13px);width:26px;height:8px"></div>
+      <div class="door" style="top:0;left:calc(${x(p)} - 10px)">${exit}</div><div class="door" style="top:23px;left:calc(${x(p)} - 13px)">${wc}</div>`;
+    map.insertAdjacentHTML('beforeend', [.127, .358, .741, .973].map(p => side('left', p)).join('') + [.099, .329, .737, .968].map(p => side('right', p)).join('')
+      + [.337, .699].map(top).join('')
+      + `<div class="door gate" style="bottom:calc(var(--wb) - 3px);left:calc(${mid} - 64px);width:128px;height:12px"></div>
+         <div class="door" style="bottom:6px;left:calc(${mid} - 19px)">${arrow}</div>
+         <div class="door inlbl" style="bottom:22px;left:calc(${mid} + 30px)">ASOSIY KIRISH</div>`);
+  }
   STANDS.forEach(s => {
     const r0 = s.top ? rB : rA;
-    el('sbg', `grid-column:${s.col}/${s.col + 4};grid-row:${r0}/${r0 + HALF + 1}`);
-    const h = el('shdr', `grid-column:${s.col}/${s.col + 4};grid-row:${r0}`, `<span>${s.id}</span>`);
+    el('sbg', `grid-column:${s.col}/${s.col + 4};grid-row:${r0}/${r0 + HALF + 1};--c:${standLab(s.id).c}`);
+    const sl = standLab(s.id);
+    const h = el('shdr' + (sl.light ? ' lt' : ''), `grid-column:${s.col}/${s.col + 4};grid-row:${r0};--c:${sl.c}`,
+      `<span>${s.id}<small>${(byStand[s.id] || []).filter(p => p.org).length}/${PER}</small></span>`);
     h.onclick = () => openStand(s.id);
     // 1..HALF pastdan tepaga, HALF+1..PER tepadan pastga — yo'lak tomonda 1 va PER turadi
     const rowOf = n => r0 + 1 + (n <= HALF ? HALF - n : n - HALF - 1);
@@ -601,7 +758,7 @@ function buildMap() {
     parts.forEach(l => {
       const low = !l.a || l.a <= HALF;
       const col = parts.length === 1 ? `${s.col + 1}/${s.col + 3}` : low === s.flip ? s.col + 1 : s.col + 2;
-      const d = el('slabel' + (l.light ? ' lighttxt' : '') + (parts.length > 1 ? ' narrow' : ''),
+      const d = el('slabel' + (l.light ? ' lighttxt' : '') + (parts.length > 1 ? ' narrow' + (low === s.flip ? ' n1' : ' n2') : ''),
         `grid-column:${col};grid-row:${r0 + 1}/${r0 + 1 + HALF};--c:${l.c}`, `<span>${esc(l.t)}</span>`);
       d.dataset.stand = s.id;
       d.onclick = () => openStand(s.id);
@@ -633,6 +790,11 @@ function setZoom(z) {
   zoom = Math.min(3, Math.max(1, z)); fitMap();
   card.scrollLeft = cx * card.scrollWidth - card.clientWidth / 2; card.scrollTop = cy * card.scrollHeight - card.clientHeight / 2;
 }
+$('#viewCtl').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  view = b.dataset.v; try { localStorage.expoView = view; } catch (err) {}
+  zoom = 1; buildMap(); highlight(); fitMap();
+};
 $('#zIn').onclick = () => setZoom(zoom * 1.4);
 $('#zOut').onclick = () => setZoom(zoom / 1.4);
 // Katak ekrandan tashqarida bo'lsa (telefon yoki kattalashtirilgan xarita) — o'rtaga suriladi
