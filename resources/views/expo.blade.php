@@ -105,6 +105,13 @@ main{flex:1;min-height:0;display:flex}
   background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
 .cell.dark{color:rgba(255,255,255,.9)}
 .cell.wide{font-size:12px;font-weight:800}
+/* har bir katakni o'z bo'limi yorlig'iga bog'lovchi chiziqcha */
+.cell.cl{margin-right:9px}
+.cell.cr{margin-left:9px}
+.cell::after{content:"";position:absolute;top:50%;width:9px;height:2px;margin-top:-1px;background:var(--c);pointer-events:none}
+.cell.cl::after{left:100%}
+.cell.cr::after{right:100%}
+.cell.empty::after{background:color-mix(in srgb,var(--c) 42%,#fff)}
 /* bo'sh joy: och rang va hoshiya */
 .cell.empty{opacity:1;background:color-mix(in srgb,var(--c) 9%,#fff);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--c) 42%,#fff);color:color-mix(in srgb,var(--c) 70%,#334155)}
 .slabel{z-index:1;border-radius:7px;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(0,0,0,.07)),var(--c)}
@@ -124,6 +131,7 @@ main{flex:1;min-height:0;display:flex}
 .zoomCtl button+button{border-top:1px solid var(--line)}
 .zoomCtl button:hover:not(:disabled){background:#f1f6ff;color:var(--brand2)}
 .zoomCtl button:disabled{opacity:.35;cursor:default}
+.maphint .hm{display:none}
 .maphint{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:12px;align-items:center}
 .maphint i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-3px;margin-right:6px}
 
@@ -256,7 +264,7 @@ main{flex:1;min-height:0;display:flex}
 .rows{display:flex;flex-direction:column;gap:8px}
 .row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;cursor:pointer;transition:.12s}
 .row:hover{border-color:var(--brand2);background:#f8fbff}
-.row .n{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:13px;background:var(--c);color:#fff;flex:none}
+.row .n{min-width:34px;padding:0 6px;height:34px;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:13px;background:var(--c);color:#fff;flex:none}
 .row .n.lt{color:#1e293b}
 .row .t{flex:1;min-width:0}
 .row .t b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -329,7 +337,7 @@ main{flex:1;min-height:0;display:flex}
   .sideTop{flex-direction:row;align-items:center;gap:10px}
   .brandRow{flex:1}
   .brand p{display:none}
-  .brand h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand h1{font-size:14px;line-height:1.15}
   .tabs{flex:none}
   .tabs button{padding:7px 12px}
   .chips,.dirs-h{display:none}
@@ -339,6 +347,8 @@ main{flex:1;min-height:0;display:flex}
   .dir{flex:none}
   .adminBtn{align-self:flex-end;margin-top:0}
   #mapView,#listView{padding:10px 12px}
+  /* brauzer paneli ochilib-yopilganda pastki qism kesilmasin */
+  body{height:100dvh}
 }
 /* sensorli ekranda sichqoncha effektlari yopishib qolmasin */
 @media (hover:none){
@@ -350,15 +360,26 @@ main{flex:1;min-height:0;display:flex}
 @media (max-width:700px){
   .form .fgrid{grid-template-columns:1fr}
   .logo{width:34px;height:34px;border-radius:9px}
-  .brand h1{font-size:15px}
-  #mapView{gap:8px}
+  #mapView{gap:8px;padding-bottom:8px}
   .mapCard{padding:8px}
-  .maphint{gap:4px 14px;font-size:11.5px}
-  .zoomCtl{right:8px;bottom:8px}
-  .zoomCtl button{width:36px;height:36px}
-  #modal{width:100vw;max-height:92vh;left:0;top:auto;bottom:0;border-radius:18px 18px 0 0;transform:translateY(30px)}
+  /* o'ng chetdagi xiralik — xarita yon tomonga davom etishini bildiradi */
+  .mapWrap::after{content:"";position:absolute;top:0;right:0;bottom:0;width:26px;border-radius:0 14px 14px 0;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.92));pointer-events:none;z-index:7}
+  .maphint{flex-wrap:nowrap;justify-content:space-between;gap:10px;font-size:11.5px;white-space:nowrap}
+  .maphint .hx{display:none}
+  .maphint .hm{display:inline}
+  /* kattalashtirish tugmalari kataklarni to'smasin: tepada, zallar qatorida */
+  .zoomCtl{top:6px;right:6px;bottom:auto;flex-direction:row;border-radius:10px}
+  .zoomCtl button{width:34px;height:30px;font-size:18px}
+  .zoomCtl button+button{border-top:0;border-left:1px solid var(--line)}
+  /* oyna pastdan chiqadi; sarlavhadan pastga tortib yopiladi */
+  .mh::before{content:"";position:absolute;top:6px;left:50%;width:38px;height:4px;margin-left:-19px;border-radius:999px;background:rgba(255,255,255,.55);z-index:2}
+  .mh.lt::before{background:rgba(0,0,0,.25)}
+  .row{padding:9px 10px;gap:10px}
+  .row .t b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .row .thumbs img:nth-child(n+2){display:none}
+  .row .thumbs img{width:40px;height:40px;border-radius:8px}  #modal{width:100vw;max-height:92vh;left:0;top:auto;bottom:0;border-radius:18px 18px 0 0;transform:translateY(30px)}
   #modal.open{transform:none}
-  .mh{padding:14px 12px 14px 14px;gap:12px}
+  .mh{padding:18px 12px 14px 14px;gap:12px}
   .mh h2{font-size:16px}
   .mbadge{min-width:52px;height:52px}.mbadge b{font-size:18px}
   .mb{padding:12px}
@@ -423,7 +444,7 @@ main{flex:1;min-height:0;display:flex}
       </div>
     </div>
     <div class="maphint">
-      <span>👆 Katakchani bosing — shu joydagi ishtirokchi haqida ma'lumot chiqadi</span>
+      <span>👆 Katakchani bosing<span class="hx"> — shu joydagi ishtirokchi haqida ma'lumot chiqadi</span><span class="hm"> · ↔ yon tomonga suring</span></span>
       <span><i style="background:#f1f5f9;box-shadow:inset 0 0 0 1.5px #94a3b8"></i>Bo'sh joy</span>
     </div>
   </section>
@@ -568,8 +589,9 @@ function buildMap() {
       runs.forEach(run => {
         const a = run[0], b = run[run.length - 1], lab = labOf(s.id, a);
         const top = Math.min(rowOf(a), rowOf(b));
-        const c = el('cell' + (a < b ? ' wide' : '') + (p && p.org ? '' : ' empty') + (lab.light ? '' : ' dark'),
-          `grid-column:${(a <= HALF) === s.flip ? s.col : s.col + 3};grid-row:${top}/${top + run.length};--c:${lab.c}`, a < b ? `${a}–${b}` : a);
+        const left = (a <= HALF) === s.flip;   // katak yorliqning chap tomonida
+        const c = el('cell' + (left ? ' cl' : ' cr') + (a < b ? ' wide' : '') + (p && p.org ? '' : ' empty') + (lab.light ? '' : ' dark'),
+          `grid-column:${left ? s.col : s.col + 3};grid-row:${top}/${top + run.length};--c:${lab.c}`, a < b ? `${a}–${b}` : a);
         c.dataset.stand = s.id; c.dataset.place = n;
         c.onclick = () => openPlace(s.id, n);
       });
@@ -614,8 +636,9 @@ function setZoom(z) {
 $('#zIn').onclick = () => setZoom(zoom * 1.4);
 $('#zOut').onclick = () => setZoom(zoom / 1.4);
 // Katak ekrandan tashqarida bo'lsa (telefon yoki kattalashtirilgan xarita) — o'rtaga suriladi
-function revealCell(id, n) {
-  const card = $('#mapCard'), c = document.querySelector(`.cell[data-stand="${id}"][data-place="${n}"]`);
+function revealCell(id, n) { revealEl(document.querySelector(`.cell[data-stand="${id}"][data-place="${n}"]`)); }
+function revealEl(c) {
+  const card = $('#mapCard');
   if (!c || card.style.overflow !== 'auto') return;
   const a = c.getBoundingClientRect(), b = card.getBoundingClientRect();
   card.scrollTo({left: card.scrollLeft + a.left - b.left - b.width / 2, top: card.scrollTop + a.top - b.top - b.height / 2, behavior: 'smooth'});
@@ -646,6 +669,8 @@ function buildDirs() {
     const b = e.target.closest('.dir'); if (!b) return;
     activeDir = b.dataset.all != null || activeDir === +b.dataset.i ? null : +b.dataset.i;
     $('#q').value = ''; hits = []; highlight(); renderList();
+    // telefonda tanlangan yo'nalishning birinchi stendi ko'rinadigan joyga suriladi
+    if (activeDir != null) revealEl(document.querySelector(`.slabel[data-stand="${DIRS[activeDir].s[0]}"]`));
   };
 }
 function highlight(keys) {
@@ -788,13 +813,13 @@ function openStand(id) {
   const filled = list.filter(p => p.org).length;
   nav = null;
   $('#modal').innerHTML = header(lab, `${filled} / ${list.length} joy band`, esc(lab.t), `<b>${id}</b><span>stend</span>`) +
-    `<div class="mb"><div class="rows">${list.map(p => {
+    `<div class="mb"><div class="rows">${list.filter(p => !p.cont || !place(id, p.cont)).map(p => {
       const d = p.cont ? place(id, p.cont) : p;
       const imgs = d && !p.cont ? d.products.flatMap(x => x.img).slice(0, 3) : [];
       return `<button class="row${p.org ? '' : ' off'}" data-open="${p.place}">
-        <span class="n${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${p.place}</span>
-        <span class="t"><b>${p.org ? esc(first(p.org)) : "Ma'lumot kiritilmagan"}</b><small>${p.cont ? `${id}-${p.cont} bilan birga` : p.org ? esc(first(p.info)).slice(0, 90) : ''}</small></span>
-        <span class="thumbs">${imgs.map(f => `<img src="${imgSrc(f)}" alt="">`).join('')}</span>
+        <span class="n${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${rangeOf(id, p.place)}</span>
+        <span class="t"><b>${p.org ? esc(first(orgLines(p.org))) : "Bo'sh joy"}</b><small>${p.cont ? `${id}-${p.cont} bilan birga` : p.org ? esc(first(p.info).slice(0, 90)) : ''}</small></span>
+        <span class="thumbs">${imgs.map(f => `<img loading="lazy" src="${imgSrc(f)}" alt="">`).join('')}</span>
       </button>`;
     }).join('')}</div></div>`;
   $$('.cell.sel').forEach(x => x.classList.remove('sel'));
@@ -835,6 +860,9 @@ function openFromHash() {
 }
 addEventListener('hashchange', openFromHash);
 
+let dragY = null;
+$('#modal').addEventListener('touchstart', e => { dragY = e.target.closest('.mh') ? e.touches[0].clientY : null; }, {passive: true});
+$('#modal').addEventListener('touchend', e => { if (dragY != null && e.changedTouches[0].clientY - dragY > 60) closeModal(); dragY = null; }, {passive: true});
 $('#modal').addEventListener('click', e => {
   const t = e.target;
   if (t.closest('form')) return;
