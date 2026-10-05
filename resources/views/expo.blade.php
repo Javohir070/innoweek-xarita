@@ -19,7 +19,10 @@ html,body{margin:0;height:100%}
 body{background:var(--bg);color:var(--ink);font:14px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
 button{font:inherit}
 [hidden]{display:none!important}
-
+/* to'liq ekran: yon panel va izoh yashiriladi, xarita butun oynani egallaydi */
+body.mapfull #side,body.mapfull .maphint,body.mapfull #listView{display:none!important}
+body.mapfull #mapView{display:flex!important;padding:8px}
+#zFull svg{display:block}
 /* ---------- nom va bo'limlar (yon panel boshida) ---------- */
 .sideTop{display:flex;flex-direction:column;gap:12px}
 .brandRow{display:flex;align-items:center;gap:10px;min-width:0}
@@ -214,6 +217,25 @@ main{flex:1;min-height:0;display:flex}
 .map.v2 .slabel.lighttxt span{color:#1e293b;text-shadow:0 0 6px rgba(255,255,255,.8)}
 .map.v2 .slabel.narrow span{font-size:11.5px}
 @media (prefers-reduced-motion:reduce){.map.v2 .corr,.map.v2 .aisle{animation:none}}
+/* v1: kataklar — oq kartochka ustidagi alohida plitkalar: yumaloq burchak, yengil gradient, pastida rangli qirra */
+.map.v1 .sbg{background:#fff}
+.map.v1 .cell,.map.v1 .cell.cl,.map.v1 .cell.cr{margin:1.5px;border-radius:6px}
+.map.v1 .cell{font-size:10.5px;font-weight:800;color:color-mix(in srgb,var(--c) 48%,#0f172a);
+  background:linear-gradient(180deg,#fff 0%,color-mix(in srgb,var(--c) 34%,#fff) 100%);
+  border:1px solid color-mix(in srgb,var(--c) 58%,#fff);
+  box-shadow:0 1.5px 0 color-mix(in srgb,var(--c) 70%,#64748b),0 2px 4px rgba(15,23,42,.08);
+  transition:transform .12s,box-shadow .12s,background .12s}
+.map.v1 .cell.wide{font-size:11.5px}
+.map.v1 .cell:hover{transform:translateY(-2px);filter:none;z-index:5;
+  background:linear-gradient(180deg,#fff 0%,color-mix(in srgb,var(--c) 55%,#fff) 100%);
+  box-shadow:0 2px 0 color-mix(in srgb,var(--c) 80%,#475569),0 6px 12px color-mix(in srgb,var(--c) 35%,transparent)}
+/* bo'sh joy: tekis, uzuq hoshiyali, qirrasiz */
+.map.v1 .cell.empty{font-weight:600;color:color-mix(in srgb,var(--c) 45%,#94a3b8);border-style:dashed;box-shadow:none;
+  background:repeating-linear-gradient(135deg,#fff 0 5px,color-mix(in srgb,var(--c) 11%,#fff) 5px 10px)}
+.map.v1 .cell.sel{box-shadow:0 0 0 3px var(--sel),0 0 0 5px var(--ink);z-index:6}
+.map.v1 .cell.hit{box-shadow:0 0 0 3px var(--hit);z-index:4}
+.map.v1 .slabel{margin:1.5px;border-radius:6px;box-shadow:0 1.5px 0 rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.25)}
+@media (hover:none){.map.v1 .cell:hover{transform:none}}
 /* v1: yo'laklar — oq yo'lka, o'rtasida harakatlanuvchi uzuq chiziq; asosiy kirishdan boshlanib, zal o'rtasida kesishadi */
 .map.v1 .corr{margin:7px 0;border-radius:999px;box-shadow:inset 0 0 0 1px #cbd6e4,0 1px 3px rgba(15,23,42,.06);color:#475569;font-size:11px;font-weight:800;letter-spacing:.38em;
   background:repeating-linear-gradient(90deg,#8fa0b8 0 12px,transparent 12px 24px) 0 center/100% 2px repeat-x,rgba(255,255,255,.78);animation:flowX 1.6s linear infinite}
@@ -558,6 +580,7 @@ main{flex:1;min-height:0;display:flex}
       <div class="zoomCtl">
         <button id="zIn" aria-label="Kattalashtirish" title="Kattalashtirish">+</button>
         <button id="zOut" aria-label="Kichraytirish" title="Kichraytirish">−</button>
+        <button id="zFull" aria-label="To'liq ekran" title="To'liq ekran"></button>
       </div>
     </div>
     <div class="maphint">
@@ -797,6 +820,25 @@ $('#viewCtl').onclick = e => {
 };
 $('#zIn').onclick = () => setZoom(zoom * 1.4);
 $('#zOut').onclick = () => setZoom(zoom / 1.4);
+// To'liq ekran: brauzer ruxsat bersa haqiqiy to'liq ekran, bo'lmasa (masalan iPhone) sahifa ichida kengaytiriladi
+const fullIcon = on => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="${
+  on ? 'M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5' : 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5'}"/></svg>`;
+function setFull(on) {
+  document.body.classList.toggle('mapfull', on);
+  $('#zFull').innerHTML = fullIcon(on);
+  $('#zFull').title = on ? "To'liq ekrandan chiqish" : "To'liq ekran";
+  zoom = 1; requestAnimationFrame(fitMap);
+}
+$('#zFull').onclick = () => {
+  const on = !document.body.classList.contains('mapfull');
+  const root = document.documentElement;
+  if (on && root.requestFullscreen) root.requestFullscreen().catch(() => {});
+  if (!on && document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  setFull(on);
+};
+// Esc yoki brauzer tugmasi bilan chiqilganda holat mos qolsin
+document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && document.body.classList.contains('mapfull')) setFull(false); });
+$('#zFull').innerHTML = fullIcon(false);
 // Katak ekrandan tashqarida bo'lsa (telefon yoki kattalashtirilgan xarita) — o'rtaga suriladi
 function revealCell(id, n) { revealEl(document.querySelector(`.cell[data-stand="${id}"][data-place="${n}"]`)); }
 function revealEl(c) {
