@@ -18,6 +18,7 @@
 html,body{margin:0;height:100%}
 body{background:var(--bg);color:var(--ink);font:14px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
 button{font:inherit}
+[hidden]{display:none!important}
 
 /* ---------- header ---------- */
 header{background:linear-gradient(180deg,#0b3d91,#0a347c);color:#fff;padding:14px 20px 0}
@@ -36,6 +37,18 @@ header{background:linear-gradient(180deg,#0b3d91,#0a347c);color:#fff;padding:14p
 .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.6}
 #q{width:100%;padding:10px 12px 10px 38px;border:0;border-radius:10px;font:inherit;background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.15)}
 #q:focus{outline:3px solid rgba(250,204,21,.7)}
+/* yozish paytida chiqadigan natijalar */
+#sug{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#fff;color:var(--ink);border-radius:12px;box-shadow:0 14px 36px rgba(15,23,42,.28);overflow:hidden;z-index:20;display:none}
+#sug.open{display:block}
+#sug button{display:flex;gap:10px;align-items:center;width:100%;border:0;border-bottom:1px solid var(--line);background:#fff;padding:9px 12px;text-align:left;cursor:pointer;color:inherit}
+#sug button:last-child{border-bottom:0}
+#sug button:hover{background:#f1f6ff}
+#sug .t{flex:1;min-width:0}
+#sug .t b,#sug .t small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#sug .t b{font-weight:600;font-size:13.5px}
+#sug .t small{color:var(--muted);font-size:12px}
+#sug .more{justify-content:center;color:var(--brand2);font-weight:600;font-size:13px}
+#sug .none{padding:14px;color:var(--muted);text-align:center;font-size:13px}
 
 main{flex:1;min-height:0;display:flex;flex-direction:column}
 
@@ -76,6 +89,13 @@ main{flex:1;min-height:0;display:flex;flex-direction:column}
 .slabel.narrow span{font-size:11px}
 .slabel.lighttxt span{color:#1e293b;text-shadow:none}
 .slabel.dim{opacity:.18}
+/* xaritani kattalashtirish tugmalari */
+.mapWrap{flex:1;min-height:0;position:relative;display:flex}
+.zoomCtl{position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,.18);border:1px solid var(--line);z-index:8}
+.zoomCtl button{width:40px;height:40px;border:0;background:#fff;color:var(--ink2);font-size:20px;font-weight:600;cursor:pointer;display:grid;place-items:center}
+.zoomCtl button+button{border-top:1px solid var(--line)}
+.zoomCtl button:hover:not(:disabled){background:#f1f6ff;color:var(--brand2)}
+.zoomCtl button:disabled{opacity:.35;cursor:default}
 .maphint{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:12px;align-items:center}
 .maphint i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-3px;margin-right:6px}
 
@@ -128,6 +148,7 @@ td.pre{white-space:pre-line}
 .pcard .pic .zoom{position:absolute;right:8px;bottom:8px;width:30px;height:30px;border-radius:9px;background:rgba(15,23,42,.65);color:#fff;display:grid;place-items:center;pointer-events:none;opacity:0;transition:.15s}
 .pcard:hover .pic .zoom{opacity:1}
 .pcard .pic .more{position:absolute;left:8px;bottom:8px;background:rgba(15,23,42,.75);color:#fff;font-size:11px;font-weight:700;border-radius:7px;padding:2px 8px;pointer-events:none}
+.hpic .pic .more{display:none}
 .pcard .pic.none{display:grid;place-items:center;color:#94a3b8;font-size:12px;cursor:default}
 .pcard .txt{padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .pcard .no{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--brand2);text-transform:uppercase;letter-spacing:.06em}
@@ -139,6 +160,29 @@ td.pre{white-space:pre-line}
 .pcard .strip{display:flex;gap:6px;margin-top:auto;padding-top:4px}
 .pcard .strip img{width:48px;height:38px;border-radius:7px;object-fit:cover;cursor:zoom-in;border:1px solid var(--line)}
 .pwrap{display:flex;flex-direction:column;gap:18px}
+/* bir nechta mahsulot: kartochkalar to'ri — tepada rasm (kesilmasdan), ostida nom */
+.plist{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
+.pcard{display:flex;flex-direction:column}
+.pcard .pic{aspect-ratio:auto;height:200px;border-right:0;border-bottom:1px solid var(--line);background:#fff}
+.pcard .pic img{object-fit:contain}
+.pcard .pic.none{height:84px;background:#f8fafc}
+.pcard .txt{padding:14px 16px 16px;flex:1}
+/* yagona ishlanma: chapda rasm (kesilmasdan), o'ngda nom, tavsif va aloqa */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:18px;align-items:start}
+.hero.nopic{grid-template-columns:1fr}
+.hpic{position:sticky;top:0;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+.hpic .pic{position:relative;display:grid;place-items:center;min-height:180px;cursor:zoom-in;background:#f1f5f9 radial-gradient(circle at 50% 40%,#fff 0,#f1f5f9 75%)}
+.hpic .pic img{display:block;max-width:100%;max-height:400px;object-fit:contain}
+.hpic .pic .zoom{position:absolute;right:10px;bottom:10px;width:32px;height:32px;border-radius:9px;background:rgba(15,23,42,.6);color:#fff;display:grid;place-items:center;pointer-events:none}
+.hpic .strip{display:flex;gap:6px;flex-wrap:wrap;padding:8px;border-top:1px solid var(--line)}
+.hpic .strip img{width:58px;height:46px;border-radius:8px;object-fit:cover;cursor:zoom-in;border:1px solid var(--line);transition:border-color .15s}
+.hpic .strip img:hover{border-color:var(--brand2)}
+.hside{display:flex;flex-direction:column;gap:14px;min-width:0}
+.htitle h3{margin:0;font-size:19px;line-height:1.3;font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+.htitle p{margin:8px 0 0;font-size:14px;line-height:1.6;color:var(--ink2)}
+.htitle p.by{display:flex;gap:6px;align-items:flex-start;color:var(--muted);font-size:13px}
+.htitle p.by svg{flex:none;margin-top:3px}
+.hside .desc{font-size:14.5px;line-height:1.65}
 .pwrap .side{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .pwrap .side>.box:only-child{grid-column:1/-1}
 .side{display:flex;flex-direction:column;gap:14px}
@@ -161,10 +205,12 @@ td.pre{white-space:pre-line}
 .person a:hover{background:#dbe7ff}
 .empty-state{text-align:center;padding:40px 10px;color:var(--muted)}
 .empty-state .big{font-size:40px;margin-bottom:6px}
+.mh,.mf{flex:none}
 .mf{display:flex;justify-content:space-between;gap:10px;padding:12px 16px;border-top:1px solid var(--line);background:#fff}
 .nav{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 16px;cursor:pointer;font-weight:600;color:var(--ink2);display:flex;align-items:center;gap:6px}
 .nav:hover:not(:disabled){border-color:var(--brand2);color:var(--brand2)}
 .nav:disabled{opacity:.35;cursor:default}
+.nav[data-go]:disabled{visibility:hidden}
 .rows{display:flex;flex-direction:column;gap:8px}
 .row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;cursor:pointer;transition:.12s}
 .row:hover{border-color:var(--brand2);background:#f8fbff}
@@ -228,21 +274,73 @@ td.pre{white-space:pre-line}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 #toast.err{background:#dc2626}
 
+/* sensorli ekranda sichqoncha effektlari yopishib qolmasin */
+@media (hover:none){
+  #tip{display:none}
+  .cell:hover{transform:none;box-shadow:none}
+  .cell.sel:hover{box-shadow:0 0 0 3px var(--sel),0 0 0 5px var(--ink)}
+  .cell.hit:hover{box-shadow:0 0 0 3px var(--hit)}
+}
 @media (max-width:700px){
   .form .fgrid{grid-template-columns:1fr}
-  header{padding:12px 14px 0}
+  header{padding:10px 12px 0}
+  .hrow{flex-wrap:nowrap;gap:10px}
+  .logo{width:34px;height:34px}
+  .brand{min-width:0}
+  .brand h1{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand p{font-size:11px}
   .chips{display:none}
+  .adminBtn{margin-left:auto;flex:none;padding:6px 10px}
+  .adminBtn .lbl{display:none}
+  .hrow2{margin-top:10px;gap:0}
   .search{margin:0 0 8px;max-width:none;order:-1;flex-basis:100%}
-  #mapView,#listView{padding:12px}
+  .tabs button{padding:8px 16px}
+  #mapView,#listView{padding:10px 12px}
+  #mapView{gap:8px}
+  /* yo'nalishlar bitta qatorda, yon tomonga suriladi */
+  .dirs{flex-wrap:nowrap;overflow-x:auto;margin:0 -12px;padding:0 12px 2px;scrollbar-width:none}
+  .dirs::-webkit-scrollbar{display:none}
+  .dir{flex:none}
+  .mapCard{padding:8px}
+  .maphint{gap:4px 14px;font-size:11.5px}
+  .zoomCtl{right:8px;bottom:8px}
+  .zoomCtl button{width:36px;height:36px}
   #modal{width:100vw;max-height:92vh;left:0;top:auto;bottom:0;border-radius:18px 18px 0 0;transform:translateY(30px)}
   #modal.open{transform:none}
-  .mh h2{font-size:17px}
+  .mh{padding:14px 12px 14px 14px;gap:12px}
+  .mh h2{font-size:16px}
   .mbadge{min-width:52px;height:52px}.mbadge b{font-size:18px}
-  .mb{padding:14px}
-  .pcard{grid-template-columns:1fr}
-  .pcard .pic{border-right:0;border-bottom:1px solid var(--line)}
+  .mb{padding:12px}
+  /* mahsulot: chapda kichik rasm, o'ngda matn */
+  .plist{grid-template-columns:1fr;gap:10px}
+  .pcard{display:grid;grid-template-columns:104px minmax(0,1fr);border-radius:14px}
+  .pcard .pic,.pcard .pic.none{height:auto;aspect-ratio:1/1;align-self:start;border:0;border-radius:0 0 12px 0;background:#f1f5f9}
+  .pcard .pic img{object-fit:cover}
+  .pcard .txt{padding:10px 12px;gap:5px}
+  .pcard h3{font-size:14.5px}
+  .pcard p{font-size:13px}
+  .pcard .strip img{width:40px;height:32px}
   .pwrap .side{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;gap:12px}
+  .hpic{position:static}
+  .hpic .pic img{max-height:280px}
+  .htitle h3{font-size:17px}
+  .mf{padding:10px 12px}
+  .mf .nav,.mf .btn{padding:9px 12px}
   #lb .lbn{top:auto;bottom:24px;transform:none}
+  /* ro'yxat: jadval o'rniga kartochkalar */
+  .listBar{flex-wrap:wrap}
+  .tableCard{background:none;box-shadow:none;overflow:visible;border-radius:0}
+  .tableCard thead{display:none}
+  .tableCard table,.tableCard tbody{display:block}
+  .tableCard tr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 10px;align-items:start;background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:11px 12px;margin-bottom:8px}
+  .tableCard td{display:block;border:0;padding:0}
+  .tableCard td:empty{display:none}
+  .tableCard td:nth-child(1){grid-row:1/3}
+  .tableCard td:nth-child(3){grid-column:2;grid-row:1;font-weight:600;font-size:14px}
+  .tableCard td:nth-child(2){grid-column:2;grid-row:2;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .tableCard td:nth-child(4){grid-column:1/-1;color:var(--ink2);margin-top:4px}
+  .tableCard td:nth-child(5){grid-column:1/-1;color:var(--muted);font-size:12px}
 }
 </style>
 @endverbatim
@@ -266,6 +364,7 @@ td.pre{white-space:pre-line}
     <label class="search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="search" placeholder="Tashkilot, mahsulot yoki stend nomini yozing…" autocomplete="off">
+      <div id="sug"></div>
     </label>
   </div>
 </header>
@@ -273,8 +372,14 @@ td.pre{white-space:pre-line}
 <main>
   <section id="mapView">
     <div class="dirs" id="dirs"></div>
-    <div class="mapCard" id="mapCard">
-      <div class="mapScale" id="mapScale"><div class="map" id="map"></div></div>
+    <div class="mapWrap">
+      <div class="mapCard" id="mapCard">
+        <div class="mapScale" id="mapScale"><div class="map" id="map"></div></div>
+      </div>
+      <div class="zoomCtl">
+        <button id="zIn" aria-label="Kattalashtirish" title="Kattalashtirish">+</button>
+        <button id="zOut" aria-label="Kichraytirish" title="Kichraytirish">−</button>
+      </div>
     </div>
     <div class="maphint">
       <span>👆 Katakchani bosing — shu joydagi ishtirokchi haqida ma'lumot chiqadi</span>
@@ -368,8 +473,14 @@ const standLab = id => { const l = SECTIONS.filter(x => x.s === id); return {...
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const orgLines = s => /^\s*1[.)]\s/.test(s) ? String(s).replace(/\s+(?=\d{1,2}[.)]\s*\S)/g, '\n') : s;
 const first = s => String(s || '').split('\n')[0].replace(/^\d+\.\s*/, '');
 const place = (id, n) => (byStand[id] || []).find(x => +x.place === +n);
+// bir tashkilot egallagan joylar: asosiy joy va uning davomlari
+const groupOf = (id, n) => [+n, ...(byStand[id] || []).filter(x => +x.cont === +n).map(x => +x.place)];
+const rangeOf = (id, n) => { const g = groupOf(id, n); return g.length > 1 ? `${Math.min(...g)}–${Math.max(...g)}` : `${+n}`; };
+// yorliq: "A1-9" yoki bir necha joy uchun "A1 · 1–2"
+const tagOf = (id, n) => groupOf(id, n).length > 1 ? `${id} · ${rangeOf(id, n)}` : `${id}-${+n}`;
 // Excel'dagi yo'nalish nomi — shu bo'limdagi boshqa joylardan
 const sectionOf = (id, n) => (byStand[id] || []).find(x => x.section && labOf(id, x.place) === labOf(id, n))?.section || '';
 const map = $('#map');
@@ -422,26 +533,47 @@ function buildMap() {
   });
 }
 // Xaritani ekranga moslash
+let zoom = 1;
 function fitMap() {
-  // butun xarita scroll'siz ekranga sig'adi (faqat telefonda juda kichik bo'lib ketsa scroll)
   const card = $('#mapCard'), sc = $('#mapScale');
-  const w = map.offsetWidth, h = map.offsetHeight;
-  let k = Math.min((card.clientWidth - 24) / w, (card.clientHeight - 24) / h, 1.6);
-  const small = innerWidth < 700 && k < .5;
-  if (small) k = .5;
-  card.style.overflow = small ? 'auto' : 'hidden';
-  card.style.alignItems = card.style.justifyContent = small ? 'flex-start' : 'center';
+  const pad = innerWidth < 700 ? 16 : 24;
+  card.style.overflow = 'hidden';   // o'lchashda scroll chizig'i joy egallamasin
+  const w = map.offsetWidth, h = map.offsetHeight, cw = card.clientWidth - pad, ch = card.clientHeight - pad;
+  if (cw <= 0 || ch <= 0) return;
+  // kompyuterda butun xarita sig'adi; telefonda balandlikka moslanadi va yon tomonga suriladi
+  const base = innerWidth < 700 ? Math.max(ch / h, .55) : Math.min(cw / w, ch / h, 1.6);
+  const k = base * zoom, wide = w * k > cw + 1, tall = h * k > ch + 1;
+  card.style.overflow = wide || tall ? 'auto' : 'hidden';
+  card.style.justifyContent = wide ? 'flex-start' : 'center';
+  card.style.alignItems = tall ? 'flex-start' : 'center';
   map.style.transform = `scale(${k})`;
   sc.style.width = w * k + 'px'; sc.style.height = h * k + 'px';
+  $('#zOut').disabled = zoom <= 1; $('#zIn').disabled = zoom >= 3;
 }
-
+function setZoom(z) {
+  const card = $('#mapCard');
+  // ko'rinib turgan markaz joyida qolsin
+  const cx = (card.scrollLeft + card.clientWidth / 2) / card.scrollWidth, cy = (card.scrollTop + card.clientHeight / 2) / card.scrollHeight;
+  zoom = Math.min(3, Math.max(1, z)); fitMap();
+  card.scrollLeft = cx * card.scrollWidth - card.clientWidth / 2; card.scrollTop = cy * card.scrollHeight - card.clientHeight / 2;
+}
+$('#zIn').onclick = () => setZoom(zoom * 1.4);
+$('#zOut').onclick = () => setZoom(zoom / 1.4);
+// Katak ekrandan tashqarida bo'lsa (telefon yoki kattalashtirilgan xarita) — o'rtaga suriladi
+function revealCell(id, n) {
+  const card = $('#mapCard'), c = document.querySelector(`.cell[data-stand="${id}"][data-place="${n}"]`);
+  if (!c || card.style.overflow !== 'auto') return;
+  const a = c.getBoundingClientRect(), b = card.getBoundingClientRect();
+  card.scrollTo({left: card.scrollLeft + a.left - b.left - b.width / 2, top: card.scrollTop + a.top - b.top - b.height / 2, behavior: 'smooth'});
+}
 // Tooltip
 const tip = $('#tip');
 map.addEventListener('mousemove', e => {
   const c = e.target.closest('.cell');
   if (!c) { tip.style.opacity = 0; return; }
   const p = place(c.dataset.stand, c.dataset.place);
-  tip.innerHTML = `<b>${c.dataset.stand} · ${c.dataset.place}-joy</b>${p && p.org ? esc(first(p.org)) : "Ma'lumot kiritilmagan"}`;
+  const main = p && p.cont ? p.cont : c.dataset.place;
+  tip.innerHTML = `<b>${c.dataset.stand} · ${rangeOf(c.dataset.stand, main)}-joy</b>${p && p.org ? esc(first(p.org)) : "Ma'lumot kiritilmagan"}`;
   tip.style.left = Math.min(e.clientX + 14, innerWidth - 300) + 'px';
   tip.style.top = e.clientY + 16 + 'px';
   tip.style.opacity = 1;
@@ -501,8 +633,8 @@ function openPlace(id, n) {
   nav = {id, n: +n};
   // bir tashkilot egallagan barcha joylar (asosiy joy va uning davomlari)
   const mainNo = main ? +main.place : +n;
-  const group = [mainNo, ...(byStand[id] || []).filter(x => +x.cont === mainNo).map(x => +x.place)];
-  const range = group.length > 1 ? `${Math.min(...group)}–${Math.max(...group)}-joylar` : `${n}-joy`;
+  const group = groupOf(id, mainNo);
+  const range = rangeOf(id, mainNo) + (group.length > 1 ? '-joylar' : '-joy');
   let body;
   gallery = [];
   if (!d || !d.org) {
@@ -529,6 +661,7 @@ function openPlace(id, n) {
     if (numbered) lines.forEach(s => { const m = s.match(/^(\d+)[.)]\s*(.*)$/); if (m) byNo[m[1]] = m[2]; });
     const norm = s => String(s || '').toLowerCase().replace(/[^a-zа-яёўқғҳ0-9]+/gi, '');
     const used = new Set();
+    let solo = null;   // yagona ishlanma qismlari (hero ko'rinishi uchun)
     const cards = prods.map((x, i) => {
       const no = String(i + 1);
       const [name, more] = splitName(x.name);
@@ -549,18 +682,26 @@ function openPlace(id, n) {
         ? `<div class="pic"><img loading="lazy" src="${imgSrc(x.img[0])}" data-gi="${g0}" alt="${esc(title)}"><span class="zoom">${zoomIcon}</span>${x.img.length > 1 ? `<span class="more">+${x.img.length - 1} rasm</span>` : ''}</div>`
         : `<div class="pic none">Rasm yo'q</div>`;
       const strip = x.img.length > 1 ? `<div class="strip">${x.img.slice(1).map(f => `<img loading="lazy" src="${imgSrc(f)}" data-gi="${gallery.findIndex(g => g.f === f)}" alt="">`).join('')}</div>` : '';
+      const text = `${extra ? (extra === about ? `<p>${esc(extra)}</p>` : `<p class="by">${icon.org.replace(/18/g, '15')}${esc(extra)}</p>`) : ''}${more ? `<p>${esc(more)}</p>` : ''}`;
+      // sarlavha faqat haqiqiy nom bo'lsa chiqadi — tashkilot nomi tepada bor
+      if (prods.length === 1) solo = {pic: x.img.length ? pic : '', strip, head: name || about ? `<div class="htitle"><h3>${esc(title)}</h3>${text}</div>` : ''};
       return `<article class="pcard">${pic}<div class="txt">
         ${prods.length > 1 ? `<div class="no"><span>${no}</span>mahsulot</div>` : ''}
-        <h3>${esc(title)}</h3>${extra ? (extra === about ? `<p>${esc(extra)}</p>` : `<p class="by">${icon.org.replace(/18/g, '15')}${esc(extra)}</p>`) : ''}${more ? `<p>${esc(more)}</p>` : ''}${strip}</div></article>`;
+        <h3>${esc(title)}</h3>${text}${strip}</div></article>`;
     }).join('');
     // mahsulotlarga bog'lanmagan qolgan tavsif qatorlari
-    const rest = used.has('all') ? [] : numbered ? lines.filter(s => !used.has((s.match(/^(\d+)/) || [])[1])) : lines;
+    // (mahsulot nomida allaqachon yozilgan qator takrorlanmaydi)
+    const rest = used.has('all') ? [] : numbered ? lines.filter(s => !used.has((s.match(/^(\d+)/) || [])[1]))
+      : lines.filter(s => !s.split(/[,;]/).map(norm).filter(Boolean).every(part => prods.some(x => norm(x.name).includes(part))));
     const restBox = rest.length ? `<div class="box"><h4>Ishlanma haqida<i></i></h4><ul class="desc${numbered ? '' : ' plain'}">${rest.map(s => {
       const m = s.match(/^(\d+)[.)]\s*(.*)$/);
       return numbered && m ? `<li><span>${m[1]}</span>${esc(m[2])}</li>` : `<li>${esc(s)}</li>`;
     }).join('')}</ul></div>` : '';
-    body = prods.length
-      ? `<div class="pwrap"><div class="plist"><div class="plist-h">Mahsulotlar va ishlanmalar <b>${prods.length}</b><i></i></div>${cards}</div>
+    body = solo
+      ? `<div class="hero${solo.pic ? '' : ' nopic'}">${solo.pic ? `<div class="hpic">${solo.pic}${solo.strip}</div>` : ''}
+         <div class="hside">${solo.head}${restBox}${ppl}</div></div>`
+      : prods.length
+      ? `<div class="pwrap"><div class="plist-h">Mahsulotlar va ishlanmalar <b>${prods.length}</b><i></i></div><div class="plist">${cards}</div>
          ${restBox || ppl ? `<div class="side">${restBox}${ppl}</div>` : ''}</div>`
       : `<div class="side">${desc}${ppl}</div>`;
   }
@@ -570,7 +711,7 @@ function openPlace(id, n) {
     ? `<div class="grp"><button class="btn" data-edit="${key}">✎ Tahrirlash</button><button class="btn danger" data-del="${key}">O'chirish</button></div>`
     : `<button class="btn primary" data-edit="${key}">＋ Ma'lumot qo'shish</button>`;
   $('#modal').innerHTML = header(lab, esc(lab.t),
-      d && d.org ? esc(d.org) : `${id} stend, ${n}-joy`, `<b>${id}</b><span>${range}</span>`) +
+      d && d.org ? esc(orgLines(d.org)) : `${id} stend, ${n}-joy`, `<b>${id}</b><span>${range}</span>`) +
     `<div class="mb">${body}</div>
     <div class="mf">
       <button class="nav" data-go="-1" ${prev ? '' : 'disabled'}>‹ ${id}-${+n - 1 || ''}</button>
@@ -579,7 +720,8 @@ function openPlace(id, n) {
     </div>`;
   $$('.cell.sel').forEach(x => x.classList.remove('sel'));
   [...group, +n].forEach(g => document.querySelector(`.cell[data-stand="${id}"][data-place="${g}"]`)?.classList.add('sel'));
-  openModal();
+  openModal(`${id}-${n}`);
+  revealCell(id, n);
 }
 
 function openStand(id) {
@@ -599,7 +741,7 @@ function openStand(id) {
     }).join('')}</div></div>`;
   $$('.cell.sel').forEach(x => x.classList.remove('sel'));
   $$(`.cell[data-stand="${id}"]`).forEach(c => c.classList.add('sel'));
-  openModal();
+  openModal(id);
 }
 
 function openResults() {
@@ -615,11 +757,25 @@ function openResults() {
   openModal();
 }
 
-function openModal() { $('#modal').classList.add('open'); $('#overlay').classList.add('open'); $('#modal .mb').scrollTop = 0; tip.style.opacity = 0; }
+// hash — ochilgan joy yoki stend havolasi (ulashish uchun); boshqa oynalarda bo'sh
+function setHash(hash) { history.replaceState(null, '', hash ? '#' + hash : location.pathname + location.search); }
+function openModal(hash = '') {
+  $('#modal').classList.add('open'); $('#overlay').classList.add('open'); $('#modal .mb').scrollTop = 0; tip.style.opacity = 0;
+  $('#sug').classList.remove('open');
+  setHash(hash);
+}
 function closeModal() {
   $('#modal').classList.remove('open'); $('#overlay').classList.remove('open');
   $$('.cell.sel').forEach(x => x.classList.remove('sel'));
+  setHash('');
 }
+function openFromHash() {
+  const m = decodeURIComponent(location.hash).match(/^#([A-Z]\d+)(?:-(\d+))?$/i);
+  if (!m || !EXPO.stands.includes(m[1].toUpperCase())) return;
+  if (!m[2]) openStand(m[1].toUpperCase());
+  else if (+m[2] >= 1 && +m[2] <= PER) openPlace(m[1].toUpperCase(), +m[2]);
+}
+addEventListener('hashchange', openFromHash);
 
 $('#modal').addEventListener('click', e => {
   const t = e.target;
@@ -674,27 +830,55 @@ function match(p, q) {
     .some(v => String(v).toLowerCase().includes(q));
 }
 let hits = [];
+function renderSug(q) {
+  const s = $('#sug');
+  if (!q) return s.classList.remove('open');
+  s.innerHTML = !hits.length ? '<div class="none">Hech narsa topilmadi</div>' : hits.slice(0, 6).map(p => {
+    const lab = labOf(p.stand, p.place);
+    // qaysi mahsulot mos kelgan bo'lsa, o'sha ko'rsatiladi
+    const prod = p.products.find(x => x.name.toLowerCase().includes(q));
+    return `<button type="button" data-s="${p.stand}" data-p="${p.place}">
+      <span class="tag${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${tagOf(p.stand, p.place)}</span>
+      <span class="t"><b>${esc(first(p.org))}</b><small>${esc(prod ? splitName(prod.name)[0] : lab.t)}</small></span></button>`;
+  }).join('') + (hits.length > 6 ? `<button type="button" class="more" data-more>Barcha ${hits.length} ta natijani ko'rish</button>` : '');
+  s.classList.add('open');
+}
 $('#q').addEventListener('input', () => {
   activeDir = null;
   const q = $('#q').value.trim().toLowerCase();
   hits = q ? DATA.filter(p => p.org && !p.cont && match(p, q)) : [];
-  highlight(q ? new Set(hits.map(p => p.stand + '-' + p.place)) : null);
-  renderList(q);
+  highlight(q ? new Set(hits.flatMap(p => groupOf(p.stand, p.place).map(n => p.stand + '-' + n))) : null);
+  renderList(q); renderSug(q);
+  if (hits.length) revealCell(hits[0].stand, hits[0].place);
 });
-$('#q').addEventListener('keydown', e => { if (e.key === 'Enter') openResults(); });
+$('#q').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { $('#q').blur(); openResults(); }
+  if (e.key === 'Escape') $('#sug').classList.remove('open');
+});
+$('#q').addEventListener('focus', () => { if ($('#q').value.trim()) $('#sug').classList.add('open'); });
+$('#q').addEventListener('blur', () => setTimeout(() => $('#sug').classList.remove('open'), 200));
+$('#sug').addEventListener('click', e => {
+  e.preventDefault();   // <label> ichida — bosish qidiruv maydoniga qaytib ketmasin
+  const b = e.target.closest('button'); if (!b) return;
+  $('#q').blur();
+  b.dataset.more != null ? openResults() : openPlace(b.dataset.s, b.dataset.p);
+});
 
 /* ---------- ro'yxat ---------- */
+// Har bir ishtirokchi bitta qatorda (egallagan joylari oraliq bilan); bo'sh joylar ham ko'rinadi
 function renderList(q = '') {
-  const rows = DATA.filter(p => !q || match(p, q));
-  $('#listCnt').textContent = `${rows.length} ta joy · ${rows.filter(p => p.org).length} tasi band`;
-  $('#tableCard').innerHTML = `<table><thead><tr><th>Joy</th><th>Yo'nalish</th><th>Tashkilot</th><th>Ishlanma</th><th>Mas'ul</th></tr></thead><tbody>` +
+  const rows = DATA.filter(p => !p.cont && (!q || match(p, q)));
+  $('#listCnt').textContent = q ? `${rows.length} ta natija` : `${DATA.length} ta joy · ${DATA.filter(p => p.org).length} tasi band`;
+  $('#tableCard').innerHTML = !rows.length ? '<div class="empty-state"><div class="big">🔍</div>Hech narsa topilmadi.</div>'
+    : `<table><thead><tr><th>Joy</th><th>Yo'nalish</th><th>Tashkilot</th><th>Ishlanma</th><th>Mas'ul</th></tr></thead><tbody>` +
     rows.map(p => {
       const lab = labOf(p.stand, p.place);
+      const about = first(p.info) || p.products.map(x => splitName(x.name)[0]).filter(Boolean).join(', ');
       return `<tr data-s="${p.stand}" data-p="${p.place}">
-        <td><span class="tag${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${p.stand}-${p.place}</span></td>
+        <td><span class="tag${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${tagOf(p.stand, p.place)}</span></td>
         <td>${esc(lab.t)}</td>
-        <td class="pre">${p.org ? esc(p.org) : '<span class="muted">—</span>'}</td>
-        <td>${p.cont ? `<span class="muted">${p.stand}-${p.cont} bilan birga</span>` : esc(first(p.info)).slice(0, 140)}</td>
+        <td class="pre">${p.org ? esc(p.org) : '<span class="muted">Bo\'sh joy</span>'}</td>
+        <td>${esc(about.slice(0, 140))}</td>
         <td class="pre">${esc(p.contact)}</td></tr>`;
     }).join('') + '</tbody></table>';
 }
@@ -728,7 +912,8 @@ function renderAdmin() {
   const b = $('#adminBtn');
   b.hidden = false;
   b.classList.toggle('on', isAdmin);
-  b.innerHTML = isAdmin ? '● Admin · Chiqish' : '🔒 Admin kirish';
+  b.innerHTML = isAdmin ? '● <span class="lbl">Admin · </span>Chiqish' : '🔒<span class="lbl"> Admin kirish</span>';
+  b.title = isAdmin ? 'Admin rejimidan chiqish' : 'Admin kirish';
   $('#addBtn').hidden = !isAdmin;
 }
 $('#adminBtn').onclick = () => {
@@ -846,6 +1031,8 @@ function start() {
 addEventListener('resize', fitMap);
 setData(EXPO.places);
 start();
+if (innerWidth < 700) $('#mapCard').scrollLeft = $('#mapScale').offsetWidth * 96 / map.offsetWidth;
+openFromHash();
 </script>
 @endverbatim
 </body>
