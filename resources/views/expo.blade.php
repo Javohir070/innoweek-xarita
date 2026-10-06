@@ -79,6 +79,9 @@ main{flex:1;min-height:0;display:flex}
 .zone.soft{background:#f1f5f9;border-style:dashed}
 .zone.vert span{writing-mode:vertical-rl;transform:rotate(180deg)}
 .aisle{background:repeating-linear-gradient(0deg,#f1f5f9 0 10px,#e8edf3 10px 20px);border-radius:8px}
+/* yo'lak o'rtasidagi orolchalar */
+.island{margin:7px 3px;z-index:1;border-radius:6px;background:#fff;border:1.5px solid #cbd5e1;box-shadow:0 1px 3px rgba(15,23,42,.08)}
+.map.plan .island{border:2px solid #111827;border-radius:3px;box-shadow:0 2px 6px rgba(15,23,42,.14)}
 .corr{grid-column:5/34;background:#f1f5f9;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;letter-spacing:.3em;font-weight:600}
 .shdr{font-size:11px;font-weight:700;color:var(--muted);display:flex;align-items:flex-end;justify-content:center;cursor:pointer;padding-bottom:3px}
 .shdr:hover{color:var(--brand2)}
@@ -646,7 +649,7 @@ function buildMap() {
   const rB = 3, rCorr = rB + HALF + 1, rA = rCorr + 1, rEnd = rA + HALF + 1;
   map.className = 'map ' + view + (view === 'v0' ? '' : ' plan');
   $$('#viewCtl button').forEach(b => b.classList.toggle('on', b.dataset.v === view));
-  map.style.gridTemplateRows = `36px 10px 24px repeat(${HALF},27px) 40px 24px repeat(${HALF},27px)`;
+  map.style.gridTemplateRows = `36px 10px 24px repeat(${HALF},27px) 58px 24px repeat(${HALF},27px)`;
   el('zone soft hz zpress', 'grid-column:3/9;grid-row:1', '<b>PRESS ZONE</b>');
   el('zone soft hz hall zalfa', 'grid-column:10/29;grid-row:1', '<b>ALFA HALL</b>');
   el('zone soft hall zbeta', `grid-column:1;grid-row:${rCorr - 3}/${rA + 4}`, '<b>BETA<br> HALL</b>');
@@ -654,6 +657,8 @@ function buildMap() {
   el('zone soft vert zmil', `grid-column:3;grid-row:${rA + 1}/${rEnd}`, '<span>XARBIY TEXNIKA</span>');
   el('aisle', `grid-column:19;grid-row:${rB}/${rEnd}`);
   el('corr', `grid-column:5/34;grid-row:${rCorr}`, "<span>YO'LAK</span>");
+  // yo'lakdagi to'rtta orolcha (Excel "2026" varag'ida S34:V36, Y34:AB36, AG34:AJ36, AM34:AP36 — nomsiz to'rtburchaklar)
+  ['6/11', '13/18', '21/26', '28/33'].forEach(c => el('island', `grid-column:${c};grid-row:${rCorr}`));
   el('zone soft zb2b', `grid-column:35;grid-row:${rB + 1}/${rCorr}`, '<b>B2B<br> ZONE</b>');
   el('zone soft zarvr', `grid-column:35;grid-row:${rA + 1}/${rEnd}`, '<b>AR/VR<br> ZONE</b>');
   el('zone soft hall zevent', `grid-column:37;grid-row:${rCorr - 3}/${rA + 4}`, '<b>EVENT<br> ZONE</b>');
