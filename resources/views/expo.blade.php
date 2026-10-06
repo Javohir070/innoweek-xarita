@@ -80,7 +80,7 @@ main{flex:1;min-height:0;display:flex}
 .zone.vert span{writing-mode:vertical-rl;transform:rotate(180deg)}
 .aisle{background:repeating-linear-gradient(0deg,#f1f5f9 0 10px,#e8edf3 10px 20px);border-radius:8px}
 /* yo'lak o'rtasidagi orolchalar */
-.island{margin:7px 3px;z-index:1;border-radius:6px;background:#fff;border:1.5px solid #cbd5e1;box-shadow:0 1px 3px rgba(15,23,42,.08)}
+.island{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;letter-spacing:.06em;color:#0f172a;margin:7px 3px;z-index:1;border-radius:6px;background:#fff;border:1.5px solid #cbd5e1;box-shadow:0 1px 3px rgba(15,23,42,.08)}
 .map.plan .island{border:2px solid #111827;border-radius:3px;box-shadow:0 2px 6px rgba(15,23,42,.14)}
 .corr{grid-column:5/34;background:#f1f5f9;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;letter-spacing:.3em;font-weight:600}
 .shdr{font-size:11px;font-weight:700;color:var(--muted);display:flex;align-items:flex-end;justify-content:center;cursor:pointer;padding-bottom:3px}
@@ -658,7 +658,8 @@ function buildMap() {
   el('aisle', `grid-column:19;grid-row:${rB}/${rEnd}`);
   el('corr', `grid-column:5/34;grid-row:${rCorr}`, "<span>YO'LAK</span>");
   // yo'lakdagi to'rtta orolcha (Excel "2026" varag'ida S34:V36, Y34:AB36, AG34:AJ36, AM34:AP36 — nomsiz to'rtburchaklar)
-  ['6/11', '13/18', '21/26', '28/33'].forEach(c => el('island', `grid-column:${c};grid-row:${rCorr}`));
+  // ikkitasi homiylar joyi; qolgan ikkitasi Excelda nomsiz
+  [['6/11', ''], ['13/18', 'TMK'], ['21/26', 'ALOQABANK'], ['28/33', '']].forEach(([c, name]) => el('island', `grid-column:${c};grid-row:${rCorr}`, name));
   el('zone soft zb2b', `grid-column:35;grid-row:${rB + 1}/${rCorr}`, '<b>B2B<br> ZONE</b>');
   el('zone soft zarvr', `grid-column:35;grid-row:${rA + 1}/${rEnd}`, '<b>AR/VR<br> ZONE</b>');
   el('zone soft hall zevent', `grid-column:37;grid-row:${rCorr - 3}/${rA + 4}`, '<b>EVENT<br> ZONE</b>');
