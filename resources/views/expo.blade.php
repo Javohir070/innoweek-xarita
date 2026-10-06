@@ -81,6 +81,19 @@ main{flex:1;min-height:0;display:flex}
 .aisle{background:repeating-linear-gradient(0deg,#f1f5f9 0 10px,#e8edf3 10px 20px);border-radius:8px}
 /* yo'lak o'rtasidagi orolchalar */
 .island{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;letter-spacing:.06em;color:#0f172a;margin:7px 3px;z-index:1;border-radius:6px;background:#fff;border:1.5px solid #cbd5e1;box-shadow:0 1px 3px rgba(15,23,42,.08)}
+.island.link{cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s}
+.island.link::after{content:"";width:13px;height:13px;margin-left:6px;opacity:.7;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='16' rx='2.5'/%3E%3Ccircle cx='8.5' cy='9.5' r='1.6'/%3E%3Cpath d='M21 16l-5-5-8 8'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='16' rx='2.5'/%3E%3Ccircle cx='8.5' cy='9.5' r='1.6'/%3E%3Cpath d='M21 16l-5-5-8 8'/%3E%3C/svg%3E") center/contain no-repeat}
+.island.link:hover{transform:translateY(-2px);border-color:var(--brand2);color:var(--brand2);box-shadow:0 8px 18px rgba(15,23,42,.2)}
+/* hamkor stendi rasmlari oynasi */
+.igal{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+.igal .pic{position:relative;display:grid;place-items:center;background:#05070d;cursor:zoom-in}
+.igal .pic img{display:block;max-width:100%;max-height:62vh;object-fit:contain}
+.igal .pic .zoom{position:absolute;right:12px;bottom:12px;width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.18);color:#fff;display:grid;place-items:center;pointer-events:none}
+.igal .strip{display:flex;gap:8px;padding:10px;flex-wrap:wrap}
+.igal .strip img{width:112px;height:63px;border-radius:9px;object-fit:cover;cursor:zoom-in;border:2px solid transparent;transition:border-color .15s}
+.igal .strip img:hover{border-color:var(--brand2)}
 .map.plan .island{border:2px solid #111827;border-radius:3px;box-shadow:0 2px 6px rgba(15,23,42,.14)}
 .corr{grid-column:5/34;background:#f1f5f9;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;letter-spacing:.3em;font-weight:600}
 .shdr{font-size:11px;font-weight:700;color:var(--muted);display:flex;align-items:flex-end;justify-content:center;cursor:pointer;padding-bottom:3px}
@@ -559,6 +572,7 @@ window.EXPO = {
   stands: @json(config('expo.stands')),
   perStand: @json(config('expo.places_per_stand')),
   storage: @json(asset('storage')) + '/',
+  assets: @json(asset('img')) + '/',
   routes: {
     data: @json(route('expo.data')),
     places: @json(url('expo/places')),
@@ -577,7 +591,7 @@ function setData(arr) {
   Object.values(byStand).forEach(a => a.sort((x, y) => (+x.place) - (+y.place)));
 }
 // rasmlar "public" diskda: storage/expo/... (admin yuklaganlari storage/expo/uploads/...)
-const imgSrc = f => EXPO.storage + f;
+const imgSrc = f => f.startsWith('img:') ? EXPO.assets + f.slice(4) : EXPO.storage + f;
 
 /* ---------- xarita ("2026" varag'i asosida) ---------- */
 const PER = EXPO.perStand, HALF = PER / 2;   // har bir stend ikki ustun: 1..HALF va HALF+1..PER
@@ -659,7 +673,10 @@ function buildMap() {
   el('corr', `grid-column:5/34;grid-row:${rCorr}`, "<span>YO'LAK</span>");
   // yo'lakdagi to'rtta orolcha (Excel "2026" varag'ida S34:V36, Y34:AB36, AG34:AJ36, AM34:AP36 — nomsiz to'rtburchaklar)
   // ikkitasi homiylar joyi; qolgan ikkitasi Excelda nomsiz
-  [['6/11', ''], ['13/18', 'TMK'], ['21/26', 'ALOQABANK'], ['28/33', '']].forEach(([c, name]) => el('island', `grid-column:${c};grid-row:${rCorr}`, name));
+  ISLANDS.forEach((x, i) => {
+    const d = el('island' + (x.imgs ? ' link' : ''), `grid-column:${x.col};grid-row:${rCorr}`, x.name || '');
+    if (x.imgs) { d.title = `${x.title} — stend ko'rinishi`; d.onclick = () => openIsland(i); }
+  });
   el('zone soft zb2b', `grid-column:35;grid-row:${rB + 1}/${rCorr}`, '<b>B2B<br> ZONE</b>');
   el('zone soft zarvr', `grid-column:35;grid-row:${rA + 1}/${rEnd}`, '<b>AR/VR<br> ZONE</b>');
   el('zone soft hall zevent', `grid-column:37;grid-row:${rCorr - 3}/${rA + 4}`, '<b>EVENT<br> ZONE</b>');
@@ -841,6 +858,28 @@ let gallery = [];   // lightbox uchun joriy rasmlar
 let nav = null;     // joriy joy (oldingi/keyingi uchun)
 
 const xIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+/* Yo'lakdagi orolchalar (hamkorlar joyi): col — grid ustunlari; imgs — public/img/ ichidagi stend rasmlari.
+   Ikkitasi Excelda nomsiz. Rasmi bor orolcha bosilganda rasmlar oynasi ochiladi. */
+const ISLANDS = [
+  {col: '6/11'},
+  {col: '13/18', name: 'TMK', title: "TMK — O'zbekiston texnologik metallar kombinati", c: '#1397b8',
+   imgs: [1, 2, 3, 4, 5, 6].map(n => `img:partners/tmk/${n}.webp`)},
+  {col: '21/26', name: 'ALOQABANK', title: 'AloqaBank', c: '#0b6bbf',
+   imgs: ['img:partners/aloqabank/1.jpg', 'img:partners/aloqabank/2.jpg', 'img:partners/aloqabank/3.jpg']},
+  {col: '28/33'},
+];
+function openIsland(i) {
+  const x = ISLANDS[i];
+  nav = null;
+  gallery = x.imgs.map(f => ({f, cap: `${x.title} — stend ko'rinishi`}));
+  $('#modal').innerHTML = header({c: x.c, t: x.title}, 'Hamkor · markaziy yo\'lak', esc(x.title), `<b>★</b><span>hamkor</span>`) +
+    `<div class="mb"><div class="igal">
+      <div class="pic"><img src="${imgSrc(x.imgs[0])}" data-gi="0" alt="${esc(x.title)}"><span class="zoom">${zoomIcon}</span></div>
+      ${x.imgs.length > 1 ? `<div class="strip">${x.imgs.map((f, k) => `<img src="${imgSrc(f)}" data-gi="${k}" alt="">`).join('')}</div>` : ''}
+    </div></div>`;
+  $$('.cell.sel').forEach(c => c.classList.remove('sel'));
+  openModal();
+}
 function header(lab, kick, title, badge) {
   return `<div class="mh${lab && lab.light ? ' lt' : ''}" style="--c:${lab ? lab.c : '#0b3d91'}">
     ${badge ? `<div class="mbadge">${badge}</div>` : ''}
