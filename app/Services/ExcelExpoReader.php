@@ -107,6 +107,10 @@ class ExcelExpoReader
                 // tashkilot yozilmagan, faqat loyiha nomi bor — joy band ko'rinishi uchun nom sifatida olinadi
                 [$org, $info] = [$info, str_contains($info, "\n") ? $info : ''];
             }
+            if ($org === '' && ($products[0]['name'] ?? '') !== '') {
+                // F ham bo'sh, loyiha faqat mahsulot katagida ("EduCoin — tavsif...") — nom qismi olinadi
+                $org = $this->titleOf($products[0]['name']);
+            }
 
             $key = $stand.':'.$this->topOf($r, 4)[0];
             if (! isset($blocks[$key])) {
@@ -147,6 +151,25 @@ class ExcelExpoReader
         $to = (int) ($m[2] ?? $from);
 
         return $to >= $from && $to - $from < 100 ? range($from, $to) : [];
+    }
+
+    /**
+     * Mahsulot katagidagi matnning nom qismi: "1. EduCoin — tavsif" -> "EduCoin", "“RIMS” tavsif" -> "“RIMS”".
+     * Qoida sahifadagi splitName() bilan bir xil. Nomni ajratib bo'lmaydigan uzun matndan — boshi.
+     */
+    private function titleOf(string $text): string
+    {
+        $text = trim(preg_replace('/^\d+\s*[.,)]\s*/u', '', $text));
+        if (preg_match('/^([“"«][^”"»\n]{2,128}[”"»])[.:]?\s+\S[\s\S]{19,}$/u', $text, $m)
+            || preg_match('/^(.{3,130}?)(?:\s+[-–—]\s+|\.\s+|\s{2,}|\s*\n\s*)\S[\s\S]{19,}$/u', $text, $m)) {
+            return trim($m[1]);
+        }
+        if (mb_strlen($text) <= 120) {
+            return $text;
+        }
+        $head = mb_substr($text, 0, 80);
+
+        return rtrim(mb_substr($head, 0, mb_strrpos($head, ' ') ?: 80)).'…';
     }
 
     /** Bloklarni joylar bo'yicha yoyadi: har bir joyga bitta qator */

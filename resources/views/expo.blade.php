@@ -887,12 +887,23 @@ function header(lab, kick, title, badge) {
     <button class="x" data-close aria-label="Yopish" title="Yopish (Esc)">${xIcon}</button></div>`;
 }
 const zoomIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
-// Nom katagiga to'liq tavsif yozilgan bo'lsa: birinchi gap — sarlavha, qolgani — tavsif
+// Nom katagiga tavsif ham yozilgan bo'lsa ("“Nom” tavsif", "Nom — tavsif", "Nom. Tavsif", "Nom  tavsif", "Nom\nTavsif"):
+// nom — sarlavha, qolgani — tavsif. Nomini ajratib bo'lmaydigan uzun matn sarlavhasiz, tavsif bo'lib chiqadi.
+// Qoida ExcelExpoReader::titleOf() bilan bir xil.
 function splitName(s) {
   const name = String(s || '').replace(/^\d+\s*[.,)]\s*/, '').trim();
-  const m = name.length > 120 && name.match(/^(.{3,120}?)(?:\s[-–—]\s|\.\s)([\s\S]+)$/);
-  return m ? [m[1], m[2].trim()] : [name, ''];
+  const m = name.match(/^([“"«][^”"»\n]{2,128}[”"»])[.:]?\s+(\S[\s\S]{19,})$/)
+    || name.match(/^(.{3,130}?)(?:\s+[-–—]\s+|\.\s+|\s{2,}|\s*\n\s*)(\S[\s\S]{19,})$/);
+  if (m) return [m[1].trim(), m[2].trim()];
+  return name.length > 120 ? ['', name] : [name, ''];
 }
+// qisqa nom (rasm izohi, qidiruv, ro'yxat uchun): sarlavha, u bo'lmasa tavsif boshi
+function shortName(s) {
+  const [t, d] = splitName(s);
+  return t || (d.length > 90 ? d.slice(0, 90).replace(/\s+\S*$/, '') + '…' : d);
+}
+// joy haqida bir qator: "Ishlanma haqida" boshi, u bo'sh bo'lsa mahsulot nomlari
+const aboutOf = p => first(p.info) || p.products.map(x => shortName(x.name)).filter(Boolean).join(', ');
 function openPlace(id, n) {
   const lab = labOf(id, n);
   const p = place(id, n);
@@ -909,7 +920,7 @@ function openPlace(id, n) {
     body = `<div class="empty-state"><div class="big">🗂️</div>Bu joy uchun hozircha ma'lumot kiritilmagan.</div>`;
   } else {
     const prods = d.products;
-    prods.forEach(x => x.img.forEach(f => gallery.push({f, cap: splitName(x.name)[0]})));
+    prods.forEach(x => x.img.forEach(f => gallery.push({f, cap: shortName(x.name)})));
     // "1. …" bilan boshlanmagan qator — oldingi bandning davomi (Excel'da bitta band ikki qatorga bo'lingan)
     const lines = d.info.split('\n').map(s => s.trim()).filter(Boolean).reduce((a, s) => {
       if (a.length && /^\d+[.)]/.test(a[0]) && !/^\d+[.)]/.test(s)) a[a.length - 1] += ' ' + s; else a.push(s);
@@ -951,11 +962,12 @@ function openPlace(id, n) {
         : `<div class="pic none">Rasm yo'q</div>`;
       const strip = x.img.length > 1 ? `<div class="strip">${x.img.slice(1).map(f => `<img loading="lazy" src="${imgSrc(f)}" data-gi="${gallery.findIndex(g => g.f === f)}" alt="">`).join('')}</div>` : '';
       const text = `${extra ? (extra === about ? `<p>${esc(extra)}</p>` : `<p class="by">${icon.org.replace(/18/g, '15')}${esc(extra)}</p>`) : ''}${more ? `<p>${esc(more)}</p>` : ''}`;
-      // sarlavha faqat haqiqiy nom bo'lsa chiqadi — tashkilot nomi tepada bor
-      if (prods.length === 1) solo = {pic: x.img.length ? pic : '', strip, head: name || about ? `<div class="htitle"><h3>${esc(title)}</h3>${text}</div>` : ''};
+      // sarlavha faqat haqiqiy nom bo'lsa chiqadi — tashkilot nomi tepada, mahsulot raqami kartochkada bor
+      const h3 = name || about ? `<h3>${esc(title)}</h3>` : '';
+      if (prods.length === 1) solo = {pic: x.img.length ? pic : '', strip, head: h3 || text ? `<div class="htitle">${h3}${text}</div>` : ''};
       return `<article class="pcard">${pic}<div class="txt">
         ${prods.length > 1 ? `<div class="no"><span>${no}</span>mahsulot</div>` : ''}
-        <h3>${esc(title)}</h3>${text}${strip}</div></article>`;
+        ${h3 || (text ? '' : `<h3>${esc(title)}</h3>`)}${text}${strip}</div></article>`;
     }).join('');
     // mahsulotlarga bog'lanmagan qolgan tavsif qatorlari
     // (mahsulot nomida allaqachon yozilgan qator takrorlanmaydi)
@@ -1003,7 +1015,7 @@ function openStand(id) {
       const imgs = d && !p.cont ? d.products.flatMap(x => x.img).slice(0, 3) : [];
       return `<button class="row${p.org ? '' : ' off'}" data-open="${p.place}">
         <span class="n${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${rangeOf(id, p.place)}</span>
-        <span class="t"><b>${p.org ? esc(first(orgLines(p.org))) : "Bo'sh joy"}</b><small>${p.cont ? `${id}-${p.cont} bilan birga` : p.org ? esc(first(p.info).slice(0, 90)) : ''}</small></span>
+        <span class="t"><b>${p.org ? esc(first(orgLines(p.org))) : "Bo'sh joy"}</b><small>${p.cont ? `${id}-${p.cont} bilan birga` : p.org ? esc(aboutOf(p).slice(0, 90)) : ''}</small></span>
         <span class="thumbs">${imgs.map(f => `<img loading="lazy" src="${imgSrc(f)}" alt="">`).join('')}</span>
       </button>`;
     }).join('')}</div></div>`;
@@ -1110,7 +1122,7 @@ function renderSug(q) {
     const prod = p.products.find(x => x.name.toLowerCase().includes(q));
     return `<button type="button" data-s="${p.stand}" data-p="${p.place}">
       <span class="tag${lab.light ? ' lt' : ''}" style="--c:${lab.c}">${tagOf(p.stand, p.place)}</span>
-      <span class="t"><b>${esc(first(p.org))}</b><small>${esc(prod ? splitName(prod.name)[0] : lab.t)}</small></span></button>`;
+      <span class="t"><b>${esc(first(p.org))}</b><small>${esc(prod ? shortName(prod.name) : lab.t)}</small></span></button>`;
   }).join('') + (hits.length > 6 ? `<button type="button" class="more" data-more>Barcha ${hits.length} ta natijani ko'rish</button>` : '');
   s.classList.add('open');
 }
@@ -1155,7 +1167,7 @@ function renderList(q = '') {
       head = `<div class="lgroup" style="--c:${lab.c}"><b class="${lab.light ? 'lt' : ''}">${p.stand}</b>${esc(lab.t)}<i></i>
         <small>${rows.filter(inSec).length} ta yozuv${free ? ` · ${free} ta bo'sh joy` : ''}</small></div>`;
     }
-    const about = first(p.info) || p.products.map(x => splitName(x.name)[0]).filter(Boolean).join(', ');
+    const about = aboutOf(p);
     const img = p.products.flatMap(x => x.img)[0];
     const who = first(p.contact).replace(phoneRe, '').trim();
     return head + `<button class="lcard" data-s="${p.stand}" data-p="${p.place}" style="--c:${lab.c}">

@@ -147,6 +147,35 @@ class ExcelImportTest extends TestCase
         $this->assertSame(['Andijon', 1], [$a2->org, $a2->cont]);
     }
 
+    public function test_org_is_taken_from_product_name_when_org_and_info_are_empty(): void
+    {
+        Storage::fake('public');
+        $book = new Spreadsheet;
+        $ws = $book->getActiveSheet()->setTitle('Рўйхат');
+        $ws->fromArray(['Т/р', 'Yo\'nalish', 'Павильон', 'Жой', 'Ташкилот', 'Маълумот', 'Масъул', 'Ишланма расми'], null, 'A3');
+        $long = str_repeat('Quyosh energiyasidan foydalanib yoritish tizimi ', 4);
+        $rows = [
+            "1. EduCoin — 5 yoshdan 15 yoshgacha bolalar uchun moliyaviy savodxonlik o'yini",
+            "“RIMS” startup loyihasi kichik va o'rta biznes uchun sun'iy intellekt platformasi",
+            "2.“NextGen Engineering”\nAvtomobil dvigatellarini modernizatsiya qilish loyihasi",
+            'NS-Plus',
+            $long,
+        ];
+        foreach ($rows as $i => $name) {
+            $ws->fromArray([$i + 1, 'Startap', 'A6', $i + 1, null, null, 'Ali (90) 111-22-33', $name], null, 'A'.($i + 4));
+        }
+
+        $this->artisan('expo:import-excel', ['file' => $this->save($book)])->assertSuccessful();
+
+        $places = Place::where('stand', 'A6')->where('place', '<=', 5)->orderBy('place')->with('products')->get();
+        $this->assertSame(
+            ['EduCoin', '“RIMS”', '“NextGen Engineering”', 'NS-Plus', 'Quyosh energiyasidan foydalanib yoritish tizimi Quyosh energiyasidan foydalanib…'],
+            $places->pluck('org')->all()
+        );
+        // mahsulot nomi o'zgarmaydi — tavsif bilan birga saqlanadi
+        $this->assertSame($rows[0], $places[0]->products[0]->name);
+    }
+
     public function test_excel_import_requires_force_when_data_exists(): void
     {
         Storage::fake('public');
