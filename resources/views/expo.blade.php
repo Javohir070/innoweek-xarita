@@ -124,13 +124,6 @@ main{flex:1;min-height:0;display:flex}
   background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 55%),var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
 .cell.dark{color:rgba(255,255,255,.9)}
 .cell.wide{font-size:12px;font-weight:800}
-/* har bir katakni o'z bo'limi yorlig'iga bog'lovchi chiziqcha */
-.cell.cl{margin-right:9px}
-.cell.cr{margin-left:9px}
-.cell::after{content:"";position:absolute;top:50%;width:9px;height:2px;margin-top:-1px;background:var(--c);pointer-events:none}
-.cell.cl::after{left:100%}
-.cell.cr::after{right:100%}
-.cell.empty::after{background:color-mix(in srgb,var(--c) 42%,#fff)}
 /* bo'sh joy: och rang va hoshiya */
 .cell.empty{opacity:1;background:color-mix(in srgb,var(--c) 9%,#fff);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--c) 42%,#fff);color:color-mix(in srgb,var(--c) 70%,#334155)}
 .slabel{z-index:1;border-radius:7px;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(0,0,0,.07)),var(--c)}
@@ -143,12 +136,7 @@ main{flex:1;min-height:0;display:flex}
 .dir.on .cnt{background:rgba(255,255,255,.18);color:#fff}
 .dir.on i{box-shadow:0 0 0 2px rgba(255,255,255,.35)}
 .chip b{color:var(--brand)}
-/* ---------- xarita ko'rinishlari: v1 — asosiy (zal rejasi), v0 — oddiy rangli xarita ---------- */
-.viewCtl{position:absolute;left:12px;top:12px;z-index:8;display:flex;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,.14)}
-.viewCtl button{border:0;background:#fff;color:var(--ink2);font-size:12px;font-weight:600;padding:7px 11px;cursor:pointer}
-.viewCtl button+button{border-left:1px solid var(--line)}
-.viewCtl button.on{background:var(--ink);color:#fff}
-/* zal rejasi: devor, pol, xonalar, stend bloklari */
+/* ---------- xarita: zal rejasi — devor, pol, xonalar, stend bloklari ---------- */
 .map.plan{padding:22px;background:linear-gradient(180deg,#ecf2fb,#dfe8f5);border:6px solid #111827;border-radius:6px;box-shadow:0 12px 32px rgba(15,23,42,.2)}
 .map.plan .zone{background:#fff;border:2px solid #111827;border-radius:3px;color:#111827;font-weight:800;font-size:11.5px;letter-spacing:.03em}
 .map.plan .zone.hall{background:#fff radial-gradient(#a3afc0 1.5px,transparent 1.7px) 3px 3px/9px 9px}
@@ -162,11 +150,10 @@ main{flex:1;min-height:0;display:flex}
   box-shadow:inset 0 0 0 1px rgba(0,0,0,.16)}
 .map.plan .shdr.lt span{color:#1e293b}
 .map.plan .shdr:hover span{background:var(--c);filter:brightness(.9)}
-.map.plan .cell,.map.plan .cell.cl,.map.plan .cell.cr{margin:0 -1px -1px 0;border-radius:0}
+.map.plan .cell{margin:0 -1px -1px 0;border-radius:0}
 .map.plan .cell{box-shadow:none;font-size:10px;font-weight:700;
   background:color-mix(in srgb,var(--c) 40%,#fff);border:1px solid color-mix(in srgb,var(--c) 82%,#334155);color:color-mix(in srgb,var(--c) 38%,#0f172a)}
 .map.plan .cell.empty{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--c) 16%,#fff) 0 5px,#fff 5px 10px);color:color-mix(in srgb,var(--c) 55%,#64748b)}
-.map.plan .cell::after{display:none}
 .map.plan .cell:hover{transform:none;filter:brightness(.93);box-shadow:none;z-index:2}
 .map.plan .cell.sel{box-shadow:0 0 0 3px var(--sel),0 0 0 5px var(--ink);z-index:6}
 .map.plan .cell.hit{box-shadow:0 0 0 3px var(--hit);z-index:4}
@@ -178,7 +165,7 @@ main{flex:1;min-height:0;display:flex}
 @keyframes flowX{to{background-position:24px center}}
 /* v1: kataklar — oq kartochka ustidagi alohida plitkalar: yumaloq burchak, yengil gradient, pastida rangli qirra */
 .map.v1 .sbg{background:#fff}
-.map.v1 .cell,.map.v1 .cell.cl,.map.v1 .cell.cr{margin:1.5px;border-radius:6px}
+.map.v1 .cell{margin:1.5px;border-radius:6px}
 .map.v1 .cell{font-size:10.5px;font-weight:800;color:color-mix(in srgb,var(--c) 48%,#0f172a);
   background:linear-gradient(180deg,#fff 0%,color-mix(in srgb,var(--c) 34%,#fff) 100%);
   border:1px solid color-mix(in srgb,var(--c) 58%,#fff);
@@ -204,7 +191,6 @@ main{flex:1;min-height:0;display:flex}
 @media (prefers-reduced-motion:reduce){.map.v1 .corr,.map.v1 .aisle{animation:none}}
 /* v1: kirish, chiqishlar va hojatxonalar — namunadagidek devorning tashqarisida turadi.
    Buning uchun devor xaritaning chetida emas, ichkariroqda chiziladi (::before), atrofida belgilar uchun joy qoladi. */
-.map .door{display:none}
 .map.v1{--wt:46px;--wx:40px;--wb:66px;padding:calc(var(--wt) + 30px) calc(var(--wx) + 30px) calc(var(--wb) + 30px);border:0;border-radius:0;background:none;box-shadow:none}
 .map.v1::before{content:"";position:absolute;inset:var(--wt) var(--wx) var(--wb);z-index:-1;border:6px solid #111827;border-radius:3px;
   background:linear-gradient(180deg,#ecf2fb,#dfe8f5);box-shadow:0 12px 32px rgba(15,23,42,.2)}
@@ -216,7 +202,6 @@ main{flex:1;min-height:0;display:flex}
 .door.inlbl{line-height:1;font-size:13px;font-weight:800;letter-spacing:.14em;color:#15803d;white-space:nowrap}
 /* yon eshiklar faqat chiqish: belgi va tashqariga qaragan strelka */
 .door.out{display:flex!important;align-items:center;gap:2px}
-.map:not(.v1) .door.out{display:none!important}
 /* xaritani kattalashtirish tugmalari */
 .mapWrap{flex:1;min-height:0;position:relative;display:flex}
 .zoomCtl{position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,.18);border:1px solid var(--line);z-index:8}
@@ -462,8 +447,6 @@ main{flex:1;min-height:0;display:flex}
   .maphint .hm{display:inline}
   /* kattalashtirish tugmalari kataklarni to'smasin: tepada, zallar qatorida */
   .zoomCtl{top:6px;right:6px;bottom:auto;flex-direction:row;border-radius:10px}
-  .viewCtl{left:6px;top:6px}
-  .viewCtl button{padding:6px 8px;font-size:11.5px}
   .zoomCtl button{width:34px;height:30px;font-size:18px}
   .zoomCtl button+button{border-top:0;border-left:1px solid var(--line)}
   /* oyna pastdan chiqadi; sarlavhadan pastga tortib yopiladi */
@@ -531,10 +514,7 @@ main{flex:1;min-height:0;display:flex}
   <section id="mapView">
     <div class="mapWrap">
       <div class="mapCard" id="mapCard">
-        <div class="mapScale" id="mapScale"><div class="map" id="map"></div></div>
-      </div>
-      <div class="viewCtl" id="viewCtl">
-        <button data-v="v1">Asosiy</button><button data-v="v0">1-variant</button>
+        <div class="mapScale" id="mapScale"><div class="map v1 plan" id="map"></div></div>
       </div>
       <div class="zoomCtl">
         <button id="zIn" aria-label="Kattalashtirish" title="Kattalashtirish">+</button>
@@ -647,10 +627,6 @@ const tagOf = (id, n) => groupOf(id, n).length > 1 ? `${id} · ${rangeOf(id, n)}
 const sectionOf = (id, n) => (byStand[id] || []).find(x => x.section && labOf(id, x.place) === labOf(id, n))?.section || '';
 const map = $('#map');
 
-// Ko'rinishlar: v1 — asosiy (zal rejasi), v0 — oddiy rangli xarita ("1-variant")
-// Asosiy ko'rinish — v1 (zal rejasi). Kalit nomi yangilangan: avval tanlangan eski ko'rinish saqlanib qolmasin.
-let view = 'v1';
-try { view = ['v0', 'v1'].includes(localStorage.expoView2) ? localStorage.expoView2 : 'v1'; } catch (e) {}
 function el(cls, style, html) {
   const d = document.createElement('div');
   d.className = cls; d.style.cssText = style; if (html != null) d.innerHTML = html;
@@ -661,8 +637,6 @@ function el(cls, style, html) {
 function buildMap() {
   map.innerHTML = '';
   const rB = 3, rCorr = rB + HALF + 1, rA = rCorr + 1, rEnd = rA + HALF + 1;
-  map.className = 'map ' + view + (view === 'v0' ? '' : ' plan');
-  $$('#viewCtl button').forEach(b => b.classList.toggle('on', b.dataset.v === view));
   map.style.gridTemplateRows = `36px 10px 24px repeat(${HALF},27px) 58px 24px repeat(${HALF},27px)`;
   el('zone soft hz zpress', 'grid-column:3/9;grid-row:1', '<b>PRESS ZONE</b>');
   el('zone soft hz hall zalfa', 'grid-column:10/29;grid-row:1', '<b>ALFA HALL</b>');
@@ -682,31 +656,29 @@ function buildMap() {
   el('zone soft hall zevent', `grid-column:37;grid-row:${rCorr - 3}/${rA + 4}`, '<b>EVENT<br> ZONE</b>');
   el('zone soft hall zbaby', `grid-column:37;grid-row:${rEnd - 4}/${rEnd}`, '<b>BABY<br> HALL</b>');
 
-  if (view === 'v1') {
-    // Eshiklar o'rni devor bo'ylab ulushda (o'tgan yilgi zal rejasidan o'lchab olingan):
-    // chap va o'ng devorda 4 tadan chiqish, tepada 2 ta chiqish + hojatxona, pastda o'rtada asosiy kirish
-    const exit = `<svg width="20" height="20" viewBox="0 0 24 24"><rect x="1.2" y="1.2" width="21.6" height="21.6" rx="1.5" fill="#fff" stroke="#16a34a" stroke-width="2.2"/>
-      <rect x="14" y="4.5" width="5.5" height="15" fill="none" stroke="#16a34a" stroke-width="1.5"/><circle cx="9.3" cy="6.4" r="1.8" fill="#16a34a"/>
-      <path d="M4.6 11.6l3-2.3 2.7.6 1.5 2.5 2.2.5M9.8 10l-1.3 4.2 2.7 2.1.3 3.4M8.5 14.2l-1.6 2.3-2.9.5" fill="none" stroke="#16a34a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-    const wc = `<svg width="26" height="20" viewBox="0 0 26 20" fill="#111827"><circle cx="6.5" cy="2.6" r="2.3"/><path d="M3.2 6h6.6v7.2H8.3V20H4.7v-6.8H3.2z"/>
-      <circle cx="19.5" cy="2.6" r="2.3"/><path d="M17.2 6h4.6l2.4 8h-2.7v6h-4v-6h-2.7z"/></svg>`;
-    const arrow = `<svg width="38" height="46" viewBox="0 0 22 28" fill="#16a34a"><path d="M11 0l9 11h-6v17H8V11H2z"/></svg>`;
-    // tashqariga qaragan kichik strelka (o'ngga; chap devorda ko'zgu qilinadi)
-    const out = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 5l7 7-7 7"/></svg>`;
-    const y = p => `calc(var(--wt) + (100% - var(--wt) - var(--wb)) * ${p})`;   // devor bo'ylab tik
-    const x = p => `calc(var(--wx) + (100% - 2 * var(--wx)) * ${p})`;           // devor bo'ylab yotiq
-    // asosiy kirish tik yo'lakning o'rtasida: chap chet (--wx + 30px) + yo'lakkacha bo'lgan ustunlar (626px) + yo'lak yarmi (28px)
-    const mid = 'var(--wx) + 684px';
-    const side = (edge, p) => `<div class="door leaf" style="${edge}:calc(var(--wx) - 1px);top:calc(${y(p)} - 9px);width:8px;height:18px"></div>
-      <div class="door out" style="${edge}:0;top:calc(${y(p)} - 10px);${edge === 'left' ? 'transform:scaleX(-1)' : ''}">${exit}${out}</div>`;
-    const top = p => `<div class="door leaf" style="top:calc(var(--wt) - 1px);left:calc(${x(p)} - 13px);width:26px;height:8px"></div>
-      <div class="door" style="top:0;left:calc(${x(p)} - 10px)">${exit}</div><div class="door" style="top:23px;left:calc(${x(p)} - 13px)">${wc}</div>`;
-    map.insertAdjacentHTML('beforeend', [.127, .358, .741, .973].map(p => side('left', p)).join('') + [.099, .329, .737, .968].map(p => side('right', p)).join('')
-      + [.337, .699].map(top).join('')
-      + `<div class="door gate" style="bottom:calc(var(--wb) - 3px);left:calc(${mid} - 64px);width:128px;height:12px"></div>
-         <div class="door" style="bottom:6px;left:calc(${mid} - 19px)">${arrow}</div>
-         <div class="door inlbl" style="bottom:22px;left:calc(${mid} + 30px)">ASOSIY KIRISH</div>`);
-  }
+  // Eshiklar o'rni devor bo'ylab ulushda (o'tgan yilgi zal rejasidan o'lchab olingan):
+  // chap va o'ng devorda 4 tadan chiqish, tepada 2 ta chiqish + hojatxona, pastda o'rtada asosiy kirish
+  const exit = `<svg width="20" height="20" viewBox="0 0 24 24"><rect x="1.2" y="1.2" width="21.6" height="21.6" rx="1.5" fill="#fff" stroke="#16a34a" stroke-width="2.2"/>
+    <rect x="14" y="4.5" width="5.5" height="15" fill="none" stroke="#16a34a" stroke-width="1.5"/><circle cx="9.3" cy="6.4" r="1.8" fill="#16a34a"/>
+    <path d="M4.6 11.6l3-2.3 2.7.6 1.5 2.5 2.2.5M9.8 10l-1.3 4.2 2.7 2.1.3 3.4M8.5 14.2l-1.6 2.3-2.9.5" fill="none" stroke="#16a34a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const wc = `<svg width="26" height="20" viewBox="0 0 26 20" fill="#111827"><circle cx="6.5" cy="2.6" r="2.3"/><path d="M3.2 6h6.6v7.2H8.3V20H4.7v-6.8H3.2z"/>
+    <circle cx="19.5" cy="2.6" r="2.3"/><path d="M17.2 6h4.6l2.4 8h-2.7v6h-4v-6h-2.7z"/></svg>`;
+  const arrow = `<svg width="38" height="46" viewBox="0 0 22 28" fill="#16a34a"><path d="M11 0l9 11h-6v17H8V11H2z"/></svg>`;
+  // tashqariga qaragan kichik strelka (o'ngga; chap devorda ko'zgu qilinadi)
+  const out = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 5l7 7-7 7"/></svg>`;
+  const y = p => `calc(var(--wt) + (100% - var(--wt) - var(--wb)) * ${p})`;   // devor bo'ylab tik
+  const x = p => `calc(var(--wx) + (100% - 2 * var(--wx)) * ${p})`;           // devor bo'ylab yotiq
+  // asosiy kirish tik yo'lakning o'rtasida: chap chet (--wx + 30px) + yo'lakkacha bo'lgan ustunlar (626px) + yo'lak yarmi (28px)
+  const mid = 'var(--wx) + 684px';
+  const side = (edge, p) => `<div class="door leaf" style="${edge}:calc(var(--wx) - 1px);top:calc(${y(p)} - 9px);width:8px;height:18px"></div>
+    <div class="door out" style="${edge}:0;top:calc(${y(p)} - 10px);${edge === 'left' ? 'transform:scaleX(-1)' : ''}">${exit}${out}</div>`;
+  const top = p => `<div class="door leaf" style="top:calc(var(--wt) - 1px);left:calc(${x(p)} - 13px);width:26px;height:8px"></div>
+    <div class="door" style="top:0;left:calc(${x(p)} - 10px)">${exit}</div><div class="door" style="top:23px;left:calc(${x(p)} - 13px)">${wc}</div>`;
+  map.insertAdjacentHTML('beforeend', [.127, .358, .741, .973].map(p => side('left', p)).join('') + [.099, .329, .737, .968].map(p => side('right', p)).join('')
+    + [.337, .699].map(top).join('')
+    + `<div class="door gate" style="bottom:calc(var(--wb) - 3px);left:calc(${mid} - 64px);width:128px;height:12px"></div>
+       <div class="door" style="bottom:6px;left:calc(${mid} - 19px)">${arrow}</div>
+       <div class="door inlbl" style="bottom:22px;left:calc(${mid} + 30px)">ASOSIY KIRISH</div>`);
   STANDS.forEach(s => {
     const r0 = s.top ? rB : rA;
     el('sbg', `grid-column:${s.col}/${s.col + 4};grid-row:${r0}/${r0 + HALF + 1};--c:${standLab(s.id).c}`);
@@ -729,7 +701,7 @@ function buildMap() {
         const a = run[0], b = run[run.length - 1], lab = labOf(s.id, a);
         const top = Math.min(rowOf(a), rowOf(b));
         const left = (a <= HALF) === s.flip;   // katak yorliqning chap tomonida
-        const c = el('cell' + (left ? ' cl' : ' cr') + (a < b ? ' wide' : '') + (p && p.org ? '' : ' empty') + (lab.light ? '' : ' dark'),
+        const c = el('cell' + (a < b ? ' wide' : '') + (p && p.org ? '' : ' empty') + (lab.light ? '' : ' dark'),
           `grid-column:${left ? s.col : s.col + 3};grid-row:${top}/${top + run.length};--c:${lab.c}`, a < b ? `${a}–${b}` : a);
         c.dataset.stand = s.id; c.dataset.place = n;
         c.onclick = () => openPlace(s.id, n);
@@ -772,11 +744,6 @@ function setZoom(z) {
   zoom = Math.min(3, Math.max(1, z)); fitMap();
   card.scrollLeft = cx * card.scrollWidth - card.clientWidth / 2; card.scrollTop = cy * card.scrollHeight - card.clientHeight / 2;
 }
-$('#viewCtl').onclick = e => {
-  const b = e.target.closest('button'); if (!b) return;
-  view = b.dataset.v; try { localStorage.expoView2 = view; } catch (err) {}
-  zoom = 1; buildMap(); highlight(); fitMap();
-};
 $('#zIn').onclick = () => setZoom(zoom * 1.4);
 $('#zOut').onclick = () => setZoom(zoom / 1.4);
 // To'liq ekran: brauzer ruxsat bersa haqiqiy to'liq ekran, bo'lmasa (masalan iPhone) sahifa ichida kengaytiriladi
