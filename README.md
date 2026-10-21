@@ -14,7 +14,7 @@ git clone … vystavka && cd vystavka          # yoki papkani serverga ko'chirin
 composer install --no-dev --optimize-autoloader
 cp .env.example .env                        # DB_* va APP_URL ni to'ldiring
 php artisan key:generate
-php artisan migrate --seed                  # jadvallar + 240 joy va 395 rasm (yoki: expo:import-excel fayl.xlsx)
+php artisan migrate --seed                  # jadvallar + 240 joy va 490 rasm (yoki: expo:import-excel fayl.xlsx)
 php artisan storage:link
 php artisan expo:admin admin@misol.uz --name="Admin"   # parolni so'raydi
 php artisan config:cache && php artisan route:cache && php artisan view:cache
@@ -70,7 +70,7 @@ php artisan expo:import-excel "03.10.2026 РАССАДКА ЭКСПО.xlsx"
 php artisan expo:import-excel yangi.xlsx --force     # bazada ma'lumot bo'lsa
 ```
 
-"Рўйхат" varag'i ustunlari (sarlavha 3-qatorda, ma'lumot 4-qatordan):
+"Рўйхат" varag'i ustunlari (sarlavha — C ustunida "Павильон" yozilgan qator, birinchi 10 qator ichida; ma'lumot undan keyingi qatordan):
 
 | Ustun | Nima |
 |---|---|

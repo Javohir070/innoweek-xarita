@@ -13,6 +13,7 @@ use ZipArchive;
 /**
  * Ko'rgazma Excel faylining "Рўйхат" varag'ini o'qiydi.
  *
+ * Sarlavha qatori — C ustunida "Павильон" yozilgan qator (avval 3-qator, 20.10.2026 dagi faylda 1-qator), ma'lumot undan keyin.
  * Ustunlar: A т/р, B yo'nalish, C павильон (stend), D жой, E tashkilot, F ishlanma haqida, G mas'ul shaxs;
  * H, J, L, ... — 1..10-mahsulot nomi va rasmi (rasm nom katagida yoki o'ngidagi katakda turadi).
  * Eski ko'rinishdagi faylda H — mas'ul boshqarma bo'lib, mahsulotlar I ustunidan boshlanadi (sarlavhadan aniqlanadi).
@@ -22,11 +23,13 @@ use ZipArchive;
  */
 class ExcelExpoReader
 {
-    private const FIRST_ROW = 4;
-
-    private const HEADER_ROW = 3;
+    /** Sarlavha shu qatorlar ichidan qidiriladi */
+    private const HEADER_SEARCH_ROWS = 10;
 
     private const PRODUCT_SLOTS = 10;
+
+    /** Sarlavha qatori ("Павильон" yozilgan) */
+    private int $headerRow = 3;
 
     /** @var array<string, array{int,int}> "r:c" -> birlashtirilgan hududning yuqori-chap katagi */
     private array $top = [];
@@ -55,14 +58,14 @@ class ExcelExpoReader
         $this->warnings = [];
         $this->indexMerges();
         // H sarlavhasi "... расми" bo'lsa mahsulotlar H dan boshlanadi, aks holda H — mas'ul boshqarma
-        $hasDept = mb_stripos($this->val(self::HEADER_ROW, 8), 'расм') === false;
+        $hasDept = mb_stripos($this->val($this->headerRow, 8), 'расм') === false;
         $this->productCol = $hasDept ? 9 : 8;
         $images = $this->extractImages($file, $progress);
 
         $blocks = [];   // bitta "Жой" katagiga tegishli tashkilotlar
         $entries = [];
         $last = $this->ws->getHighestDataRow();
-        for ($r = self::FIRST_ROW; $r <= $last; $r++) {
+        for ($r = $this->headerRow + 1; $r <= $last; $r++) {
             $stand = $this->normStand($this->val($r, 3));
             if ($stand === '') {
                 if ($this->val($r, 4) !== '' || $this->val($r, 5) !== '') {
@@ -263,12 +266,16 @@ class ExcelExpoReader
     private function findListSheet(array $sheets): Worksheet
     {
         foreach ($sheets as $s) {
-            // sarlavhada "Павильон" ustuni bor varaq
-            if (trim((string) $s->getCell('C3')->getValue()) === 'Павильон') {
-                return $s;
+            // sarlavhada "Павильон" ustuni bor varaq; sarlavha qatori ham shundan aniqlanadi
+            for ($r = 1; $r <= self::HEADER_SEARCH_ROWS; $r++) {
+                if (trim((string) $s->getCell([3, $r])->getValue()) === 'Павильон') {
+                    $this->headerRow = $r;
+
+                    return $s;
+                }
             }
         }
-        throw new RuntimeException("Excel'da ro'yxat varag'i topilmadi (C3 katakda \"Павильон\" bo'lishi kerak).");
+        throw new RuntimeException("Excel'da ro'yxat varag'i topilmadi (C ustunida, ".self::HEADER_SEARCH_ROWS."-qatorgacha \"Павильон\" sarlavhasi bo'lishi kerak).");
     }
 
     private function indexMerges(): void

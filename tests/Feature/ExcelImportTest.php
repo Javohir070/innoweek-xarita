@@ -176,6 +176,26 @@ class ExcelImportTest extends TestCase
         $this->assertSame($rows[0], $places[0]->products[0]->name);
     }
 
+    public function test_header_may_be_in_first_row(): void
+    {
+        Storage::fake('public');
+        $book = new Spreadsheet;
+        $ws = $book->getActiveSheet()->setTitle('Рўйхат');
+        // 20.10.2026 dagi fayl: sarlavha 1-qatorda, ma'lumot 2-qatordan
+        $ws->fromArray(['Т/р', 'Yo\'nalish', 'Павильон', 'Жой', 'Ташкилот', 'Маълумот', 'Масъул', 'Ишланма расми'], null, 'A1');
+        $ws->fromArray([1, 'Hudud', 'А1', '1-2', 'Andijon', null, 'Ali', '1. Chiroq'], null, 'A2');
+        $ws->fromArray([2, 'Hudud', 'А1', 3, 'Buxoro', null, 'Vali', '1. Sirop'], null, 'A3');
+        $this->addImages($ws, ['I2']);
+
+        $this->artisan('expo:import-excel', ['file' => $this->save($book)])->assertSuccessful();
+
+        $places = Place::where('stand', 'A1')->where('place', '<=', 3)->orderBy('place')->with('products')->get();
+        $this->assertSame(['Andijon', 'Andijon', 'Buxoro'], $places->pluck('org')->all());
+        $this->assertSame([null, 1, null], $places->pluck('cont')->all());
+        $this->assertSame(['1. Chiroq'], $places[0]->products->pluck('name')->all());
+        $this->assertCount(1, $places[0]->products[0]->images);
+    }
+
     public function test_excel_import_requires_force_when_data_exists(): void
     {
         Storage::fake('public');
