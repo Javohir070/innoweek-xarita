@@ -196,6 +196,41 @@ class ExcelImportTest extends TestCase
         $this->assertCount(1, $places[0]->products[0]->images);
     }
 
+    public function test_zone_sheet_is_imported_as_zone_places(): void
+    {
+        Storage::fake('public');
+        $book = new Spreadsheet;
+        $ws = $book->getActiveSheet()->setTitle('Рўйхат');
+        $ws->fromArray(['Т/р', 'Yo\'nalish', 'Павильон', 'Жой', 'Ташкилот', 'Маълумот', 'Масъул', 'Ишланма расми'], null, 'A1');
+        $ws->fromArray([1, 'Hudud', 'А1', 1, 'Andijon', null, 'Ali', '1. Chiroq'], null, 'A2');
+        // 22.10.2026 dagi "Лист1": xaritadagi ILMIY TEXNIKA zonasi; sarlavha 3-qatorda, E — ishlanma, F — rasm
+        $zs = $book->createSheet()->setTitle('Лист1');
+        $zs->fromArray(['Т/р', 'Павильонлар тўғрисида маълумот', 'Ташкилот номи', 'Ташкилот масъул Ф.И.Ш', 'Ишланма ёки маҳсулот номи', 'Расми'], null, 'A3');
+        $zs->fromArray([1, 'Ilmiy texnika', 'Turin politexnika universiteti', 'Abdaliyev Komronbek', "“Samolyot simulyator”\nParvoz vaziyatlarini modellashtirishga mo‘ljallangan simulyator."], null, 'A4');
+        $zs->fromArray([2, 'Ilmiy texnika', null, null, 'Sun’iy intellekt asosida pechlar uchun boshqarish tizimi. Loyiha raqamli egizak modeliga asoslangan.'], null, 'A5');
+        $zs->fromArray([3, 'Ilmiy texnika'], null, 'A6');
+        $zs->fromArray([4, 'Noma\'lum zona', 'Kimdir'], null, 'A7');
+        $this->addImages($zs, ['F4', 'F6']);
+
+        $this->artisan('expo:import-excel', ['file' => $this->save($book)])
+            ->expectsOutputToContain('Noma\'lum zona')
+            ->assertSuccessful();
+
+        $zone = Place::where('stand', 'ILMIY')->orderBy('place')->with('products')->get();
+        $this->assertSame(range(1, 6), $zone->pluck('place')->all());
+        $this->assertSame(
+            ['Turin politexnika universiteti', 'Sun’iy intellekt asosida pechlar uchun boshqarish tizimi', '', '', '', ''],
+            $zone->pluck('org')->all()
+        );
+        $this->assertSame(['Abdaliyev Komronbek', 'Ilmiy texnika'], [$zone[0]->contact, $zone[0]->section]);
+        $this->assertCount(1, $zone[0]->products[0]->images);
+        // rasmi bor, lekin nomi yozilmagan o'rin hali bo'sh hisoblanadi
+        $this->assertCount(0, $zone[2]->products);
+        $this->assertSame('Ilmiy texnika', $zone[5]->section);
+        // stendlar o'zgarmaydi
+        $this->assertSame('Andijon', Place::where(['stand' => 'A1', 'place' => 1])->value('org'));
+    }
+
     public function test_excel_import_requires_force_when_data_exists(): void
     {
         Storage::fake('public');

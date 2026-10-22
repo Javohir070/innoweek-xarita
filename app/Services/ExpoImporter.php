@@ -14,15 +14,13 @@ class ExpoImporter
      */
     public function replaceAll(array $rows): int
     {
-        $stands = config('expo.stands');
-        $max = config('expo.places_per_stand');
-
-        return DB::transaction(function () use ($rows, $stands, $max) {
+        return DB::transaction(function () use ($rows) {
             Place::query()->delete();
             $count = 0;
             foreach ($rows as $row) {
                 $number = (int) $row['place'];
-                if (! in_array($row['stand'], $stands, true) || $number < 1 || $number > $max) {
+                // stend yoki zonada bunday joy bo'lmasa — o'tkazib yuboriladi
+                if ($number < 1 || $number > Place::maxPlace((string) $row['stand'])) {
                     continue;
                 }
                 $place = Place::create([

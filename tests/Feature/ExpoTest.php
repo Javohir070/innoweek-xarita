@@ -103,6 +103,18 @@ class ExpoTest extends TestCase
         $this->actingAs($admin)->putJson('/expo/places/A1/21', ['org' => 'A'])->assertNotFound();
     }
 
+    public function test_zone_places_are_shown_and_editable_by_admin(): void
+    {
+        $admin = $this->admin();
+
+        $this->actingAs($admin)->putJson('/expo/places/ILMIY/2', ['org' => 'Zona MChJ'])->assertOk()->assertJsonPath('stand', 'ILMIY');
+        $this->actingAs($admin)->putJson('/expo/places/ILMIY/7', ['org' => 'A'])->assertNotFound();
+        $this->actingAs($admin)->deleteJson('/expo/places/ILMIY/2')->assertOk();
+        $this->assertSame('', Place::where(['stand' => 'ILMIY', 'place' => 2])->value('org'));
+
+        $this->get('/')->assertOk()->assertSee('"ILMIY":6', false);
+    }
+
     public function test_delete_clears_place_and_its_continuations(): void
     {
         $main = $this->seedPlace(['place' => 3], [['name' => 'P', 'images' => []]]);
@@ -169,10 +181,13 @@ class ExpoTest extends TestCase
                 'products' => [['name' => 'N', 'img' => ['p001.jpg']]]],
             ['stand' => 'A1', 'place' => '2', 'cont' => '1', 'section' => 'S', 'org' => 'O', 'info' => '', 'contact' => '', 'dept' => '', 'products' => []],
             ['stand' => 'ZZ', 'place' => '1', 'org' => 'skip', 'products' => []],
+            ['stand' => 'ILMIY', 'place' => '1', 'org' => 'Zona', 'products' => []],
+            ['stand' => 'ILMIY', 'place' => '7', 'org' => 'skip', 'products' => []],
         ]));
 
         $this->artisan('expo:import', ['json' => "$dir/data.json", '--images' => "$dir/img"])->assertSuccessful();
-        $this->assertSame(2, Place::count());
+        $this->assertSame(3, Place::count());
+        $this->assertSame('Zona', Place::where('stand', 'ILMIY')->value('org'));
         $this->assertSame(1, Place::where('place', 2)->value('cont'));
         $this->assertSame(['expo/p001.jpg'], Place::first()->products->first()->images);
         Storage::disk('public')->assertExists('expo/p001.jpg');

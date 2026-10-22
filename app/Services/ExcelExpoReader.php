@@ -141,7 +141,78 @@ class ExcelExpoReader
             $entries[] = $entry;
         }
 
-        return $this->expand($blocks);
+        return [...$this->expand($blocks), ...$this->readZones($file, $book->getAllSheets(), $progress)];
+    }
+
+    /**
+     * Zonalar varag'i (22.10.2026 dagi faylda "Лист1" — xaritadagi ILMIY TEXNIKA): sarlavhada C — "Ташкилот номи".
+     * Har bir qator — zonaning navbatdagi o'rni: B zona nomi, C tashkilot, D mas'ul shaxs, E ishlanma, F rasm.
+     * Varaqda uchragan zonaning barcha o'rinlari qaytariladi (yozilmaganlari bo'sh).
+     *
+     * @param  Worksheet[]  $sheets
+     */
+    private function readZones(string $file, array $sheets, ?callable $progress): array
+    {
+        $zones = config('expo.zones');
+        $byName = [];
+        foreach ($zones as $id => $z) {
+            $byName[mb_strtolower($z['name'])] = $id;
+        }
+        $list = $this->ws;
+        $rows = [];
+        $last = [];   // zona -> oxirgi to'ldirilgan o'rin
+        foreach ($sheets as $ws) {
+            $header = $ws === $list ? null : $this->headerRowOf($ws, 'Ташкилот номи');
+            if ($header === null) {
+                continue;
+            }
+            $this->ws = $ws;
+            $this->indexMerges();
+            $this->productCol = 5;   // E — ishlanma; rasmi shu katakda yoki F da
+            $images = $this->extractImages($file, $progress);
+            for ($r = $header + 1; $r <= $ws->getHighestDataRow(); $r++) {
+                $name = $this->text($r, 2);
+                $zone = $byName[mb_strtolower($name)] ?? null;
+                $where = "«{$ws->getTitle()}» varag'i, $r-qator";
+                if ($zone === null) {
+                    if ($name !== '' || $this->val($r, 3) !== '') {
+                        $this->warnings[] = "$where: «{$name}» zonasi yo'q — o'tkazib yuborildi.";
+                    }
+
+                    continue;
+                }
+                $n = $last[$zone] = ($last[$zone] ?? 0) + 1;
+                if ($n > $zones[$zone]['places']) {
+                    $this->warnings[] = "$where: {$zones[$zone]['name']} zonasida {$zones[$zone]['places']} ta o'rin bor — o'tkazib yuborildi.";
+
+                    continue;
+                }
+                $product = $this->text($r, 5);
+                $files = array_values(array_unique($images["$r:0"] ?? []));
+                $org = ltrim($this->text($r, 3), ', ');
+                if ($org === '' && $product !== '') {
+                    $org = $this->titleOf($product);
+                }
+                // tashkilot ham, ishlanma nomi ham yozilmagan qator (faqat rasm) — hali bo'sh o'rin
+                $products = $org !== '' && ($product !== '' || $files) ? [['name' => $product, 'img' => $files]] : [];
+                $rows[] = $this->zoneRow($zone, $n, $org, $this->text($r, 4), $products);
+            }
+        }
+        foreach ($last as $zone => $n) {
+            for ($k = $n + 1; $k <= $zones[$zone]['places']; $k++) {
+                $rows[] = $this->zoneRow($zone, $k);
+            }
+        }
+
+        return $rows;
+    }
+
+    private function zoneRow(string $zone, int $n, string $org = '', string $contact = '', array $products = []): array
+    {
+        return [
+            'stand' => $zone, 'place' => $n, 'cont' => null, 'section' => config('expo.zones')[$zone]['name'],
+            'org' => $org, 'info' => '', 'contact' => $org === '' ? '' : $contact, 'dept' => '', 'products' => $products,
+        ];
     }
 
     /** "5" -> [5], "1-3" -> [1, 2, 3] */
@@ -267,15 +338,25 @@ class ExcelExpoReader
     {
         foreach ($sheets as $s) {
             // sarlavhada "Павильон" ustuni bor varaq; sarlavha qatori ham shundan aniqlanadi
-            for ($r = 1; $r <= self::HEADER_SEARCH_ROWS; $r++) {
-                if (trim((string) $s->getCell([3, $r])->getValue()) === 'Павильон') {
-                    $this->headerRow = $r;
+            if (($r = $this->headerRowOf($s, 'Павильон')) !== null) {
+                $this->headerRow = $r;
 
-                    return $s;
-                }
+                return $s;
             }
         }
         throw new RuntimeException("Excel'da ro'yxat varag'i topilmadi (C ustunida, ".self::HEADER_SEARCH_ROWS."-qatorgacha \"Павильон\" sarlavhasi bo'lishi kerak).");
+    }
+
+    /** C ustunida $title yozilgan sarlavha qatori (birinchi qatorlar ichidan) */
+    private function headerRowOf(Worksheet $ws, string $title): ?int
+    {
+        for ($r = 1; $r <= self::HEADER_SEARCH_ROWS; $r++) {
+            if (trim((string) $ws->getCell([3, $r])->getValue()) === $title) {
+                return $r;
+            }
+        }
+
+        return null;
     }
 
     private function indexMerges(): void

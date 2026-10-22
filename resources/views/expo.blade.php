@@ -141,6 +141,12 @@ main{flex:1;min-height:0;display:flex}
 .map.plan .zone{background:#fff;border:2px solid #111827;border-radius:3px;color:#111827;font-weight:800;font-size:11.5px;letter-spacing:.03em}
 .map.plan .zone.hall{background:#fff radial-gradient(#a3afc0 1.5px,transparent 1.7px) 3px 3px/9px 9px}
 .map.plan .zone b{background:#fff;padding:2px 8px;border-radius:3px;font-weight:800}
+/* bosiladigan zona (ILMIY TEXNIKA): o'z rangidagi hoshiya va ishtirokchilar soni */
+.map.plan .zone.zlink{cursor:pointer;flex-direction:column;gap:8px;border-color:var(--c);color:var(--c);transition:box-shadow .15s,transform .15s}
+.map.plan .zone.zlink:hover{box-shadow:0 6px 16px rgba(15,23,42,.18);transform:translateY(-2px)}
+.zone .zc{font-style:normal;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--c);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:0;display:grid;place-items:center}
+.zone.sel{box-shadow:0 0 0 3px var(--sel),0 0 0 5px var(--ink)}
+.zone.hit{box-shadow:0 0 0 3px var(--hit);animation:pulse 1.4s infinite}
 .map.plan .aisle{background:none}
 .map.plan .corr{background:none;color:#7c8aa0;font-weight:700}
 /* stend — yaxlit rangli blok: kod katagi, och rangli kataklar, bog'lovchi chiziqlarsiz */
@@ -551,6 +557,7 @@ window.EXPO = {
   isAdmin: @json($isAdmin),
   stands: @json(config('expo.stands')),
   perStand: @json(config('expo.places_per_stand')),
+  zones: @json(collect(config('expo.zones'))->map(fn ($z) => $z['places'])),
   storage: @json(asset('storage')) + '/',
   assets: @json(asset('img')) + '/',
   routes: {
@@ -575,6 +582,10 @@ const imgSrc = f => f.startsWith('img:') ? EXPO.assets + f.slice(4) : EXPO.stora
 
 /* ---------- xarita ("2026" varag'i asosida) ---------- */
 const PER = EXPO.perStand, HALF = PER / 2;   // har bir stend ikki ustun: 1..HALF va HALF+1..PER
+// xaritadagi bosiladigan zonalar (ILMIY TEXNIKA): kod -> o'rinlar soni; ular stend hisobiga kirmaydi
+const isZone = id => Object.hasOwn(EXPO.zones, id);
+const maxOf = id => isZone(id) ? EXPO.zones[id] : PER;
+const inStand = p => !isZone(p.stand);
 /* B qatori tepada, A pastda. col = stendning birinchi grid ustuni; flip = o'ng yarimdagi stendlar (1..HALF chap tomonda) */
 const STANDS = ['B', 'A'].flatMap(h => [1, 2, 3, 4, 5, 6].map(i => ({id: h + i, col: 5 * i, top: h === 'B', flip: i > 3})));
 /* Stend bo'limlari: yorliq va rang. a..b — joylar oralig'i (yozilmasa butun stend) */
@@ -597,6 +608,8 @@ const SECTIONS = [
   {s:'A5', a:11, b:20, t:'Texnologik startaplar', c:'#fde047', light:true},
   {s:'A6', a:1, b:10, t:'START UP', c:'#fde047', light:true},
   {s:'A6', a:11, b:20, t:'YASHNOBOD TEXNOPARKI', c:'#fde047', light:true},
+  // zona (stend emas)
+  {s:'ILMIY', t:'ILMIY TEXNIKA', c:'#0f766e'},
 ];
 /* Yo'nalishlar (legenda) */
 const DIRS = [
@@ -633,6 +646,15 @@ function el(cls, style, html) {
   map.appendChild(d); return d;
 }
 
+// Excel'dagi alohida varaqdan to'ldiriladigan zona: bosilganda stenddek ishtirokchilar ro'yxati ochiladi
+function linkZone(d, id) {
+  if (!byStand[id]) return;
+  const lab = standLab(id);
+  d.classList.add('zlink'); d.dataset.stand = id; d.style.setProperty('--c', lab.c);
+  d.title = `${lab.t} — ishtirokchilar`;
+  d.insertAdjacentHTML('beforeend', `<i class="zc">${byStand[id].filter(p => p.org).length}</i>`);
+  d.onclick = () => openStand(id);
+}
 // Qatorlar: 1 = ALFA HALL, 3 = B sarlavha, keyin HALF ta B qator, yo'lak, A sarlavha, HALF ta A qator
 function buildMap() {
   map.innerHTML = '';
@@ -641,7 +663,7 @@ function buildMap() {
   el('zone soft hz zpress', 'grid-column:3/9;grid-row:1', '<b>PRESS ZONE</b>');
   el('zone soft hz hall zalfa', 'grid-column:10/29;grid-row:1', '<b>ALFA HALL</b>');
   el('zone soft hall zbeta', `grid-column:1;grid-row:${rCorr - 3}/${rA + 4}`, '<b>BETA<br> HALL</b>');
-  el('zone soft vert zsci', `grid-column:3;grid-row:${rB + 1}/${rCorr}`, '<span>ILMIY TEXNIKA</span>');
+  linkZone(el('zone soft vert zsci', `grid-column:3;grid-row:${rB + 1}/${rCorr}`, '<span>ILMIY TEXNIKA</span>'), 'ILMIY');
   el('zone soft vert zmil', `grid-column:3;grid-row:${rA + 1}/${rEnd}`, '<span>XARBIY TEXNIKA</span>');
   el('aisle', `grid-column:19;grid-row:${rB}/${rEnd}`);
   el('corr', `grid-column:5/34;grid-row:${rCorr}`, "<span>YO'LAK</span>");
@@ -766,7 +788,7 @@ $('#zFull').onclick = () => {
 document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && document.body.classList.contains('mapfull')) setFull(false); });
 $('#zFull').innerHTML = fullIcon(false);
 // Katak ekrandan tashqarida bo'lsa (telefon yoki kattalashtirilgan xarita) — o'rtaga suriladi
-function revealCell(id, n) { revealEl(document.querySelector(`.cell[data-stand="${id}"][data-place="${n}"]`)); }
+function revealCell(id, n) { revealEl(document.querySelector(`.cell[data-stand="${id}"][data-place="${n}"]`) || document.querySelector(`.zone[data-stand="${id}"]`)); }
 function revealEl(c) {
   const card = $('#mapCard');
   if (!c || card.style.overflow !== 'auto') return;
@@ -812,6 +834,8 @@ function highlight(keys) {
     else if (set && !set.has(c.dataset.stand)) c.classList.add('dim');
   });
   $$('.slabel').forEach(l => l.classList.toggle('dim', !!keys || !!(set && !set.has(l.dataset.stand))));
+  // qidiruv natijasi zonada bo'lsa, zona belgilanadi
+  $$('.zone[data-stand]').forEach(z => z.classList.toggle('hit', !!keys && [...keys].some(k => k.startsWith(z.dataset.stand + '-'))));
 }
 
 /* ---------- modal ---------- */
@@ -952,21 +976,21 @@ function openPlace(id, n) {
          ${restBox || ppl ? `<div class="side">${restBox}${ppl}</div>` : ''}</div>`
       : `<div class="side">${desc}${ppl}</div>`;
   }
-  const prev = +n > 1, next = +n < PER;
+  const prev = +n > 1, next = +n < maxOf(id), unit = isZone(id) ? 'zona' : 'stend';
   const key = `${id}|${d && d.org ? d.place : n}`;
   const adminBtns = !isAdmin ? '' : d && d.org
     ? `<div class="grp"><button class="btn" data-edit="${key}">✎ Tahrirlash</button><button class="btn danger" data-del="${key}">O'chirish</button></div>`
     : `<button class="btn primary" data-edit="${key}">＋ Ma'lumot qo'shish</button>`;
   $('#modal').innerHTML = header(lab, esc(lab.t),
-      d && d.org ? esc(orgLines(d.org)) : `${id} stend, ${n}-joy`, `<b>${id}</b><span>${range}</span>`) +
+      d && d.org ? esc(orgLines(d.org)) : `${id} ${unit}, ${n}-joy`, `<b>${id}</b><span>${range}</span>`) +
     `<div class="mb">${body}</div>
     <div class="mf">
       <button class="nav" data-go="-1" ${prev ? '' : 'disabled'}>‹ ${id}-${+n - 1 || ''}</button>
-      <div class="grp">${adminBtns}<button class="nav" data-stand="${id}">Butun ${id} stend</button></div>
+      <div class="grp">${adminBtns}<button class="nav" data-stand="${id}">Butun ${id} ${unit}</button></div>
       <button class="nav" data-go="1" ${next ? '' : 'disabled'}>${id}-${next ? +n + 1 : ''} ›</button>
     </div>`;
-  $$('.cell.sel').forEach(x => x.classList.remove('sel'));
-  $$(`.cell[data-stand="${id}"][data-place="${mainNo}"]`).forEach(c => c.classList.add('sel'));
+  $$('.cell.sel, .zone.sel').forEach(x => x.classList.remove('sel'));
+  $$(`.cell[data-stand="${id}"][data-place="${mainNo}"], .zone[data-stand="${id}"]`).forEach(c => c.classList.add('sel'));
   openModal(`${id}-${n}`);
   revealCell(id, mainNo);
 }
@@ -976,7 +1000,7 @@ function openStand(id) {
   const list = byStand[id] || [];
   const filled = list.filter(p => p.org).length;
   nav = null;
-  $('#modal').innerHTML = header(lab, `${filled} / ${list.length} joy band`, esc(lab.t), `<b>${id}</b><span>stend</span>`) +
+  $('#modal').innerHTML = header(lab, `${filled} / ${list.length} joy band`, esc(lab.t), `<b>${id}</b><span>${isZone(id) ? 'zona' : 'stend'}</span>`) +
     `<div class="mb"><div class="rows">${list.filter(p => !p.cont || !place(id, p.cont)).map(p => {
       const d = p.cont ? place(id, p.cont) : p;
       const imgs = d && !p.cont ? d.products.flatMap(x => x.img).slice(0, 3) : [];
@@ -986,8 +1010,8 @@ function openStand(id) {
         <span class="thumbs">${imgs.map(f => `<img loading="lazy" src="${imgSrc(f)}" alt="">`).join('')}</span>
       </button>`;
     }).join('')}</div></div>`;
-  $$('.cell.sel').forEach(x => x.classList.remove('sel'));
-  $$(`.cell[data-stand="${id}"]`).forEach(c => c.classList.add('sel'));
+  $$('.cell.sel, .zone.sel').forEach(x => x.classList.remove('sel'));
+  $$(`.cell[data-stand="${id}"], .zone[data-stand="${id}"]`).forEach(c => c.classList.add('sel'));
   openModal(id);
 }
 
@@ -1013,14 +1037,16 @@ function openModal(hash = '') {
 }
 function closeModal() {
   $('#modal').classList.remove('open'); $('#overlay').classList.remove('open');
-  $$('.cell.sel').forEach(x => x.classList.remove('sel'));
+  $$('.cell.sel, .zone.sel').forEach(x => x.classList.remove('sel'));
   setHash('');
 }
 function openFromHash() {
-  const m = decodeURIComponent(location.hash).match(/^#([A-Z]\d+)(?:-(\d+))?$/i);
-  if (!m || !EXPO.stands.includes(m[1].toUpperCase())) return;
-  if (!m[2]) openStand(m[1].toUpperCase());
-  else if (+m[2] >= 1 && +m[2] <= PER) openPlace(m[1].toUpperCase(), +m[2]);
+  // "#A1", "#A1-5", zona uchun "#ILMIY", "#ILMIY-2"
+  const m = decodeURIComponent(location.hash).match(/^#([A-Z]+\d*)(?:-(\d+))?$/i);
+  const id = m && m[1].toUpperCase();
+  if (!m || !(EXPO.stands.includes(id) || isZone(id))) return;
+  if (!m[2]) openStand(id);
+  else if (+m[2] >= 1 && +m[2] <= maxOf(id)) openPlace(id, +m[2]);
 }
 addEventListener('hashchange', openFromHash);
 
@@ -1069,7 +1095,7 @@ document.addEventListener('keydown', e => {
   else if (lbOpen && e.key === 'ArrowRight') openLb(gi + 1);
   else if (!lbOpen && nav && $('#modal').classList.contains('open') && document.activeElement !== $('#q')) {
     if (e.key === 'ArrowLeft' && nav.n > 1) openPlace(nav.id, nav.n - 1);
-    if (e.key === 'ArrowRight' && nav.n < PER) openPlace(nav.id, nav.n + 1);
+    if (e.key === 'ArrowRight' && nav.n < maxOf(nav.id)) openPlace(nav.id, nav.n + 1);
   }
 });
 $('#overlay').onclick = closeModal;
@@ -1122,7 +1148,7 @@ function renderList(q = '') {
   const all = DATA.filter(p => !p.cont && (!dir || dir.has(p.stand)) && (!q || match(p, q)));
   const rows = all.filter(p => p.org);
   $('#listCnt').textContent = q || dir ? `${rows.length} ta yozuv topildi`
-    : `${rows.length} ta yozuv · ${DATA.filter(p => p.org).length} ta joy band`;
+    : `${rows.length} ta yozuv · ${DATA.filter(p => p.org && inStand(p)).length} ta joy band`;
   let last = null;
   $('#tableCard').innerHTML = !rows.length ? '<div class="empty-state"><div class="big">🔍</div>Hech narsa topilmadi.</div>' : rows.map(p => {
     const lab = labOf(p.stand, p.place);
@@ -1284,7 +1310,7 @@ function renderChips() {
   const orgs = new Set(DATA.filter(p => p.org && !p.cont).map(p => first(p.org)));
   const imgs = DATA.reduce((a, p) => a + p.products.reduce((b, x) => b + x.img.length, 0), 0);
   $('#chips').innerHTML = [
-    [Object.keys(byStand).length, 'stend'], [DATA.filter(p => p.org).length, 'joy band'], [orgs.size, 'ishtirokchi'], [imgs, 'ishlanma rasmi'],
+    [EXPO.stands.length, 'stend'], [DATA.filter(p => p.org && inStand(p)).length, 'joy band'], [orgs.size, 'ishtirokchi'], [imgs, 'ishlanma rasmi'],
   ].map(([n, t]) => `<span class="chip"><b>${n}</b>${t}</span>`).join('');
 }
 function start() {

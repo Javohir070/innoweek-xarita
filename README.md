@@ -86,6 +86,8 @@ php artisan expo:import-excel yangi.xlsx --force     # bazada ma'lumot bo'lsa
 - Mahsulot nomlari yozilmagan qatorda barcha rasmlar bitta ishlanmaga yig'iladi. Rasm izohi (alt text) nom sifatida olinmaydi.
 - Takrorlangan, mavjud bo'lmagan yoki tushunarsiz joyli qatorlar o'tkazib yuboriladi va buyruq ularni sanab chiqadi.
 - Eski ko'rinishdagi fayl (H — mas'ul boshqarma, mahsulotlar I dan, har bir joy alohida qatorda) ham o'qiladi.
+- Zonalar varag'i (22.10.2026 dagi faylda "Лист1"; sarlavhada C — "Ташкилот номи") ham o'qiladi: B — zona nomi
+  ("Ilmiy texnika"), C — tashkilot, D — mas'ul shaxs, E — ishlanma, F — rasm. Har bir qator zonaning navbatdagi o'rni.
 
 **Diqqat:** `--force` bazadagi barcha joylarni almashtiradi — sayt orqali kiritilgan o'zgarishlar yo'qoladi.
 Eski usul (Python `update.py` yaratgan `data.json`): `php artisan expo:import data.json --images=img --force`.
@@ -95,6 +97,9 @@ Eski usul (Python `update.py` yaratgan `data.json`): `php artisan expo:import da
 12 ta stend (A1–A6, B1–B6), har birida 20 ta joy: xaritada stend ikki ustun (1–10 va 11–20), o'rtasida yorlig'i.
 Stendlar ro'yxati va joylar soni `config/expo.php` da; xaritadagi joylashuvi, bo'limlari va ranglari
 `resources/views/expo.blade.php` dagi `STANDS` / `SECTIONS` / `DIRS` massivlarida (Excel'ning "2026" varag'i asosida).
+
+Bosiladigan zonalar (hozir "ILMIY TEXNIKA", 6 ta o'rin) `config/expo.php` dagi `zones` da: bazada stend kabi saqlanadi
+(`ILMIY-1` … `ILMIY-6`), xaritada zona bosilganda ishtirokchilari ro'yxati ochiladi. Stend statistikasiga kirmaydi.
 
 ## Testlar
 

@@ -5677,5 +5677,85 @@
                 ]
             }
         ]
+    },
+    {
+        "stand": "ILMIY",
+        "place": 1,
+        "cont": null,
+        "section": "Ilmiy texnika",
+        "org": "Toshkent shahridagi Turin politexnika universiteti",
+        "info": "",
+        "contact": "ABDALIYEV KOMRONBEK BEGALI O‘G‘LI",
+        "dept": "",
+        "products": [
+            {
+                "name": "“Inovatsion Samolyot simulyator”\nSamolyot boshqaruvi va parvoz vaziyatlarini modellashtirishga mo‘ljallangan simulyator. Parvozga oid amaliy ko‘nikmalarni o‘quv muhitida shakllantirishga xizmat qiladi.",
+                "img": [
+                    "s187.jpg"
+                ]
+            }
+        ]
+    },
+    {
+        "stand": "ILMIY",
+        "place": 2,
+        "cont": null,
+        "section": "Ilmiy texnika",
+        "org": "Toshkent davlat texnika universiteti",
+        "info": "",
+        "contact": "",
+        "dept": "",
+        "products": [
+            {
+                "name": "Sun’iy intellekt texnologiyalari asosida sanoat gaz yoquvchi pechlar uchun energiya tejamkor boshqarish tizimi.\nLoyihaning innovatsionligi sanoat gaz yoquvchi pechlarni boshqarishda sun’iy intellekt texnologiyalari, AI-yordamchi hamda raqamli egizak modelidan kompleks foydalanishga asoslangan. Ishlab chiqilgan raqamli egizak modeli pechning real texnologik holatini virtual muhitda aks ettirish, harorat va yoqilg‘i sarfi jarayonlarini modellashtirish hamda turli boshqaruv rejimlarini oldindan baholash imkonini beradi. AI-yordamchi esa joriy texnologik parametrlarni tahlil qilib, optimal boshqaruv tavsiyalarini shakllantiradi va operatorni qaror qabul qilishda qo‘llab-quvvatlaydi. Natijada gaz-havo nisbatini optimallashtirish, harorat rejimini barqarorlashtirish, yoqilg‘i sarfini kamaytirish va pechning energiya samaradorligini oshirishga xizmat qiluvchi intellektual boshqaruv tizimi yaratiladi.",
+                "img": [
+                    "s481.jpg"
+                ]
+            }
+        ]
+    },
+    {
+        "stand": "ILMIY",
+        "place": 3,
+        "cont": null,
+        "section": "Ilmiy texnika",
+        "org": "",
+        "info": "",
+        "contact": "",
+        "dept": "",
+        "products": []
+    },
+    {
+        "stand": "ILMIY",
+        "place": 4,
+        "cont": null,
+        "section": "Ilmiy texnika",
+        "org": "",
+        "info": "",
+        "contact": "",
+        "dept": "",
+        "products": []
+    },
+    {
+        "stand": "ILMIY",
+        "place": 5,
+        "cont": null,
+        "section": "Ilmiy texnika",
+        "org": "",
+        "info": "",
+        "contact": "",
+        "dept": "",
+        "products": []
+    },
+    {
+        "stand": "ILMIY",
+        "place": 6,
+        "cont": null,
+        "section": "Ilmiy texnika",
+        "org": "",
+        "info": "",
+        "contact": "",
+        "dept": "",
+        "products": []
     }
 ]

@@ -10,6 +10,12 @@ return [
     // Xarita har bir stendni ikki ustunda chizadi (1..10 va 11..20), shuning uchun juft son bo'lsin
     'places_per_stand' => 20,
 
+    // Xaritadagi bosiladigan zonalar: kod => [Excel'dagi nomi, o'rinlar soni].
+    // Excel'da alohida varaqda (sarlavhada C — "Ташкилот номи"): B — zona nomi, C — tashkilot, D — mas'ul, E — ishlanma, F — rasm.
+    'zones' => [
+        'ILMIY' => ['name' => 'Ilmiy texnika', 'places' => 6],
+    ],
+
     // Rasmlar "public" diskda shu papkada saqlanadi (storage/app/public/expo)
     'image_dir' => 'expo',
 

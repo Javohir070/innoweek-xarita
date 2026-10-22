@@ -57,9 +57,6 @@ class ExpoController extends Controller
 
     private function assertPosition(string $stand, int $place): void
     {
-        abort_unless(
-            in_array($stand, config('expo.stands'), true) && $place >= 1 && $place <= config('expo.places_per_stand'),
-            404
-        );
+        abort_unless($place >= 1 && $place <= Place::maxPlace($stand), 404);
     }
 }

@@ -21,10 +21,20 @@ class Place extends Model
         return $this->hasMany(Product::class)->orderBy('position');
     }
 
-    /** Barcha joylar xarita tartibida (A1..A12, B1..B12; har birida 1..10) — sahifa kutadigan ko'rinishda */
+    /** Stend yoki zonadagi joylar soni; bunday stend/zona bo'lmasa 0 */
+    public static function maxPlace(string $stand): int
+    {
+        if (in_array($stand, config('expo.stands'), true)) {
+            return config('expo.places_per_stand');
+        }
+
+        return config('expo.zones')[$stand]['places'] ?? 0;
+    }
+
+    /** Barcha joylar xarita tartibida (avval stendlar, keyin zonalar; har birida 1..N) — sahifa kutadigan ko'rinishda */
     public static function forMap(): array
     {
-        $order = array_flip(config('expo.stands'));
+        $order = array_flip([...config('expo.stands'), ...array_keys(config('expo.zones'))]);
 
         return static::with('products')->get()
             ->sortBy(fn (Place $p) => [($order[$p->stand] ?? 999), $p->place])
