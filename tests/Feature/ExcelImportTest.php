@@ -196,6 +196,29 @@ class ExcelImportTest extends TestCase
         $this->assertCount(1, $places[0]->products[0]->images);
     }
 
+    public function test_more_than_ten_products_are_read(): void
+    {
+        Storage::fake('public');
+        $book = new Spreadsheet;
+        $ws = $book->getActiveSheet()->setTitle('Рўйхат');
+        $ws->fromArray(['Т/р', 'Yo\'nalish', 'Павильон', 'Жой', 'Ташкилот', 'Маълумот', 'Масъул', 'Ишланма расми'], null, 'A1');
+        $ws->fromArray([1, 'Sanoat', 'B6', 20, 'Agentlik'], null, 'A2');
+        // 23.10.2026 dagi faylda bir qatorda 14 tagacha mahsulot: H, J, L, …, AD — har biri nom va rasm ustuni
+        for ($i = 0; $i < 12; $i++) {
+            $ws->setCellValue([8 + 2 * $i, 2], ($i + 1).'-preparat');
+        }
+        // AE — 12-mahsulot rasmi; AF — nomi yozilmagan keyingi ishlanma rasmi
+        $this->addImages($ws, ['AE2', 'AF2']);
+
+        $this->artisan('expo:import-excel', ['file' => $this->save($book)])->assertSuccessful();
+
+        $products = Place::where(['stand' => 'B6', 'place' => 20])->first()->products;
+        $this->assertSame(array_map(fn ($i) => "$i-preparat", range(1, 12)), $products->take(12)->pluck('name')->all());
+        $this->assertCount(1, $products[11]->images);
+        $this->assertSame('', $products[12]->name);
+        $this->assertCount(1, $products[12]->images);
+    }
+
     public function test_zone_sheet_is_imported_as_zone_places(): void
     {
         Storage::fake('public');

@@ -26,7 +26,11 @@ class ExcelExpoReader
     /** Sarlavha shu qatorlar ichidan qidiriladi */
     private const HEADER_SEARCH_ROWS = 10;
 
-    private const PRODUCT_SLOTS = 10;
+    /** Mahsulot juftliklari (nom + rasm ustuni) kamida shuncha; Excel'da ko'p bo'lsa — oxirgi ustungacha */
+    private const MIN_PRODUCT_SLOTS = 10;
+
+    /** Joriy varaqdagi mahsulot juftliklari soni */
+    private int $slots = self::MIN_PRODUCT_SLOTS;
 
     /** Sarlavha qatori ("Павильон" yozilgan) */
     private int $headerRow = 3;
@@ -61,6 +65,7 @@ class ExcelExpoReader
         $hasDept = mb_stripos($this->val($this->headerRow, 8), 'расм') === false;
         $this->productCol = $hasDept ? 9 : 8;
         $images = $this->extractImages($file, $progress);
+        $this->slots = $this->productSlots($images);
 
         $blocks = [];   // bitta "Жой" katagiga tegishli tashkilotlar
         $entries = [];
@@ -76,7 +81,7 @@ class ExcelExpoReader
             }
 
             $products = [];
-            for ($slot = 0; $slot < self::PRODUCT_SLOTS; $slot++) {
+            for ($slot = 0; $slot < $this->slots; $slot++) {
                 $c = $this->productCol + 2 * $slot;
                 // birlashtirilgan katakning davomidagi nom takrorlanmasin
                 $name = $this->isTopLeft($r, $c) ? $this->text($r, $c) : '';
@@ -213,6 +218,20 @@ class ExcelExpoReader
             'stand' => $zone, 'place' => $n, 'cont' => null, 'section' => config('expo.zones')[$zone]['name'],
             'org' => $org, 'info' => '', 'contact' => $org === '' ? '' : $contact, 'dept' => '', 'products' => $products,
         ];
+    }
+
+    /**
+     * Mahsulot juftliklari soni: kamida 10, varaqdagi oxirgi matnli yoki rasmli ustungacha
+     * (23.10.2026 dagi faylda bir qatorda 14 tagacha mahsulot bor).
+     *
+     * @param  array<string, string[]>  $images  "qator:juftlik" -> rasmlar
+     */
+    private function productSlots(array $images): int
+    {
+        $lastCol = Coordinate::columnIndexFromString($this->ws->getHighestDataColumn());
+        $lastImage = max([-1, ...array_map(fn ($key) => (int) explode(':', $key)[1], array_keys($images))]);
+
+        return max(self::MIN_PRODUCT_SLOTS, intdiv($lastCol - $this->productCol, 2) + 1, $lastImage + 1);
     }
 
     /** "5" -> [5], "1-3" -> [1, 2, 3] */
@@ -385,7 +404,7 @@ class ExcelExpoReader
 
     private function continuesFromAbove(int $r): bool
     {
-        for ($c = $this->productCol; $c < $this->productCol + 2 * self::PRODUCT_SLOTS; $c++) {
+        for ($c = $this->productCol; $c < $this->productCol + 2 * $this->slots; $c++) {
             if ($this->topOf($r, $c)[0] < $r) {
                 return true;
             }
@@ -465,7 +484,7 @@ class ExcelExpoReader
 
             $row = $this->topOf($row, $col)[0];
             // nom katagi va o'ngidagi katak bitta mahsulotniki: H,I -> 0; J,K -> 1; ...
-            $slot = min(self::PRODUCT_SLOTS - 1, max(0, intdiv($col - $this->productCol, 2)));
+            $slot = max(0, intdiv($col - $this->productCol, 2));
             $result["$row:$slot"][] = $saved[$media];
         }
         $zip->close();

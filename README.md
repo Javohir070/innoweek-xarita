@@ -14,7 +14,7 @@ git clone … vystavka && cd vystavka          # yoki papkani serverga ko'chirin
 composer install --no-dev --optimize-autoloader
 cp .env.example .env                        # DB_* va APP_URL ni to'ldiring
 php artisan key:generate
-php artisan migrate --seed                  # jadvallar + 240 joy va 480 rasm (yoki: expo:import-excel fayl.xlsx)
+php artisan migrate --seed                  # jadvallar + 240 joy va 489 rasm (yoki: expo:import-excel fayl.xlsx)
 php artisan storage:link
 php artisan expo:admin admin@misol.uz --name="Admin"   # parolni so'raydi
 php artisan config:cache && php artisan route:cache && php artisan view:cache
@@ -83,7 +83,7 @@ php artisan expo:import-excel yangi.xlsx --force     # bazada ma'lumot bo'lsa
 | C | Павильон — stend (`A1`…`A6`, `B1`…`B6`; kirillcha А/В ham bo'ladi) |
 | D | Жой — bitta joy (`9`) yoki oraliq (`1-2`, `18-20`). Oraliqning birinchi joyi asosiy, qolganlari uning davomi |
 | E, F, G | Tashkilot, ishlanma haqida, mas'ul shaxs |
-| H, J, L, … | 1–10-mahsulot nomi; rasmi shu katakda yoki o'ngidagi katakda |
+| H, J, L, … | 1-, 2-, …-mahsulot nomi (soni cheklanmagan, oxirgi ustungacha); rasmi shu katakda yoki o'ngidagi katakda |
 
 - "Жой" katagi bir nechta qatorga birlashtirilgan bo'lsa (bitta blokda bir necha tashkilot), joylar ular o'rtasida
   tartib bilan teng bo'linadi: `1-6` va uch tashkilot → 1–2, 3–4, 5–6.
