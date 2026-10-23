@@ -115,6 +115,15 @@ class ExpoTest extends TestCase
         $this->get('/')->assertOk()->assertSee('"ILMIY":6', false);
     }
 
+    public function test_qr_link_opens_map_at_place_and_product(): void
+    {
+        // QR kodga yoziladigan qisqa havola: xaritadagi joy oynasi va undagi mahsulot
+        $this->get('/m/a1-3/2')->assertRedirect(url('/').'#A1-3/2');
+        $this->get('/m/ILMIY-1')->assertRedirect(url('/').'#ILMIY-1');
+        $this->get('/m/A1-3/x')->assertNotFound();
+        $this->get('/m/../1')->assertNotFound();
+    }
+
     public function test_delete_clears_place_and_its_continuations(): void
     {
         $main = $this->seedPlace(['place' => 3], [['name' => 'P', 'images' => []]]);

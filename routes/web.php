@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 // Ochiq xarita
 Route::get('/', [ExpoController::class, 'index'])->name('expo.index');
 Route::get('/expo/places', [ExpoController::class, 'data'])->name('expo.data');
+// QR kod havolasi: "/m/A1-3/2" -> xaritada A1-3 joy oynasi, undagi 2-mahsulot belgilangan
+Route::get('/m/{place}/{product?}', [ExpoController::class, 'product'])
+    ->where(['place' => '[A-Za-z]+\d*-\d+', 'product' => '\d+'])->name('expo.product');
 
 // Admin: joyni saqlash / bo'shatish, rasm yuklash
 Route::middleware(['auth', 'admin'])->prefix('expo')->name('expo.')->group(function () {

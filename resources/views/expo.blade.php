@@ -277,6 +277,8 @@ main{flex:1;min-height:0;display:flex}
 .plist-h b{background:var(--ink);color:#fff;border-radius:999px;padding:1px 9px;font-size:11px;letter-spacing:0}
 .pcard{display:grid;grid-template-columns:260px minmax(0,1fr);background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:box-shadow .15s,border-color .15s}
 .pcard:hover{border-color:#cbd5e1;box-shadow:0 8px 24px rgba(15,23,42,.08)}
+/* QR koddan ochilgan mahsulot */
+.pcard.focus,.pcard.focus:hover{border-color:var(--brand2);box-shadow:0 0 0 3px rgba(29,111,224,.3)}
 .pcard .pic{position:relative;background:#f1f5f9;aspect-ratio:4/3;cursor:zoom-in;border-right:1px solid var(--line)}
 .pcard .pic img{width:100%;height:100%;object-fit:cover;display:block}
 .pcard .pic .zoom{position:absolute;right:8px;bottom:8px;width:30px;height:30px;border-radius:9px;background:rgba(15,23,42,.65);color:#fff;display:grid;place-items:center;pointer-events:none;opacity:0;transition:.15s}
@@ -534,7 +536,10 @@ main{flex:1;min-height:0;display:flex}
     </div>
   </section>
   <section id="listView">
-    <div class="listBar"><span class="cnt" id="listCnt"></span><button class="btn primary" id="addBtn" hidden>＋ Yangi ishtirokchi</button></div>
+    <div class="listBar"><span class="cnt" id="listCnt"></span>
+      <button class="btn" data-export="docx" title="Ro'yxatni QR kodlar bilan Word faylga yuklab olish">⬇ Word</button>
+      <button class="btn" data-export="pdf" title="Ro'yxatni QR kodlar bilan PDF faylga yuklab olish">⬇ PDF</button>
+      <button class="btn primary" id="addBtn" hidden>＋ Yangi ishtirokchi</button></div>
     <div class="tableCard" id="tableCard"></div>
   </section>
 </main>
@@ -557,6 +562,7 @@ window.EXPO = {
   isAdmin: @json($isAdmin),
   stands: @json(config('expo.stands')),
   perStand: @json(config('expo.places_per_stand')),
+  exportJs: @json(asset('js/expo-export.js').'?v='.filemtime(public_path('js/expo-export.js'))),
   zones: @json(collect(config('expo.zones'))->map(fn ($z) => $z['places'])),
   storage: @json(asset('storage')) + '/',
   assets: @json(asset('img')) + '/',
@@ -1041,12 +1047,19 @@ function closeModal() {
   setHash('');
 }
 function openFromHash() {
-  // "#A1", "#A1-5", zona uchun "#ILMIY", "#ILMIY-2"
-  const m = decodeURIComponent(location.hash).match(/^#([A-Z]+\d*)(?:-(\d+))?$/i);
+  // "#A1", "#A1-5", zona uchun "#ILMIY", "#ILMIY-2"; QR koddan "#A1-5/2" — 2-mahsulot belgilanadi
+  const m = decodeURIComponent(location.hash).match(/^#([A-Z]+\d*)(?:-(\d+)(?:\/(\d+))?)?$/i);
   const id = m && m[1].toUpperCase();
   if (!m || !(EXPO.stands.includes(id) || isZone(id))) return;
   if (!m[2]) openStand(id);
-  else if (+m[2] >= 1 && +m[2] <= maxOf(id)) openPlace(id, +m[2]);
+  else if (+m[2] >= 1 && +m[2] <= maxOf(id)) { openPlace(id, +m[2]); if (m[3]) focusProduct(+m[3]); }
+}
+// mahsulot kartochkasi ko'rinadigan joyga suriladi va belgilanadi (bitta mahsulot bo'lsa u allaqachon ko'rinib turadi)
+function focusProduct(k) {
+  const c = $$('#modal .plist .pcard')[k - 1];
+  if (!c) return;
+  c.classList.add('focus');
+  requestAnimationFrame(() => c.scrollIntoView({block: 'center'}));
 }
 addEventListener('hashchange', openFromHash);
 
@@ -1195,9 +1208,10 @@ async function api(method, url, body, isForm) {
   if (!r.ok) throw new Error(j.errors ? Object.values(j.errors)[0][0] : j.message || 'Xatolik yuz berdi');
   return j;
 }
-function toast(msg, err) {
+// ms — qancha ko'rinib turishi (uzoq davom etadigan ish jarayonini ko'rsatish uchun kattaroq)
+function toast(msg, err, ms = 2600) {
   const t = $('#toast'); t.textContent = msg; t.className = 'show' + (err ? ' err' : '');
-  clearTimeout(toast.t); toast.t = setTimeout(() => t.className = err ? 'err' : '', 2600);
+  clearTimeout(toast.t); toast.t = setTimeout(() => t.className = err ? 'err' : '', ms);
 }
 function renderAdmin() {
   const b = $('#adminBtn');
@@ -1212,6 +1226,24 @@ $('#adminBtn').onclick = () => {
   document.body.appendChild(f); f.submit();
 };
 $('#addBtn').onclick = () => openForm(null, null);
+
+/* ---------- yuklab olish: ro'yxat namunadagi jadval ko'rinishida (Word / PDF), har bir mahsulotga QR kod ---------- */
+// Kod (public/js/expo-export.js) va kutubxonalar faqat tugma bosilganda yuklanadi
+const loadScript = url => loadScript[url] ||= new Promise((ok, fail) => {
+  const s = document.createElement('script');
+  s.src = url; s.onload = ok;
+  s.onerror = () => { delete loadScript[url]; s.remove(); fail(new Error("Yuklab bo'lmadi — internet aloqasini tekshiring")); };
+  document.head.appendChild(s);
+});
+$$('[data-export]').forEach(b => b.onclick = async () => {
+  if (b.disabled) return;
+  $$('[data-export]').forEach(x => x.disabled = true);
+  try {
+    await loadScript(EXPO.exportJs);
+    await expoExport(b.dataset.export);
+  } catch (err) { toast(err.message || 'Xatolik yuz berdi', true, 5000); }
+  $$('[data-export]').forEach(x => x.disabled = false);
+});
 
 async function reload() {
   setData(await api('GET', EXPO.routes.data));

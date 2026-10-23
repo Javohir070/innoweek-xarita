@@ -7,6 +7,7 @@ use App\Models\Place;
 use App\Services\ExpoImageStore;
 use App\Services\PlaceService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -26,6 +27,12 @@ class ExpoController extends Controller
     public function data(): JsonResponse
     {
         return response()->json(Place::forMap());
+    }
+
+    /** QR koddagi qisqa havola: xaritani shu joy oynasi bilan ochadi (mahsulot raqami bo'lsa — o'sha kartochka belgilanadi) */
+    public function product(string $place, ?string $product = null): RedirectResponse
+    {
+        return redirect()->to(route('expo.index').'#'.strtoupper($place).($product ? "/$product" : ''));
     }
 
     public function update(SavePlaceRequest $request, string $stand, int $place): JsonResponse

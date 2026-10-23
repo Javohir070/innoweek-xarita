@@ -49,6 +49,11 @@ PHP'da ham `upload_max_filesize = 16M` va `post_max_size = 20M` bo'lsin.
 - **Admin kirish** tugmasi → `/login`. Kirgandan keyin modalda **Tahrirlash / O'chirish**,
   bo'sh joyda **Ma'lumot qo'shish**, "Ro'yxat" bo'limida **Yangi ishtirokchi** tugmalari chiqadi.
 - Ro'yxatdan o'tish yo'q. Admin qo'shish yoki parolini almashtirish: `php artisan expo:admin email`.
+- "Ro'yxat" bo'limidagi **⬇ Word / ⬇ PDF** — ro'yxatni (tanlangan yo'nalish yoki qidiruv bo'yicha) namunadagi jadval
+  ko'rinishida yuklab olish: №, mahsulot nomi, qisqacha ma'lumot, tashkilot, yo'nalish, joyi, rasm va **QR kod**.
+  Fayl brauzerda yasaladi (`public/js/expo-export.js`, kutubxonalar CDN'dan); QR kodlar sayt manzilidan olinadi,
+  shuning uchun hujjatni ishdagi saytdan yuklab oling.
+- QR kod `/m/A1-3/2` ko'rinishidagi havola: xaritada A1-3 joy oynasi ochiladi va 2-mahsulot belgilanadi.
 
 ## Ma'lumotlar
 
