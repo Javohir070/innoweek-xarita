@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Place;
 use App\Models\User;
+use App\Services\ExpoImageStore;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -153,6 +154,28 @@ class ExpoTest extends TestCase
 
         $this->actingAs($admin)->post('/expo/uploads', ['image' => UploadedFile::fake()->createWithContent('x.php', '<?php echo 1;')], ['Accept' => 'application/json'])
             ->assertUnprocessable();
+    }
+
+    public function test_emf_with_embedded_bitmap_is_saved_as_jpeg(): void
+    {
+        Storage::fake('public');
+        $store = app(ExpoImageStore::class);
+        // Excel'dagi ba'zi rasmlar EMF: sarlavha, ichida bitmap bo'lgan EMR_STRETCHDIBITS (81) va EOF yozuvlari. Bu yerda 2x2 qizil rasm
+        $bmi = pack('VllvvVVllVV', 40, 2, 2, 1, 24, 0, 16, 0, 0, 0, 0);
+        $bits = str_repeat(str_repeat("\x00\x00\xff", 2)."\x00\x00", 2);
+        $dib = pack('VV', 81, 136).str_repeat("\0", 40).pack('VVVV', 80, 40, 120, 16).str_repeat("\0", 16).$bmi.$bits;
+        $emf = pack('VV', 1, 8).$dib.pack('VV', 14, 8);
+
+        $path = $store->putBinary($emf, 'xtest', 'emf');
+        $this->assertSame('expo/xtest.jpg', $path);
+        $img = imagecreatefromstring(Storage::disk('public')->get($path));
+        $this->assertSame([2, 2], [imagesx($img), imagesy($img)]);
+        ['red' => $red, 'green' => $green] = imagecolorsforindex($img, imagecolorat($img, 0, 0));
+        $this->assertGreaterThan(200, $red);
+        $this->assertLessThan(60, $green);
+
+        // faqat vektor chizmali EMF (bitmap yo'q) — brauzer ko'rsata olmaydi, saqlanmaydi
+        $this->assertNull($store->putBinary(pack('VV', 1, 8).pack('VV', 14, 8), 'xvec', 'emf'));
     }
 
     public function test_login_logout_and_no_registration(): void

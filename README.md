@@ -14,7 +14,7 @@ git clone … vystavka && cd vystavka          # yoki papkani serverga ko'chirin
 composer install --no-dev --optimize-autoloader
 cp .env.example .env                        # DB_* va APP_URL ni to'ldiring
 php artisan key:generate
-php artisan migrate --seed                  # jadvallar + 240 joy va 489 rasm (yoki: expo:import-excel fayl.xlsx)
+php artisan migrate --seed                  # jadvallar + 240 joy va 491 rasm (yoki: expo:import-excel fayl.xlsx)
 php artisan storage:link
 php artisan expo:admin admin@misol.uz --name="Admin"   # parolni so'raydi
 php artisan config:cache && php artisan route:cache && php artisan view:cache

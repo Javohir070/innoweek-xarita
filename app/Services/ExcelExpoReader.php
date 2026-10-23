@@ -473,7 +473,7 @@ class ExcelExpoReader
         foreach ($pictures as [$media, $col, $row]) {
             if (! array_key_exists($media, $saved)) {
                 $bin = $zip->getFromName($media);
-                // brauzer ko'rsata olmaydigan rasm (masalan, EMF) null bo'lib qoladi
+                // brauzer ko'rsata olmaydigan rasm (masalan, ichida bitmap yo'q vektor EMF) null bo'lib qoladi
                 $saved[$media] = $bin === false ? null
                     : $this->images->putBinary($bin, 'x'.pathinfo($media, PATHINFO_FILENAME), strtolower(pathinfo($media, PATHINFO_EXTENSION)));
                 $progress && $progress();
